@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber Eats UX Final Research Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #06C167;
+    --green-dim: rgba(6,193,103,0.12);
+    --orange: #FF6B2C;
+    --orange-dim: rgba(255,107,44,0.12);
+    --blue: #2B3DE7;
+    --blue-dim: rgba(43,61,231,0.12);
+    --red: #E53935;
+    --red-dim: rgba(229,57,53,0.12);
+    --yellow: #FFC107;
+    --yellow-dim: rgba(255,193,7,0.12);
+    --dark: #0F0F1A;
+    --dark2: #171728;
+    --dark3: #1E1E35;
+    --card: #FFFFFF;
+    --bg: #F4F2EE;
+    --text: #1A1A2E;
+    --muted: #6B6B80;
+    --border: #E2E0D8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,15,26,0.94); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 56px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-pill { background: var(--green); color: #000; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; }
+  .nav-title { color: rgba(255,255,255,0.5); font-size: 13px; }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.4); font-size: 12px; text-decoration: none; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+
+  section { padding: 90px 2.5rem 70px; position: relative; }
+  .container { max-width: 1160px; margin: 0 auto; width: 100%; }
+
+  /* HERO */
+  #hero {
+    background: var(--dark); min-height: 100vh;
+    display: flex; align-items: center; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 55px 55px; pointer-events: none;
+  }
+  .hero-blocks {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(6,1fr); gap: 3px; pointer-events: none;
+  }
+  .hb { animation: hbPulse 3.5s ease-in-out infinite alternate; }
+  .hb:nth-child(1){background:var(--orange);opacity:.65;}
+  .hb:nth-child(2){background:transparent;}
+  .hb:nth-child(3){background:transparent;}
+  .hb:nth-child(4){background:var(--blue);opacity:.55;animation-delay:.7s}
+  .hb:nth-child(5){background:var(--green);opacity:.45;animation-delay:1.4s}
+  .hb:nth-child(6){background:transparent;}
+  .hb:nth-child(7){background:transparent;}
+  .hb:nth-child(8){background:var(--red);opacity:.55;animation-delay:.3s}
+  .hb:nth-child(9){background:transparent;}
+  .hb:nth-child(10){background:var(--orange);opacity:.25;animation-delay:1.1s}
+  .hb:nth-child(11){background:var(--blue);opacity:.35;animation-delay:1.8s}
+  .hb:nth-child(12){background:transparent;}
+  @keyframes hbPulse{from{opacity:.1}to{opacity:.7}}
+
+  .hero-content { position: relative; z-index: 2; }
+  .hero-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:1.8rem;animation:fadeUp .8s ease both; }
+  .eyebrow-tag { font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green); }
+  .eyebrow-line { width:40px;height:1px;background:var(--green); }
+  .hero-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,9vw,8.5rem);line-height:.9;color:#fff;letter-spacing:2px;animation:fadeUp .8s .12s ease both; }
+  .hero-title span{-webkit-text-stroke:2px var(--green);color:transparent;}
+  /* Author block — replaces old subtitle / chips / stats */
+  .hero-author {
+    margin-top: 2.8rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    animation: fadeUp .8s .24s ease both;
+  }
+  .hero-author-name {
+    font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; margin-bottom: 6px;
+  }
+  .hero-author-detail {
+    font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.6); line-height: 1.7;
+  }
+  .hero-author-tag {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 1rem;
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--green);
+  }
+  .hero-author-tag::before { content:''; width:20px; height:1px; background:var(--green); }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+  /* SHARED */
+  .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;display:flex;align-items:center;gap:10px;}
+  .sec-label::after{content:'';width:50px;height:1px;background:currentColor;opacity:.4;}
+  .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,4.5vw,4.5rem);letter-spacing:2px;line-height:.95;color:var(--text);}
+  .dark-sec .sec-title{color:#fff;}
+  .dark-sec .sec-label{color:rgba(255,255,255,.3);}
+  .sec-sub{font-size:14px;color:var(--muted);margin-top:.7rem;font-weight:300;}
+  .dark-sec .sec-sub{color:rgba(255,255,255,.3);}
+
+  /* TLDR */
+  #tldr{background:var(--bg);}
+  .tldr-video-wrap {
+    margin-top: 2.5rem; border-radius: 20px; overflow: hidden;
+    background: #000; box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+    aspect-ratio: 16 / 9;
+  }
+  .tldr-video { display:block; width:100%; height:100%; object-fit:cover; border-radius:20px; }
+  .tcard{background:var(--card);border-radius:16px;padding:1.8rem;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
+  .tcard:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.07);}
+  .tcard.dark-card{background:var(--dark);border-color:var(--dark3);}
+  .tcard-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.7rem;}
+  .tcard-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:.7rem;}
+  .dark-card .tcard-title{color:#fff;}
+  .tcard-body{font-size:13.5px;line-height:1.75;color:var(--muted);font-weight:300;}
+  .dark-card .tcard-body{color:rgba(255,255,255,.45);}
+  .tkw-list{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.7rem;}
+  .tkw-list li{display:flex;align-items:flex-start;gap:11px;font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;}
+  .tknum{width:26px;height:26px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;}
+
+  /* METHODOLOGY */
+  #methodology{background:var(--dark);}
+  .mth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
+  .mcard{background:var(--dark3);border-radius:16px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .3s;}
+  .mcard:hover{transform:translateY(-5px);}
+  .mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .mc1::before{background:var(--orange);}
+  .mc2::before{background:var(--blue);}
+  .mc3::before{background:var(--green);}
+  .mnum{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;opacity:.07;position:absolute;top:1rem;right:1.2rem;color:#fff;}
+  .micon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem;}
+  .mc1 .micon{background:rgba(255,107,44,.15);}
+  .mc2 .micon{background:rgba(43,61,231,.2);}
+  .mc3 .micon{background:rgba(6,193,103,.15);}
+  .mname{font-size:17px;font-weight:700;color:#fff;margin-bottom:.5rem;}
+  .mdesc{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300;margin-bottom:1rem;}
+  .mtags{display:flex;flex-wrap:wrap;gap:5px;}
+  .mtag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.07);}
+
+  /* FINDINGS */
+  #findings{background:var(--bg);}
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
+  .fcard{background:var(--card);border-radius:18px;padding:1.8rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;}
+  .fcard:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.09);}
+  .fcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;}
+  .fr::after{background:var(--red);}
+  .fo::after{background:var(--orange);}
+  .fy::after{background:var(--yellow);}
+  .frank{display:flex;align-items:center;gap:11px;}
+  .rbadge{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
+  .rb-r{background:var(--red);}
+  .rb-o{background:var(--orange);}
+  .rb-y{background:var(--yellow);color:#000;}
+  .pchip{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 9px;border-radius:20px;}
+  .pc-r{background:var(--red-dim);color:var(--red);}
+  .pc-o{background:var(--orange-dim);color:var(--orange);}
+  .pc-y{background:var(--yellow-dim);color:#906c00;}
+  .ftitle{font-size:18px;font-weight:700;color:var(--text);line-height:1.2;}
+  .fdesc{font-size:13px;line-height:1.75;color:var(--muted);flex:1;font-weight:300;}
+  .fstats{display:flex;gap:0;border-top:1px solid var(--border);padding-top:.9rem;margin-top:auto;}
+  .fst{flex:1;text-align:center;padding:0 .4rem;border-right:1px solid var(--border);}
+  .fst:last-child{border-right:none;}
+  .fst-v{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:1px;line-height:1;}
+  .fr .fst-v{color:var(--red);}
+  .fo .fst-v{color:var(--orange);}
+  .fy .fst-v{color:#906c00;}
+  .fst-l{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-top:2px;}
+
+  /* DETAIL SECTIONS */
+  .dsec{padding:70px 2.5rem;}
+  .dsec-light{background:var(--card);}
+  .dsec-muted{background:var(--bg);}
+  .dlabel{display:inline-flex;align-items:center;gap:8px;padding:4px 13px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
+  .dl-r{background:var(--red-dim);color:var(--red);}
+  .dl-o{background:var(--orange-dim);color:var(--orange);}
+  .dl-b{background:var(--blue-dim);color:var(--blue);}
+  .dblock{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.5rem;align-items:start;}
+  .dblock.rev{direction:rtl;}
+  .dblock.rev>*{direction:ltr;}
+  .dheading{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.2vw,3rem);letter-spacing:1.5px;line-height:.95;margin-bottom:1rem;color:var(--text);}
+  .dtext{font-size:13.5px;line-height:1.8;color:var(--muted);font-weight:300;margin-bottom:1.2rem;}
+  .qblock{border-left:3px solid var(--green);padding:.9rem 1.1rem;background:rgba(6,193,103,.04);border-radius:0 8px 8px 0;margin:.8rem 0;}
+  .qblock.qr{border-color:var(--red);background:rgba(229,57,53,.04);}
+  .qblock.qo{border-color:var(--orange);background:rgba(255,107,44,.04);}
+  .qblock.qb{border-color:var(--blue);background:rgba(43,61,231,.04);}
+  .qtext{font-size:13.5px;font-style:italic;line-height:1.7;color:var(--text);}
+  .qattr{font-size:11px;color:var(--muted);margin-top:.4rem;font-family:'DM Mono',monospace;}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+  .mbox{padding:1.1rem;border-radius:11px;border:1px solid var(--border);background:var(--bg);}
+  .mbox-v{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:1px;line-height:1;}
+  .mbox-l{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
+  .ilist{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:1rem;}
+  .iitem{display:flex;align-items:flex-start;gap:11px;padding:.7rem .9rem;border-radius:9px;background:var(--bg);border:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.5;}
+  .idot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+
+  /* COMPARISON */
+  #comparison{background:var(--bg);}
+  .ctable-wrap{margin-top:2.5rem;overflow:hidden;border-radius:14px;border:1px solid var(--border);box-shadow:0 6px 30px rgba(0,0,0,.05);}
+  .ctable{width:100%;border-collapse:collapse;}
+  .ctable th{background:var(--dark);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:.9rem 1.1rem;text-align:left;}
+  .ctable td{padding:.9rem 1.1rem;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
+  .ctable tr:last-child td{border-bottom:none;}
+  .ctable tr:nth-child(odd) td{background:rgba(0,0,0,.015);}
+  .ctable td:first-child{font-weight:600;color:var(--text);}
+  .sbadge{display:inline-block;padding:3px 11px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.8px;}
+  .sb-crit{background:var(--red);color:#fff;}
+  .sb-high{background:var(--orange);color:#fff;}
+  .sb-med{background:var(--yellow);color:#000;}
+
+  /* ACTIONS */
+  #actions{background:var(--dark);}
+  .agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
+  .acard{background:var(--dark3);border-radius:18px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:1.1rem;position:relative;overflow:hidden;transition:transform .3s;}
+  .acard:hover{transform:translateY(-5px);}
+  .acard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .ac1::before{background:var(--red);}
+  .ac2::before{background:var(--orange);}
+  .ac3::before{background:var(--yellow);}
+  .anum{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:2px;color:rgba(255,255,255,.2);}
+  .atitle{font-size:18px;font-weight:700;color:#fff;line-height:1.2;}
+  .ahmw{font-size:12px;line-height:1.7;padding:.8rem;border-radius:9px;font-style:italic;}
+  .ac1 .ahmw{background:var(--red-dim);color:rgba(229,57,53,.9);}
+  .ac2 .ahmw{background:var(--orange-dim);color:rgba(255,107,44,.9);}
+  .ac3 .ahmw{background:var(--yellow-dim);color:rgba(160,112,10,.95);}
+  .aitems{list-style:none;display:flex;flex-direction:column;gap:.55rem;flex:1;}
+  .aitems li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:rgba(255,255,255,.45);line-height:1.5;}
+  .aidot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+  .ac1 .aidot{background:var(--red);}
+  .ac2 .aidot{background:var(--orange);}
+  .ac3 .aidot{background:var(--yellow);}
+  .akpi{padding:.7rem;border-radius:9px;background:rgba(255,255,255,.04);font-size:10.5px;color:rgba(255,255,255,.28);font-family:'DM Mono',monospace;}
+
+  /* PRIORITY */
+  #priority{background:var(--bg);}
+  .plist{display:flex;flex-direction:column;gap:1.1rem;margin-top:2.5rem;}
+  .prow{display:grid;grid-template-columns:72px 1fr 190px;gap:1.8rem;align-items:center;background:var(--card);border-radius:14px;padding:1.4rem 1.8rem;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
+  .prow:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(0,0,0,.06);}
+  .prank{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:1px;color:#fff;flex-shrink:0;}
+  .pr1{background:var(--red);}
+  .pr2{background:var(--orange);}
+  .pr3{background:var(--yellow);color:#000;}
+  .pcontent{display:flex;flex-direction:column;gap:.4rem;}
+  .ptitle{font-size:17px;font-weight:700;color:var(--text);}
+  .pwhy{font-size:12.5px;color:var(--muted);line-height:1.6;font-weight:300;}
+  .pbadges{display:flex;gap:7px;margin-top:.4rem;}
+  .pbadge{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;}
+  .pbi-h{background:var(--red-dim);color:var(--red);}
+  .pbe-h{background:var(--orange-dim);color:var(--orange);}
+  .pbe-l{background:var(--green-dim);color:var(--green);}
+  .pkpi{text-align:right;}
+  .pkpi-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem;font-family:'DM Mono',monospace;}
+  .pkpi-val{font-size:12.5px;color:var(--text);font-weight:500;line-height:1.55;}
+
+  /* APPENDIX */
+  #appendix{background:var(--dark2);}
+  .apgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;}
+  .apcard{background:var(--dark3);border-radius:14px;padding:1.6rem;border:1px solid rgba(255,255,255,.06);}
+  .aptitle{font-size:13px;font-weight:700;color:#fff;margin-bottom:1.1rem;display:flex;align-items:center;gap:9px;}
+  .aptitle::before{content:'';display:block;width:4px;height:14px;border-radius:2px;}
+  .at-o::before{background:var(--orange);}
+  .at-b::before{background:var(--blue);}
+  .prow-ap{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;}
+  .prow-ap:last-child{border-bottom:none;}
+  .prname{color:rgba(255,255,255,.65);font-weight:500;}
+  .prdetail{color:rgba(255,255,255,.28);font-size:10.5px;text-align:right;}
+  .pure-t{width:100%;border-collapse:collapse;margin-top:1rem;}
+  .pure-t th{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.28);padding:.35rem .55rem;text-align:left;font-weight:600;border-bottom:1px solid rgba(255,255,255,.05);}
+  .pure-t td{font-size:12px;padding:.45rem .55rem;color:rgba(255,255,255,.45);border-bottom:1px solid rgba(255,255,255,.03);}
+  .pure-t td.crit{color:var(--red);font-weight:600;}
+
+  /* FOOTER */
+  footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
+  .ftitle{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:3px;color:#fff;margin-bottom:.4rem;}
+  .ftitle span{color:var(--green);}
+  .fsub{font-size:13px;color:rgba(255,255,255,.28);font-weight:300;line-height:1.6;}
+  .fblocks{display:flex;justify-content:center;gap:3px;margin-bottom:1.5rem;}
+  .fb{width:28px;height:28px;border-radius:4px;}
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:860px){
+    .mth-grid,.fgrid,.agrid,.apgrid{grid-template-columns:1fr;}
+    .dblock{grid-template-columns:1fr;}
+    .dblock.rev{direction:ltr;}
+    .prow{grid-template-columns:1fr;gap:1rem;}
+    .pkpi{text-align:left;}
+    .hero-blocks{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span class="nav-pill">Uber Eats</span>
+    <span class="nav-title">UX Final Research Report</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#findings">Findings</a></li>
+    <li><a href="#comparison">Cross-Method</a></li>
+    <li><a href="#actions">Actions</a></li>
+    <li><a href="#priority">Priority</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-blocks">
+    <div class="hb"></div><div class="hb"></div><div class="hb"></div><div class="hb"></div>
+    <div class="hb"></div><div class="hb"></div><div class="hb"></div><div class="hb"></div>
+    <div class="hb"></div><div class="hb"></div><div class="hb"></div><div class="hb"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-tag">UX604 · Research Method 2 · Winter 2026</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="hero-title">UX<br><span>Research</span><br>Final Report</h1>
+      <div class="hero-author">
+        <div class="hero-author-name">Carol Chen</div>
+        <div class="hero-author-detail">Professor Susie Simon</div>
+        <div class="hero-author-detail">Wilfrid Laurier University</div>
+        <span class="hero-author-tag">UX604 · Research Method 2 · Winter 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TLDR -->
+<section id="tldr">
+  <div class="container">
+    <div class="sec-label">Executive Summary</div>
+    <h2 class="sec-title">TL;DR</h2>
+    <p class="sec-sub">Watch the overview video below.</p>
+    <div class="tldr-video-wrap reveal">
+      <!--
+        ╔══════════════════════════════════════════════════════════════════╗
+        ║  PASTE YOUR VIDEO HERE — three options:                         ║
+        ║                                                                  ║
+        ║  Option A — Local / uploaded MP4 file:                          ║
+        ║    Change src="YOUR_VIDEO.mp4" to your actual filename          ║
+        ║                                                                  ║
+        ║  Option B — YouTube embed:                                       ║
+        ║    Delete the <video> block and uncomment the <iframe> below    ║
+        ║                                                                  ║
+        ║  Option C — Google Drive:                                        ║
+        ║    File → Share → Copy embed link → paste as <iframe src="..."> ║
+        ╚══════════════════════════════════════════════════════════════════╝
+      -->
+      <video class="tldr-video" controls preload="metadata">
+        <source src="YOUR_VIDEO.mp4" type="video/mp4" />
+        <p style="color:#fff;padding:2rem;text-align:center">
+          请将视频文件与此 HTML 放在同一文件夹，并将 <code>YOUR_VIDEO.mp4</code> 改为实际文件名。<br>
+          <a href="YOUR_VIDEO.mp4" style="color:#06C167">点击下载</a>
+        </p>
+      </video>
+
+      <!-- YouTube 替代方案（删除上方 <video> 后取消注释）:
+      <iframe class="tldr-video"
+        src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1&color=white"
+        title="TL;DR Overview" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen style="width:100%;height:100%;border-radius:20px;">
+      </iframe>
+      -->
+    </div>
+  </div>
+</section>
+<!-- METHODOLOGY -->
+<section id="methodology" class="dark-sec">
+  <div class="container">
+    <div class="sec-label">How We Researched</div>
+    <h2 class="sec-title">Research Methods</h2>
+    <p class="sec-sub">Three progressive methods, designed to cross-validate each other.</p>
+    <div class="mth-grid reveal">
+      <div class="mcard mc1">
+        <div class="mnum">01</div>
+        <div class="micon">🧪</div>
+        <div class="mname">Usability Study</div>
+        <div class="mdesc">Remote moderated testing via Zoom with 5 real Uber Eats users (ages 20–25). Three tasks with SEQ, UMUX-Lite, task success rate, error rate, and time-on-task.</div>
+        <div class="mtags"><span class="mtag">N=5 Users</span><span class="mtag">Remote/Zoom</span><span class="mtag">SEQ + UMUX-Lite</span><span class="mtag">Affinity Map</span></div>
+      </div>
+      <div class="mcard mc2">
+        <div class="mnum">02</div>
+        <div class="micon">🔬</div>
+        <div class="mname">PURE Study</div>
+        <div class="mdesc">In-person expert evaluation by 3 UX Master's students (WLU). Each step rated on PURE 1–3 friction scale. Qualitative data analyzed via Affinity Mapping in Figma.</div>
+        <div class="mtags"><span class="mtag">N=3 Experts</span><span class="mtag">In-Person</span><span class="mtag">PURE 1–3 Scale</span><span class="mtag">17 Steps</span></div>
+      </div>
+      <div class="mcard mc3">
+        <div class="mnum">03</div>
+        <div class="micon">🤖</div>
+        <div class="mname">AI Heuristic Eval</div>
+        <div class="mdesc">Gemini (Thinking) used as AI participant proxy with simulated think-aloud. Same 3 tasks evaluated against Nielsen's 10 Heuristics with SEQ scores recorded.</div>
+        <div class="mtags"><span class="mtag">Gemini Thinking</span><span class="mtag">Nielsen's 10H</span><span class="mtag">SEQ Scores</span><span class="mtag">Think-Aloud</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FINDINGS -->
+<section id="findings">
+  <div class="container">
+    <div class="sec-label">Key Insights</div>
+    <h2 class="sec-title">Three Critical Findings</h2>
+    <p class="sec-sub">Confirmed and cross-validated across all three research methods.</p>
+    <div class="fgrid reveal">
+      <div class="fcard fr">
+        <div class="frank"><span class="rbadge rb-r">01</span><span class="pchip pc-r">Priority — Critical</span></div>
+        <div class="ftitle">Customer Support System Is Invisible</div>
+        <div class="fdesc">Users cannot reach human support. The architecture deliberately blocks live-agent access, routing 100% of contacts through an AI chatbot with no phone number and no free-text bypass.</div>
+        <div class="fstats">
+          <div class="fst"><div class="fst-v">0%</div><div class="fst-l">Task Success</div></div>
+          <div class="fst"><div class="fst-v">2.8</div><div class="fst-l">SEQ /7</div></div>
+          <div class="fst"><div class="fst-v">P3</div><div class="fst-l">PURE Rating</div></div>
+        </div>
+      </div>
+      <div class="fcard fo">
+        <div class="frank"><span class="rbadge rb-o">02</span><span class="pchip pc-o">Priority — High (New)</span></div>
+        <div class="ftitle">Information Architecture Problems</div>
+        <div class="fdesc">Newly identified by the PURE study — entirely absent from initial usability testing. Critical features are buried, search bar is in the wrong location, and visual hierarchy is missing.</div>
+        <div class="fstats">
+          <div class="fst"><div class="fst-v">5</div><div class="fst-l">Friction Pts</div></div>
+          <div class="fst"><div class="fst-v">76%</div><div class="fst-l">Steps PURE 2+</div></div>
+          <div class="fst"><div class="fst-v">9</div><div class="fst-l">H. Violations</div></div>
+        </div>
+      </div>
+      <div class="fcard fy">
+        <div class="frank"><span class="rbadge rb-y">03</span><span class="pchip pc-y">Priority — High</span></div>
+        <div class="ftitle">The Issue of Price Transparency</div>
+        <div class="fdesc">Users cannot verify the all-in total before placing an order. Custom tip input shows subtotal only ($17.51), forcing users to mentally calculate the true final charge with no UI confirmation.</div>
+        <div class="fstats">
+          <div class="fst"><div class="fst-v">1.2</div><div class="fst-l">Task Success</div></div>
+          <div class="fst"><div class="fst-v">5.4</div><div class="fst-l">SEQ /7</div></div>
+          <div class="fst"><div class="fst-v">P2</div><div class="fst-l">PURE Rating</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDING 1 DETAIL -->
+<div class="dsec dsec-light">
+  <div class="container">
+    <div class="dlabel dl-r">Finding 01 — Critical</div>
+    <div class="dblock reveal">
+      <div>
+        <div class="dheading">Customer Support System Is Invisible</div>
+        <p class="dtext">All three research methods independently converged: reaching a human agent in Uber Eats is architecturally impossible. No phone number exists anywhere in the app. The chatbot presents only chip options — no free-text box means typing "human" is impossible. Every path leads to deeper automation.</p>
+        <div class="qblock qr">
+          <p class="qtext">"it is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</p>
+          <p class="qattr">— PURE Evaluator 2, Task 3-5</p>
+        </div>
+        <div class="qblock qo" style="margin-top:.7rem">
+          <p class="qtext">"it feels like the app is hiding a phone number on purpose to force me to use the bot."</p>
+          <p class="qattr">— AI Participant (Alex) · Task 3 Think-Aloud · SEQ 2/7</p>
+        </div>
+      </div>
+      <div>
+        <div class="mgrid">
+          <div class="mbox"><div class="mbox-v" style="color:var(--red)">0%</div><div class="mbox-l">Task 3 completion rate (Usability Study)</div></div>
+          <div class="mbox"><div class="mbox-v" style="color:var(--red)">2.8/7</div><div class="mbox-l">SEQ Score — Task 3 Usability Study</div></div>
+          <div class="mbox"><div class="mbox-v" style="color:var(--red)">PURE 3</div><div class="mbox-l">Task 3-5 max friction — 2 of 3 evaluators</div></div>
+          <div class="mbox"><div class="mbox-v" style="color:var(--orange)">SEQ 2</div><div class="mbox-l">AI Evaluator — "Extremely Difficult"</div></div>
+        </div>
+        <ul class="ilist" style="margin-top:1.3rem">
+          <li class="iitem"><span class="idot" style="background:var(--red)"></span>No customer service phone number anywhere in-app</li>
+          <li class="iitem"><span class="idot" style="background:var(--red)"></span>AI chatbot chip-only — no free-text bypass available</li>
+          <li class="iitem"><span class="idot" style="background:var(--red)"></span>"More options" button is a dead-end, not escalation</li>
+          <li class="iitem"><span class="idot" style="background:var(--orange)"></span>Help buried at item 5 of 9 on profile page (H4, H7)</li>
+          <li class="iitem"><span class="idot" style="background:var(--orange)"></span>Zero empathy language anywhere in support flow UI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINDING 2 DETAIL -->
+<div class="dsec dsec-muted">
+  <div class="container">
+    <div class="dlabel dl-o">Finding 02 — New from PURE Study</div>
+    <div class="dblock rev reveal">
+      <div>
+        <div class="dheading">Information Architecture Problems</div>
+        <p class="dtext">The PURE expert evaluation identified IA as the <strong>core pain point</strong> driving cognitive overload — a finding absent from usability testing. While usability participants gave high SEQ scores for Task 1, PURE evaluators pinpointed why: the ordering interface lacks categorization logic, features are buried, and ads compete visually with key functions.</p>
+        <div class="qblock qo">
+          <p class="qtext">"another issue is hidden in the 'more option' choice which is also in a long list. I have to read all of that to only get started. that's frustrating."</p>
+          <p class="qattr">— PURE Evaluator 2, Task 3</p>
+        </div>
+        <div class="qblock qo" style="margin-top:.7rem">
+          <p class="qtext">"The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</p>
+          <p class="qattr">— PURE Evaluator 3, Task 1, Step 2</p>
+        </div>
+      </div>
+      <div>
+        <ul class="ilist">
+          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Search placement:</strong> Search bar at bottom nav violates H4 (Consistency). Category chip creates competing off-path affordance.</span></li>
+          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Menu hierarchy:</strong> Restaurant opens as bottom sheet with fee info first. Menu items (primary goal) buried below promo content.</span></li>
+          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Help page IA:</strong> "Another order issue" hidden in a long list inside "More Options." Violates recognition over recall (H6).</span></li>
+          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Visual hierarchy:</strong> Ads and key content have equal visual prominence. Interface perceived as cluttered marketing.</span></li>
+        </ul>
+        <div style="margin-top:1.2rem;padding:1.1rem;background:var(--card);border-radius:11px;border:1px solid var(--border)">
+          <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:1px">PURE vs Usability Comparison</div>
+          <p style="font-size:13px;line-height:1.7;color:var(--muted);font-weight:300">Usability Testing showed high SEQ for Task 1 (6.2/7), masking IA problems. PURE corrected the assumption — the issue is not "too many ads" but a <strong>lack of visual hierarchy</strong>. PURE 2+ ratings on 13 of 17 steps confirm systemic friction throughout the entire app.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINDING 3 DETAIL -->
+<div class="dsec dsec-light">
+  <div class="container">
+    <div class="dlabel dl-b">Finding 03 — Confirmed Both Studies</div>
+    <div class="dblock reveal">
+      <div>
+        <div class="dheading">The Issue of Price Transparency</div>
+        <p class="dtext">Both Usability Study and PURE Study independently flagged the same critical friction: users cannot verify the all-in total price before tapping "Place Order." Custom tip entry shows food + fees subtotal only ($17.51) — the tip is never added in the UI. Users must do mental arithmetic. The AI evaluation confirmed this, noting tip was calculated on pre-discount total ($26.51) rather than actual total ($17.51).</p>
+        <div class="qblock qb">
+          <p class="qtext">"I cannot see the total price after I adding a tip. That's a little bit annoying."</p>
+          <p class="qattr">— Jane (Usability Participant, Task 2)</p>
+        </div>
+        <div class="qblock qb" style="margin-top:.7rem">
+          <p class="qtext">"When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere. There was only a 'Place Order' button."</p>
+          <p class="qattr">— PURE Evaluator 2, Task 2-7</p>
+        </div>
+      </div>
+      <div>
+        <div class="mgrid">
+          <div class="mbox"><div class="mbox-v" style="color:var(--blue)">1.2</div><div class="mbox-l">Task 2 success rate (Partial completions)</div></div>
+          <div class="mbox"><div class="mbox-v" style="color:var(--blue)">5.4/7</div><div class="mbox-l">SEQ Score — easy but opacity causes anxiety</div></div>
+          <div class="mbox"><div class="mbox-v" style="color:var(--red)">PURE 2</div><div class="mbox-l">Task 2-7 friction — 2 of 3 evaluators</div></div>
+          <div class="mbox"><div class="mbox-v" style="color:var(--orange)">SEQ 4</div><div class="mbox-l">AI Evaluator — "tedious & opaque"</div></div>
+        </div>
+        <ul class="ilist" style="margin-top:1.2rem">
+          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Pre-selected 18% tip with emotionally loaded labels ("You're my hero" = 25%) — anchoring bias</li>
+          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Tip base calculated on pre-discount total ($26.51) not actual total ($17.51)</li>
+          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Duplicate "Apple Pay" entries in payment modal — no differentiating metadata (H6)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CROSS-METHOD -->
+<section id="comparison">
+  <div class="container">
+    <div class="sec-label">Triangulation</div>
+    <h2 class="sec-title">Cross-Method Validation</h2>
+    <p class="sec-sub">What each method found — where findings aligned and where they diverged.</p>
+    <div class="ctable-wrap reveal">
+      <table class="ctable">
+        <thead>
+          <tr>
+            <th style="width:22%">Finding</th>
+            <th style="width:22%">Usability Study</th>
+            <th style="width:22%">PURE Study</th>
+            <th style="width:22%">AI Heuristic Eval</th>
+            <th style="width:12%">Severity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Support System Invisible</strong></td>
+            <td>0% task success<br>SEQ 2.8/7<br>65.4s time on task</td>
+            <td>PURE 3 at Step 5<br>Task 3 critical fail<br>3 friction points</td>
+            <td>SEQ 2/7 (lowest)<br>Dead-end confirmed<br>"Hiding on purpose"</td>
+            <td><span class="sbadge sb-crit">CRITICAL</span></td>
+          </tr>
+          <tr>
+            <td><strong>Information Architecture</strong></td>
+            <td>Qualitative hints present<br>Missed quantitatively<br>High SEQ masked issues</td>
+            <td>NEW FINDING<br>5 friction points<br>Systemic across tasks</td>
+            <td>H1, H4, H6, H7, H8<br>Multiple violations<br>Search bar placement</td>
+            <td><span class="sbadge sb-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Price Transparency</strong></td>
+            <td>1.2 success rate<br>SEQ 5.4/7<br>Anxiety at checkout</td>
+            <td>PURE 2 (Task 2-7)<br>Confirmed identical<br>Grand total hidden</td>
+            <td>SEQ 4/7 confirmed<br>Tip base confusion<br>$26.51 vs $17.51</td>
+            <td><span class="sbadge sb-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Interface / Marketing</strong></td>
+            <td>Finding 3: messy UI<br>68% UMUX-Lite only<br>Pop-up accidental taps</td>
+            <td>No pop-up activations<br>Observed by experts<br>IA is the deeper issue</td>
+            <td>Promo at every step<br>H2, H5, H8 violations<br>Confirmshaming noted</td>
+            <td><span class="sbadge sb-med">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<section id="actions" class="dark-sec">
+  <div class="container">
+    <div class="sec-label">Actionable Recommendations</div>
+    <h2 class="sec-title">Design Actions</h2>
+    <p class="sec-sub">Specific recommendations derived from all three research sources.</p>
+    <div class="agrid reveal">
+      <div class="acard ac1">
+        <div class="anum">ACTION 01</div>
+        <div class="atitle">Fix Customer Support Visibility</div>
+        <div class="ahmw">How might we establish a transparent communication mechanism that allows users to resolve their needs at any time?</div>
+        <ul class="aitems">
+          <li><span class="aidot"></span>Add a persistent floating Help icon on both home page and order page</li>
+          <li><span class="aidot"></span>Design 3-way communication platform: user ↔ merchant ↔ rider (ref: Meituan)</li>
+          <li><span class="aidot"></span>Expose human agent option prominently before AI chatbot, not after</li>
+          <li><span class="aidot"></span>Add free-text input to chatbot so users can type "human" or "agent"</li>
+        </ul>
+        <div class="akpi">KPI: NPS ↑ · Churn Rate ↓ · Support Cost ↓ · LTV ↑</div>
+      </div>
+      <div class="acard ac2">
+        <div class="anum">ACTION 02</div>
+        <div class="atitle">Redesign Information Architecture</div>
+        <div class="ahmw">How might we design an intuitive IA that minimises friction points for users during their interactions?</div>
+        <ul class="aitems">
+          <li><span class="aidot"></span>Move search bar from bottom nav to top of homepage</li>
+          <li><span class="aidot"></span>Add a visible left sidebar for restaurant menu categories</li>
+          <li><span class="aidot"></span>Redesign homepage: prioritize key functions, reduce ad visual weight</li>
+          <li><span class="aidot"></span>Use card sorting to restructure help page — separate order history from topic list</li>
+        </ul>
+        <div class="akpi">KPI: Cart Abandonment ↓ · Time-to-Order ↓ · Activation ↑</div>
+      </div>
+      <div class="acard ac3">
+        <div class="anum">ACTION 03</div>
+        <div class="atitle">Fix Price Transparency</div>
+        <div class="ahmw">How might we redesign the checkout flow to provide full price transparency and eliminate fear of price uncertainty?</div>
+        <ul class="aitems">
+          <li><span class="aidot"></span>Show all-in total (food + fees + tip) immediately after tip is set</li>
+          <li><span class="aidot"></span>Pin a running total to the bottom of checkout screen while scrolling</li>
+          <li><span class="aidot"></span>Add a payment confirmation dialog before "Place Order" to prevent misclicks</li>
+          <li><span class="aidot"></span>Calculate tip on actual discounted total, not pre-discount price</li>
+        </ul>
+        <div class="akpi">KPI: Order Completion ↑ · Refund Rate ↓ · CLTV ↑</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIORITY -->
+<section id="priority">
+  <div class="container">
+    <div class="sec-label">Prioritization</div>
+    <h2 class="sec-title">Priority Matrix</h2>
+    <p class="sec-sub">Ranked by severity confirmed across methods, and ease of implementation.</p>
+    <div class="plist reveal">
+      <div class="prow">
+        <div class="prank pr1">01</div>
+        <div class="pcontent">
+          <div class="ptitle">Fix Customer Support Visibility</div>
+          <div class="pwhy">PURE 3 + 0% task success + SEQ 2/7 makes this the most critical fix. Invisible support causes immediate abandonment and long-term brand damage. Users unable to resolve problems switch to DoorDash/Skip permanently.</div>
+          <div class="pbadges"><span class="pbadge pbi-h">Impact: High</span><span class="pbadge pbe-h">Effort: High</span></div>
+        </div>
+        <div class="pkpi">
+          <div class="pkpi-label">Business KPIs</div>
+          <div class="pkpi-val">NPS ↑ · Churn Rate ↓<br>Support Cost ↓ · LTV ↑</div>
+        </div>
+      </div>
+      <div class="prow">
+        <div class="prank pr2">02</div>
+        <div class="pcontent">
+          <div class="ptitle">Redesign Information Architecture</div>
+          <div class="pwhy">Newly confirmed by PURE study with 5 friction points across all tasks. This systemic issue affects the entire ordering experience. Fixing it reduces cognitive load at every step from homepage to help.</div>
+          <div class="pbadges"><span class="pbadge pbi-h">Impact: High</span><span class="pbadge pbe-h">Effort: High</span></div>
+        </div>
+        <div class="pkpi">
+          <div class="pkpi-label">Business KPIs</div>
+          <div class="pkpi-val">Cart Abandonment ↓<br>Time-to-Order ↓ · Activation ↑</div>
+        </div>
+      </div>
+      <div class="prow">
+        <div class="prank pr3">03</div>
+        <div class="pcontent">
+          <div class="ptitle">Fix Price Transparency at Checkout</div>
+          <div class="pwhy">Quickest fix with high business impact. A persistent total display and a confirmation dialog are low-effort UI changes that directly resolve user anxiety, reduce accidental orders, and build trust at the critical conversion moment.</div>
+          <div class="pbadges"><span class="pbadge pbi-h">Impact: High</span><span class="pbadge pbe-l">Effort: Low</span></div>
+        </div>
+        <div class="pkpi">
+          <div class="pkpi-label">Business KPIs</div>
+          <div class="pkpi-val">Order Completion ↑<br>Refund Rate ↓ · CLTV ↑</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPENDIX -->
+<section id="appendix" class="dark-sec">
+  <div class="container">
+    <div class="sec-label">Appendix</div>
+    <h2 class="sec-title">Methods &amp; Participants</h2>
+    <div class="apgrid reveal">
+      <div class="apcard">
+        <div class="aptitle at-o">Usability Study — N=5 Participants</div>
+        <div class="prow-ap"><div class="prname">P1 — Jane</div><div class="prdetail">Age 20 · Student · Low-freq (1–2×/month) · Zoom</div></div>
+        <div class="prow-ap"><div class="prname">P2 — Dan</div><div class="prdetail">Age 22 · Student · High-freq (2–3×/week) · Zoom</div></div>
+        <div class="prow-ap"><div class="prname">P3 — Han</div><div class="prdetail">Age 22 · Freelancer · High-freq · Zoom</div></div>
+        <div class="prow-ap"><div class="prname">P4 — David</div><div class="prdetail">Age 21 · Student · High-freq (1–3×/week) · Zoom</div></div>
+        <div class="prow-ap"><div class="prname">P5</div><div class="prdetail">Age 25 · Freelancer · Med-low (1×/week) · Zoom</div></div>
+        <div style="margin-top:1rem;padding:.7rem;border-radius:8px;background:rgba(255,255,255,.04);font-size:10.5px;color:rgba(255,255,255,.28);font-family:'DM Mono',monospace;line-height:1.7">
+          Methods: Usability Research · SEQ & UX Metrics · Affinity Map<br>
+          Tools: Zoom · Figma · Google Doc · Gemini · CapCut
+        </div>
+      </div>
+      <div class="apcard">
+        <div class="aptitle at-b">PURE Study — N=3 Expert Evaluators</div>
+        <div class="prow-ap"><div class="prname">Evaluator 1</div><div class="prdetail">6 yrs UX · iPhone 14 Pro · iOS 18.6.2</div></div>
+        <div class="prow-ap"><div class="prname">Evaluator 2</div><div class="prdetail">1 yr UX · iPhone 12 · iOS 18.5</div></div>
+        <div class="prow-ap"><div class="prname">Evaluator 3</div><div class="prdetail">1 yr UX · iPhone 13 · iOS 18.1.1</div></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.25);padding:.5rem 0">All: WLU UX Master's students · Recruited independently</div>
+        <table class="pure-t">
+          <thead><tr><th>Step</th><th>E1</th><th>E2</th><th>E3</th><th>AI</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>Task 2-7 (Tip/Price)</td><td>2</td><td>2</td><td>1</td><td class="crit">3</td><td>PURE 2</td></tr>
+            <tr><td>Task 3-4 (Order Issue)</td><td>2</td><td>2</td><td>1</td><td>2</td><td>PURE 2</td></tr>
+            <tr><td>Task 3-5 (Human Agent)</td><td class="crit">3</td><td class="crit">3</td><td>1</td><td class="crit">3</td><td class="crit">PURE 3 ⚠</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fblocks">
+    <div class="fb" style="background:var(--red)"></div>
+    <div class="fb" style="background:transparent"></div>
+    <div class="fb" style="background:var(--blue)"></div>
+    <div class="fb" style="background:transparent"></div>
+    <div class="fb" style="background:var(--green)"></div>
+    <div class="fb" style="background:transparent"></div>
+    <div class="fb" style="background:var(--orange)"></div>
+    <div class="fb" style="background:transparent"></div>
+    <div class="fb" style="background:var(--red)"></div>
+  </div>
+  <div class="ftitle">Thank <span>You!</span></div>
+  <div class="fsub">Carol Chen · UX604 Research Method 2 · Winter 2026<br>Professor Susie Simon · Wilfrid Laurier University</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => io.observe(el));
+
+  // Stagger grid children
+  document.querySelectorAll('.fgrid > *, .mth-grid > *, .agrid > *').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.09}s`;
+  });
+
+  // Nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--green)' : 'rgba(255,255,255,0.4)';
+    });
+  });
+</script>
+</body>
+</html>
