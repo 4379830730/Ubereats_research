@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Uber Eats UX Final Research Report</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
 :root{--green:#06C167;--green-dim:rgba(6,193,103,0.10);--green-mid:rgba(6,193,103,0.18);--orange:#FF6B2C;--orange-dim:rgba(255,107,44,0.10);--blue:#2B3DE7;--blue-dim:rgba(43,61,231,0.10);--red:#E53935;--red-dim:rgba(229,57,53,0.10);--yellow:#FFC107;--yellow-dim:rgba(255,193,7,0.10);--dark:#0F0F0F;--dark2:#141414;--dark3:#1A1A1A;--card:#FFFFFF;--bg:#F5F5F5;--text:#0F0F0F;--muted:#6B6B80;--border:#E0E0E0;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -56,6 +56,8 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .center-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,4.5rem);letter-spacing:2px;line-height:1;color:var(--text);margin-bottom:0.5rem;}
 .dark-sec .center-title{color:#fff;}
 .dark-sec .center-label,.dark-sec .center-label span{color:rgba(255,255,255,0.4);}
+
+/* TLDR */
 #tldr{background:var(--bg);}
 .tldr-video-wrap{margin:2.5rem auto 0;max-width:920px;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 80px rgba(0,0,0,0.18);aspect-ratio:16/9;}
 .tldr-video{display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;}
@@ -84,7 +86,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .fc-y .fpill { background: var(--yellow-dim); color: #A67C00; }
 .fc-o .fpill { background: var(--orange-dim); color: var(--orange); }
 
-/* ── CONTENTS PAGE ───────────────────────────── */
+/* CONTENTS */
 #contents { background: var(--dark); min-height: 100vh; display: flex; align-items: center; }
 .contents-inner { position: relative; z-index: 2; }
 .contents-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
@@ -100,13 +102,13 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .cl-sub { font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 300; max-width: 300px; line-height: 1.5; text-align: right; }
 .cl-arrow { font-size: 22px; color: var(--green); opacity: 0; transition: transform .25s, opacity .25s; flex-shrink: 0; }
 
-/* ── MATRIX AND ROADMAP ───────────────────────────── */
+/* MATRIX AND ROADMAP */
 .triang-inner { max-width: 1160px; margin: 0 auto; background: #FFFFFF; border-radius: 20px; border: 1px solid #E0E0E0; padding: 2.5rem 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.04); }
 .ux-doc-wrapper { font-family: var(--font-sans); color: #111827; line-height: 1.6; font-size: 14px; padding: 0.5rem 0; }
 .divider { height: 1px; background: #E0E0E0; margin: 2.5rem 0; }
 .tm-desc { font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 1.5rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;}
 
-/* 新的 3栏网格 Triangulation Matrix */
+/* 3栏网格 Triangulation Matrix */
 .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
 .tm-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
 .tm-card-head { padding: 1rem 1.25rem; font-size: 14px; font-weight: 700; color: var(--dark); border-bottom: 1px solid var(--border); }
@@ -131,6 +133,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .pm-x-axis { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 3.5rem; }
 .pm-label-rot { writing-mode: vertical-lr; transform: rotate(180deg); }
 .pm-axis-lbl { font-size: 9px; font-weight: 700; color: rgba(0,0,0,0.3); text-transform: uppercase; letter-spacing: 2px; }
+.pm-axis-badge { background: var(--dark); border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; justify-content: center; }
 .pm-grid { width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; margin-left: 2rem; margin-bottom: 2rem; border-left: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
 .pm-quad { padding: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 .pm-q-tl { border-right: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
@@ -144,7 +147,6 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .pm-arrow { display: none; flex-shrink: 0; }
 @media (min-width: 992px) { .pm-arrow { display: block; } }
 
-/* 新的合并 Roadmap 列表 */
 .roadmap-list { display: flex; flex-direction: column; gap: 1rem; width: 100%; max-width: 480px; }
 .rm-row { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; align-items: flex-start; gap: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
 .rm-num { width: 26px; height: 26px; background: var(--dark); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
@@ -159,14 +161,14 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .act-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; }
 .act-badge { width: 58px; height: 54px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 600; color: #fff; flex-shrink: 0; letter-spacing: -1px; }
 .ab1 { background: var(--red); }
-.ab2 { background: var(--yellow); color: #000; }
+.ab2 { background: var(--red); color: #fff; }
 .ab3 { background: var(--orange); }
 .act-title { font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 700; color: #1e1e1e; line-height: 1.1; letter-spacing: -.03em; }
 .act-hmw { display: flex; align-items: stretch; border-radius: 0 5px 5px 0; overflow: hidden; margin-bottom: 1.8rem; }
 .act-hmw-bar { width: 4px; flex-shrink: 0; }
 .act-hmw-body { padding: .9rem 1.2rem; font-style: italic; font-size: 14px; line-height: 1.6; letter-spacing: .05em; color: #1f1f1f; }
 .hmw1 .act-hmw-bar { background: var(--red); }
-.hmw2 .act-hmw-bar { background: var(--yellow); }
+.hmw2 .act-hmw-bar { background: var(--red); }
 .hmw3 .act-hmw-bar { background: var(--orange); }
 .hmw1 .act-hmw-body { background: rgba(229,57,53,0.06); }
 .hmw2 .act-hmw-body { background: rgba(229,57,53,0.06); }
@@ -188,47 +190,66 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .act-card-text ul { margin: .3rem 0 0 1rem; padding: 0; }
 .act-card-text li { margin-bottom: .2rem; }
 .act-bottom { display: grid; grid-template-columns: 240px 1fr; gap: 1.2rem; margin-top: 1rem; }
+
+/* KPI 图片卡片设定 */
 .act-kpi-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
 .act-kpi-head { padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; letter-spacing: -.02em; }
-.act-kpi-body { padding: 1.5rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
-.act-kpi-body img { width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; }
+.act-kpi-body { padding: 0; background: #F5F5F5; display: flex; flex: 1; }
+.act-kpi-body img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+/* Collaborative 文本卡片设定 */
 .act-collab-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
 .act-collab-head { padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; text-align: center; }
 .act-collab-body { padding: 1rem 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #FFFFFF; flex: 1; }
 .collab-col { display: flex; flex-direction: column; gap: .5rem; }
 .collab-tag { display: inline-flex; align-items: center; justify-content: center; padding: 3px 10px; border-radius: 9px; font-size: 10px; font-weight: 500; color: #fff; width: fit-content; }
 .collab-text { font-size: 12px; line-height: 1.5; color: rgba(0,0,0,.75); }
+
+/* colour themes per action */
 .act1 .act-kpi-head,.act1 .act-collab-head{background:#0F0F0F;}
 .act1 .collab-tag{background:var(--red);color:#fff;}
 .act2 .act-kpi-head,.act2 .act-collab-head{background:#0F0F0F;}
-.act2 .collab-tag{background:var(--yellow);color:#000;}
+.act2 .collab-tag{background:var(--red);color:#fff;}
 .act3 .act-kpi-head,.act3 .act-collab-head{background:#0F0F0F;}
 .act3 .collab-tag{background:var(--orange);color:#fff;}
+
 @media(max-width:860px){.act-cards{grid-template-columns:1fr;}.act-card{flex-direction:column;align-items:center;text-align:center;min-height:auto;}.act-card-text ul{text-align:left;}.act-bottom{grid-template-columns:1fr;}}
 
-/* ── FINDING DETAIL ─────────────────── */
+/* ── FINDING DETAIL & NEW CARDS ─────────────────── */
 .fd-wrap { padding: 60px 2.5rem 70px; }
 .fd-wrap.fd-light { background: #FFFFFF; }
 .fd-wrap.fd-muted  { background: #F5F5F5; }
 .fd-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); letter-spacing: 1.5px; line-height: .95; color: var(--text); margin: 1rem 0 1.8rem; }
 .fd-top { display: grid; grid-template-columns: 55% 1fr; gap: 1.5rem; margin-bottom: 1.5rem; align-items: stretch; }
-.fd-video { background: #E0E0E0; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; position: relative; }
-.fd-video video,.fd-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 12px; display: block; }
-.fd-quotes { display: flex; flex-direction: column; gap: .8rem; }
-.fd-quote { background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 10px; padding: .85rem 1rem; flex: 1; }
-.fd-q-text { font-size: 12.5px; font-style: italic; line-height: 1.65; color: var(--text); margin-bottom: .4rem; }
-.fd-q-attr { font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+/* 带有标题的主题色卡片 (用于包住视频、Overview、Quotes) */
+.fd-card-themed { border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+.fd-card-themed.th-red { border-color: rgba(229,57,53,0.4); }
+.fd-card-themed.th-yellow { border-color: rgba(255,193,7,0.5); }
+.fd-card-themed.th-orange { border-color: rgba(255,107,44,0.4); }
+
+.fd-head-themed { padding: .6rem 1rem; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.fd-head-themed.th-red { background: #E53935; color: #fff; }
+.fd-head-themed.th-yellow { background: #FFC107; color: #000; }
+.fd-head-themed.th-orange { background: #FF6B2C; color: #fff; }
+
+.quote-mark { font-size: 28px; font-family: serif; font-weight: bold; line-height: 0.8; margin-top: 4px; }
+.quote-mark.th-red { color: #E53935; }
+.quote-mark.th-yellow { color: #D4A000; }
+.quote-mark.th-orange { color: #FF6B2C; }
+
+/* 底部的三张图片数据卡片 */
 .fd-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 .fd-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #E0E0E0; display: flex; flex-direction: column; }
 .fd-card-head { background: #0F0F0F; color: #fff; padding: .6rem 1rem; font-size: 14px; font-weight: 400; text-align: center; }
-.fd-card-body { padding: 1.5rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
-.fd-card-body img { width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; }
+.fd-card-body { padding: 0; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
+.fd-card-body img { width: 100%; height: auto; object-fit: contain; display: block; }
 @media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } .tm-grid{grid-template-columns:1fr;} }
 
 /* METHODOLOGY */
 #methodology{background:var(--dark);}
 .mth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
-.mcard{background:var(--dark3);border-radius:16px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .3s;}
+.mcard{background:var(--dark3);border-radius:16px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .3s; display: flex; flex-direction: column;}
 .mcard:hover{transform:translateY(-5px);}
 .mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
 .mc1::before{background:var(--orange);}
@@ -240,9 +261,101 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .mc2 .micon{background:rgba(43,61,231,.2);}
 .mc3 .micon{background:rgba(6,193,103,.15);}
 .mname{font-size:17px;font-weight:700;color:#fff;margin-bottom:.5rem;}
-.mdesc{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300;margin-bottom:1rem;}
+.mdesc{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300;margin-bottom:1rem; flex: 1;}
 .mtags{display:flex;flex-wrap:wrap;gap:5px;}
 .mtag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.07);}
+
+/* Methodology Link Button */
+.m-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 15px; margin-top: 1.5rem; width: 100%;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; color: #fff; font-size: 12px; font-weight: 600;
+  text-decoration: none; transition: all 0.25s ease;
+}
+.m-btn:hover { background: var(--green); color: #000; border-color: var(--green); }
+
+/* ── TIMELINE WIDGET ───────────────────────────── */
+.tl-scroll-wrapper { width: 100%; overflow-x: auto; margin-top: 3.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); }
+.tl-scroll-wrapper::-webkit-scrollbar { height: 8px; }
+.tl-scroll-wrapper::-webkit-scrollbar-track { background: #141620; border-radius: 0 0 16px 16px; }
+.tl-scroll-wrapper::-webkit-scrollbar-thumb { background: #3A3D52; border-radius: 10px; }
+.tl-scroll-wrapper::-webkit-scrollbar-thumb:hover { background: #5B6AE8; }
+
+.tl-root { min-width: 960px; width: 100%; background: var(--dark); font-family: 'DM Sans', sans-serif; color: #fff; position: relative; overflow: hidden; padding: 30px 40px 25px; border-radius: 16px; }
+.tl-glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+.tl-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.tl-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #5B6AE8; margin-bottom: 5px; }
+.tl-main-title { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: #fff; line-height: 1.2; margin-top: 4px;}
+.tl-header-right { text-align: right; font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.9; }
+.tl-header-right span { color: #fff; font-weight: 500; }
+.tl-date-row { display: flex; gap: 8px; margin-bottom: 8px; }
+.tl-date-col { flex: 1; display: flex; justify-content: center; }
+.tl-date-label { font-size: 9px; color: rgba(255,255,255,.4); font-weight: 500; letter-spacing: 0.03em; white-space: nowrap; }
+.tl-dots-row { display: flex; gap: 8px; margin-bottom: 16px; }
+.tl-dot-col { flex: 1; display: flex; justify-content: center; position: relative; }
+.tl-dot { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--dark); position: relative; z-index: 2; }
+.tl-dot-col::before { content: ''; position: absolute; top: 50%; left: calc(-4px); width: calc(100%); height: 2px; background: linear-gradient(90deg, var(--lc, #2E3258), var(--rc, #2E3258)); transform: translateY(-50%); z-index: 1; opacity: 0.8; }
+.tl-dot-col:first-child::before { display: none; }
+.tl-phases { display: flex; gap: 8px; }
+.tl-phase { flex: 1; background: var(--dark3); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 12px 10px 10px; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform .3s, border-color .3s; }
+.tl-phase:hover { transform: translateY(-5px); border-color: rgba(255,255,255,.15); }
+.tl-phase-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
+.tl-phase-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 4px; }
+.tl-phase-week { font-size: 11px; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 2px; }
+.tl-phase-name { font-size: 10px; font-weight: 400; color: rgba(255,255,255,.6); line-height: 1.3; margin-bottom: 8px; }
+.tl-divider { height: 1px; background: rgba(255,255,255,.06); margin-bottom: 8px; }
+.tl-milestone-text { font-size: 10.5px; color: rgba(255,255,255,.38); line-height: 1.5; font-weight: 300; flex: 1; }
+.tl-phase-status { margin-top: 10px; font-size: 9px; font-weight: 600; padding: 3px 9px; border-radius: 20px; background: rgba(255,255,255,.05) !important; border: 1px solid rgba(255,255,255,.07); display: inline-block; align-self: flex-start; }
+.tl-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.06); margin-top: 15px; }
+.tl-foot-note { font-size: 10px; color: rgba(255,255,255,.4); }
+.tl-complete-badge { font-size: 10px; font-weight: 600; color: #34D399; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; }
+.tl-check { width: 16px; height: 16px; border-radius: 50%; background: #0D2B20; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+
+/* REFLECTION CARD STYLE */
+.reflection-card {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 3rem 4rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.ref-point {
+  margin-bottom: 2rem;
+}
+.ref-point:last-child {
+  margin-bottom: 0;
+}
+.ref-point h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ref-point h4::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.ref-point p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+@media(max-width:860px){
+  .reflection-card { padding: 2rem; }
+}
+
 footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
 .ftitle{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:3px;color:#fff;margin-bottom:.4rem;}
 .ftitle span{color:var(--green);}
@@ -266,6 +379,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     <li><a href="#findings">Key Findings</a></li>
     <li><a href="#actions">Actions</a></li>
     <li><a href="#methodology">Methods</a></li>
+    <li><a href="#reflection">Reflection</a></li>
   </ul>
 </nav>
 
@@ -322,6 +436,12 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <span class="cl-num">04</span>
           <span class="cl-title">Methods</span>
           <span class="cl-sub">Research methods &amp; participants</span>
+          <span class="cl-arrow">→</span>
+        </li>
+        <li onclick="location.href='#reflection'">
+          <span class="cl-num">05</span>
+          <span class="cl-title">Reflection</span>
+          <span class="cl-sub">Project takeaways and personal growth</span>
           <span class="cl-arrow">→</span>
         </li>
       </ul>
@@ -401,13 +521,45 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   <div class="container">
     <div class="dlabel dl-r">Finding 01 — Critical</div>
     <div class="fd-heading">Customer Support System Is Invisible</div>
+    
     <div class="fd-top reveal">
-      <div class="fd-video">
-        <video controls preload="metadata"><source src="YOUR_VIDEO_F1.mp4" type="video/mp4"/></video>
+      <div class="fd-card-themed th-red" style="height: 100%;">
+        <div class="fd-head-themed th-red">Problem Highlight: Support Invisible</div>
+        <div style="position: relative; flex: 1; background: #000; min-height: 240px;">
+          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+            <source src="YOUR_VIDEO_F1.mp4" type="video/mp4"/>
+          </video>
+        </div>
       </div>
-      <div class="fd-quotes">
-        <div class="fd-quote"><div class="fd-q-text">"It is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</div><div class="fd-q-attr">— PURE Evaluator 2, Task 3-5</div></div>
-        <div class="fd-quote"><div class="fd-q-text">"It feels like the app is hiding a phone number on purpose to force me to use the bot."</div><div class="fd-q-attr">— AI Participant (Alex) · Task 3 Think-Aloud · SEQ 2/7</div></div>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <div class="fd-card-themed th-red">
+          <div class="fd-head-themed th-red">Problem Overview</div>
+          <div style="padding: 1.25rem; font-size: 14px; line-height: 1.6; color: var(--text);">
+            The customer help of Uber Eats is invisible, and there is no direct human contact option to the restaurant. <strong>Users feel forced into an AI loop when they have an issue with an order.</strong>
+          </div>
+        </div>
+        
+        <div class="fd-card-themed th-red" style="flex: 1;">
+          <div class="fd-head-themed th-red">Selected User Quotes</div>
+          <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
+            <div style="display: flex; gap: 10px;">
+              <span class="quote-mark th-red">“</span>
+              <div>
+                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">It is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 3-5</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <span class="quote-mark th-red">“</span>
+              <div>
+                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">It feels like the app is hiding a phone number on purpose to force me to use the bot."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— AI Participant (Alex) · Task 3</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -432,13 +584,44 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   <div class="container">
     <div class="dlabel dl-y">Finding 02 — High</div>
     <div class="fd-heading">The Issue of Price Transparency</div>
+    
     <div class="fd-top reveal">
-      <div class="fd-video">
-        <video controls preload="metadata"><source src="YOUR_VIDEO_F2.mp4" type="video/mp4"/></video>
+      <div class="fd-card-themed th-yellow" style="height: 100%;">
+        <div class="fd-head-themed th-yellow">Problem Highlight: Price Transparency</div>
+        <div style="position: relative; flex: 1; background: #000; min-height: 240px;">
+          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+            <source src="YOUR_VIDEO_F2.mp4" type="video/mp4"/>
+          </video>
+        </div>
       </div>
-      <div class="fd-quotes">
-        <div class="fd-quote"><div class="fd-q-text">"I cannot see the total price after I adding a tip. That's a little bit annoying."</div><div class="fd-q-attr">— Jane (Usability Participant, Task 2)</div></div>
-        <div class="fd-quote"><div class="fd-q-text">"When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere."</div><div class="fd-q-attr">— PURE Evaluator 2, Task 2-7</div></div>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="fd-card-themed th-yellow">
+          <div class="fd-head-themed th-yellow">Problem Overview</div>
+          <div style="padding: 1.25rem; font-size: 14px; line-height: 1.6; color: var(--text);">
+            Users experience noticeable hesitation during the final payment stage, leading to a decrease in financial confidence. <strong>The grand total is hidden behind ambiguous UI elements, making it impossible to confirm the final amount easily.</strong>
+          </div>
+        </div>
+        
+        <div class="fd-card-themed th-yellow" style="flex: 1;">
+          <div class="fd-head-themed th-yellow">Selected User Quotes</div>
+          <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
+            <div style="display: flex; gap: 10px;">
+              <span class="quote-mark th-yellow">“</span>
+              <div>
+                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">I cannot see the total price after I add a tip. That's a little bit annoying."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— Jane (Usability participant, Task 2)</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <span class="quote-mark th-yellow">“</span>
+              <div>
+                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 2-7</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -463,13 +646,44 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   <div class="container">
     <div class="dlabel dl-o">Finding 03 — High</div>
     <div class="fd-heading">Information Architecture Problems</div>
+    
     <div class="fd-top reveal">
-      <div class="fd-video">
-        <video controls preload="metadata"><source src="YOUR_VIDEO_F4.mp4" type="video/mp4"/></video>
+      <div class="fd-card-themed th-orange" style="height: 100%;">
+        <div class="fd-head-themed th-orange">Problem Highlight: Architecture</div>
+        <div style="position: relative; flex: 1; background: #000; min-height: 240px;">
+          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+            <source src="YOUR_VIDEO_F4.mp4" type="video/mp4"/>
+          </video>
+        </div>
       </div>
-      <div class="fd-quotes">
-        <div class="fd-quote"><div class="fd-q-text">"Another issue is hidden in the more option choice which is also in a long list. I have to read all of that to only get started. That's frustrating."</div><div class="fd-q-attr">— PURE Evaluator 2, Task 3</div></div>
-        <div class="fd-quote"><div class="fd-q-text">"The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</div><div class="fd-q-attr">— PURE Evaluator 3, Task 1, Step 2</div></div>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="fd-card-themed th-orange">
+          <div class="fd-head-themed th-orange">Problem Overview</div>
+          <div style="padding: 1.25rem; font-size: 14px; line-height: 1.6; color: var(--text);">
+            Users show noticeable hesitation when looking for specific app functions due to a complex layout. <strong>Essential options like search and help are not clearly visible, hidden inside redundant hierarchical menus.</strong>
+          </div>
+        </div>
+        
+        <div class="fd-card-themed th-orange" style="flex: 1;">
+          <div class="fd-head-themed th-orange">Selected User Quotes</div>
+          <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
+            <div style="display: flex; gap: 10px;">
+              <span class="quote-mark th-orange">“</span>
+              <div>
+                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">Another issue is hidden in the more option choice which is also in a long list. I have to read all of that to only get started."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 3</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <span class="quote-mark th-orange">“</span>
+              <div>
+                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 3, Task 1, Step 2</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -540,7 +754,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
             </div>
 
             <div class="tm-card">
-              <div class="tm-card-head tc-yellow">Issue: Price Transparency</div>
+              <div class="tm-card-head tc-red">Issue: Price Transparency</div>
               <div class="tm-card-body">
                 <div class="tm-point">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -556,7 +770,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
                 </div>
               </div>
               <div class="tm-final">
-                <div class="tm-final-title">Final Triangulation <span class="tag-strong yellow">Strong Alignment</span></div>
+                <div class="tm-final-title">Final Triangulation <span class="tag-strong">Strong Alignment</span></div>
                 <div class="tm-final-text">Real user hesitation is directly explained by the structural flaws identified by experts and AI—specifically, the hidden grand total and ambiguous payment UI.</div>
               </div>
             </div>
@@ -821,7 +1035,6 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   </div>
 </div>
 
-
 <section id="methodology" class="dark-sec">
   <div class="container">
     <div class="center-header reveal">
@@ -838,6 +1051,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div class="mname">Usability Study</div>
         <div class="mdesc">Remote moderated testing via Zoom with 5 real Uber Eats users (ages 20–25). Three tasks with SEQ, UMUX-Lite, task success rate, error rate, and time-on-task.</div>
         <div class="mtags"><span class="mtag">N=5 Users</span><span class="mtag">Remote/Zoom</span><span class="mtag">SEQ + UMUX-Lite</span><span class="mtag">Affinity Map</span></div>
+        <a href="usability.html" target="_blank" class="m-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> 
+          Click for more data
+        </a>
       </div>
       <div class="mcard mc2">
         <div class="mnum">02</div>
@@ -845,6 +1062,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div class="mname">PURE Study</div>
         <div class="mdesc">In-person expert evaluation by 3 UX Master's students (WLU). Each step rated on PURE 1–3 friction scale. Qualitative data analyzed via Affinity Mapping in Figma.</div>
         <div class="mtags"><span class="mtag">N=3 Experts</span><span class="mtag">In-Person</span><span class="mtag">PURE 1–3 Scale</span><span class="mtag">17 Steps</span></div>
+        <a href="pure.html" target="_blank" class="m-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> 
+          Click for more data
+        </a>
       </div>
       <div class="mcard mc3">
         <div class="mnum">03</div>
@@ -852,6 +1073,172 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div class="mname">AI Heuristic Eval</div>
         <div class="mdesc">Gemini (Thinking) used as AI participant proxy with simulated think-aloud. Same 3 tasks evaluated against Nielsen's 10 Heuristics with SEQ scores recorded.</div>
         <div class="mtags"><span class="mtag">Gemini Thinking</span><span class="mtag">Nielsen's 10H</span><span class="mtag">SEQ Scores</span><span class="mtag">Think-Aloud</span></div>
+        <a href="https://4379830730.github.io/uber_eats_ux_A/" target="_blank" class="m-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> 
+          Click for more data
+        </a>
+      </div>
+    </div>
+
+    <div class="tl-scroll-wrapper reveal">
+      <div class="tl-root">
+        <div class="tl-glow" style="width:240px;height:240px;top:-100px;left:-40px;background:#3B4EFF;opacity:0.05;"></div>
+        <div class="tl-glow" style="width:180px;height:180px;top:-80px;right:60px;background:#818CF8;opacity:0.04;"></div>
+        
+        <div class="tl-header">
+          <div>
+            <div class="tl-eyebrow">UX Research Timeline</div>
+            <div class="tl-main-title">Uber Eats — Comparative Evaluation Study</div>
+          </div>
+          <div class="tl-header-right">
+            Jan 5 – Mar 23, 2026 &nbsp;·&nbsp; <span>11 Weeks</span> &nbsp;·&nbsp; Methods: <span>Usability · PURE · AI</span>
+          </div>
+        </div>
+
+        <div class="tl-date-row">
+          <div class="tl-date-col" style="flex:1.4;"><span class="tl-date-label">Jan 5</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Jan 26</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Feb 2</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Feb 9</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Feb 16</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Feb 23</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Mar 2</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Mar 9</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Mar 16</span></div>
+          <div class="tl-date-col"><span class="tl-date-label">Mar 23</span></div>
+        </div>
+
+        <div class="tl-dots-row">
+          <div class="tl-dot-col" style="flex:1.4;--lc:#5B6AE8;--rc:#818CF8;"><div class="tl-dot" style="background:#5B6AE8;"></div></div>
+          <div class="tl-dot-col" style="--lc:#818CF8;--rc:#9F8DFA;"><div class="tl-dot" style="background:#9F8DFA;"></div></div>
+          <div class="tl-dot-col" style="--lc:#9F8DFA;--rc:#B48BFB;"><div class="tl-dot" style="background:#B48BFB;"></div></div>
+          <div class="tl-dot-col" style="--lc:#B48BFB;--rc:#C87FF5;"><div class="tl-dot" style="background:#C87FF5;"></div></div>
+          <div class="tl-dot-col" style="--lc:#C87FF5;--rc:#D946EF;"><div class="tl-dot" style="background:#D946EF;"></div></div>
+          <div class="tl-dot-col" style="--lc:#D946EF;--rc:#F43F5E;"><div class="tl-dot" style="background:#F43F5E;"></div></div>
+          <div class="tl-dot-col" style="--lc:#F43F5E;--rc:#F97316;"><div class="tl-dot" style="background:#F97316;"></div></div>
+          <div class="tl-dot-col" style="--lc:#F97316;--rc:#FBBF24;"><div class="tl-dot" style="background:#FBBF24;"></div></div>
+          <div class="tl-dot-col" style="--lc:#FBBF24;--rc:#34D399;"><div class="tl-dot" style="background:#34D399;"></div></div>
+          <div class="tl-dot-col" style="--lc:#34D399;--rc:#22D3EE;"><div class="tl-dot" style="background:#22D3EE;"></div></div>
+        </div>
+
+        <div class="tl-phases">
+          <div class="tl-phase" style="flex:1.4;">
+            <div class="tl-phase-bar" style="background:#5B6AE8;"></div>
+            <div class="tl-phase-num" style="color:#5B6AE8;">W1–3</div>
+            <div class="tl-phase-week">Research Plan</div>
+            <div class="tl-phase-name">Planning</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Finalize task list & screening criteria</div>
+            <div class="tl-phase-status" style="color:#5B6AE8;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#818CF8;"></div>
+            <div class="tl-phase-num" style="color:#818CF8;">W4</div>
+            <div class="tl-phase-week">Recruitment</div>
+            <div class="tl-phase-name">Usability</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Recruit 5 participants; screening & consent</div>
+            <div class="tl-phase-status" style="color:#818CF8;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#9F8DFA;"></div>
+            <div class="tl-phase-num" style="color:#9F8DFA;">W5</div>
+            <div class="tl-phase-week">Testing</div>
+            <div class="tl-phase-name">Usability</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">5 sessions Zoom / in person, recorded</div>
+            <div class="tl-phase-status" style="color:#9F8DFA;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#B48BFB;"></div>
+            <div class="tl-phase-num" style="color:#B48BFB;">W6</div>
+            <div class="tl-phase-week">Analysis</div>
+            <div class="tl-phase-name">Usability</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Success rate, time-on-task, error data</div>
+            <div class="tl-phase-status" style="color:#B48BFB;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#C87FF5;"></div>
+            <div class="tl-phase-num" style="color:#C87FF5;">W7</div>
+            <div class="tl-phase-week">Recruitment</div>
+            <div class="tl-phase-name">PURE</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Secure 3 UX expert evaluators</div>
+            <div class="tl-phase-status" style="color:#C87FF5;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#D946EF;"></div>
+            <div class="tl-phase-num" style="color:#D946EF;">W8</div>
+            <div class="tl-phase-week">Evaluation</div>
+            <div class="tl-phase-name">PURE</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Task scoring (1–3 scale); organize findings</div>
+            <div class="tl-phase-status" style="color:#D946EF;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#F43F5E;"></div>
+            <div class="tl-phase-num" style="color:#F43F5E;">W9</div>
+            <div class="tl-phase-week">AI Evaluation</div>
+            <div class="tl-phase-name">AI Study</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Simulate user flows; analyze task steps via AI</div>
+            <div class="tl-phase-status" style="color:#F43F5E;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#F97316;"></div>
+            <div class="tl-phase-num" style="color:#F97316;">W10</div>
+            <div class="tl-phase-week">Cross-Method</div>
+            <div class="tl-phase-name">Comparison</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Compare Usability, PURE & AI data</div>
+            <div class="tl-phase-status" style="color:#F97316;">✓ Done</div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-phase-bar" style="background:#34D399;"></div>
+            <div class="tl-phase-num" style="color:#34D399;">W11</div>
+            <div class="tl-phase-week">Final Project</div>
+            <div class="tl-phase-name">Deliverable</div>
+            <div class="tl-divider"></div>
+            <div class="tl-milestone-text">Consolidated report & final presentation</div>
+            <div class="tl-phase-status" style="color:#34D399;">✓ Done</div>
+          </div>
+        </div>
+
+        <div class="tl-footer">
+          <div class="tl-foot-note">Uber Eats UX Study · Jan 5 – Mar 23, 2026 · 11 Weeks</div>
+          <div class="tl-complete-badge">
+            <div class="tl-check">✓</div>
+            All phases completed
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reflection" style="background: #FFFFFF;">
+  <div class="container">
+    <div class="center-header reveal">
+      <div class="center-label" style="color: var(--text);">
+        <span>Project Takeaways</span>
+      </div>
+      <h2 class="center-title" style="color: var(--text);">Reflection</h2>
+      <p class="sec-sub" style="text-align: center;">What I learned from this comparative evaluation study.</p>
+    </div>
+    
+    <div class="reveal reflection-card">
+      <div class="ref-point">
+        <h4>1. The Power of Triangulation</h4>
+        <p>Integrating Usability Testing, PURE, and AI Heuristic Analysis provided a much richer perspective than any single method could. While actual users showed us <em>where</em> they struggled and felt frustrated, expert evaluations (PURE) and AI heuristic checks helped systematically explain <em>why</em> the UI failed them. This multi-method approach made our final recommendations exceptionally robust.</p>
+      </div>
+      <div class="ref-point">
+        <h4>2. Balancing Business Goals with UX</h4>
+        <p>I learned that UX doesn't exist in a vacuum. Recommendations must consider business constraints like conversion rates, support center costs, and overall lifetime value (LTV). This is why using the Eisenhower matrix to prioritize actionable steps was so valuable—it allowed us to separate "quick UX wins" from "long-term structural overhauls."</p>
+      </div>
+      <div class="ref-point">
+        <h4>3. Future Improvements</h4>
+        <p>If I had more time, I would like to conduct A/B testing on our proposed redesigns to gather quantitative validation. Additionally, testing the interface with a broader demographic (beyond the 20-25 age range) would ensure that our "Support Visibility" and "Price Transparency" fixes work universally for all user types.</p>
       </div>
     </div>
   </div>
