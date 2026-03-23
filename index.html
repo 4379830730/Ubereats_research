@@ -7,24 +7,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
+    /* ── Brand palette ── */
     --green: #06C167;
-    --green-dim: rgba(6,193,103,0.12);
+    --green-dim: rgba(6,193,103,0.10);
+    --green-mid: rgba(6,193,103,0.18);
+
+    /* ── Semantic accent (kept for finding badges / severity chips) ── */
     --orange: #FF6B2C;
-    --orange-dim: rgba(255,107,44,0.12);
+    --orange-dim: rgba(255,107,44,0.10);
     --blue: #2B3DE7;
-    --blue-dim: rgba(43,61,231,0.12);
+    --blue-dim: rgba(43,61,231,0.10);
     --red: #E53935;
-    --red-dim: rgba(229,57,53,0.12);
+    --red-dim: rgba(229,57,53,0.10);
     --yellow: #FFC107;
-    --yellow-dim: rgba(255,193,7,0.12);
-    --dark: #0F0F1A;
-    --dark2: #171728;
-    --dark3: #1E1E35;
-    --card: #FFFFFF;
-    --bg: #F4F2EE;
-    --text: #1A1A2E;
-    --muted: #6B6B80;
-    --border: #E2E0D8;
+    --yellow-dim: rgba(255,193,7,0.10);
+
+    /* ── Core palette: black · white · light grey ── */
+    --dark:   #0F0F0F;   /* primary black — nav, hero, dark sections */
+    --dark2:  #141414;   /* appendix, footer */
+    --dark3:  #1A1A1A;   /* cards inside dark sections */
+    --card:   #FFFFFF;   /* white cards */
+    --bg:     #F5F5F5;   /* light grey page bg */
+    --text:   #0F0F0F;   /* body text */
+    --muted:  #6B6B80;   /* secondary text */
+    --border: #E0E0E0;   /* dividers */
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
@@ -81,7 +87,6 @@
   .eyebrow-line { width:40px;height:1px;background:var(--green); }
   .hero-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,9vw,8.5rem);line-height:.9;color:#fff;letter-spacing:2px;animation:fadeUp .8s .12s ease both; }
   .hero-title span{-webkit-text-stroke:2px var(--green);color:transparent;}
-  /* Author block — replaces old subtitle / chips / stats */
   .hero-author {
     margin-top: 2.8rem;
     padding-top: 1.6rem;
@@ -114,22 +119,79 @@
   /* TLDR */
   #tldr{background:var(--bg);}
   .tldr-video-wrap {
-    margin-top: 2.5rem; border-radius: 20px; overflow: hidden;
+    margin: 2.5rem auto 0;
+    max-width: 920px; 
+    border-radius: 20px; overflow: hidden;
     background: #000; box-shadow: 0 24px 80px rgba(0,0,0,0.18);
     aspect-ratio: 16 / 9;
   }
   .tldr-video { display:block; width:100%; height:100%; object-fit:cover; border-radius:20px; }
-  .tcard{background:var(--card);border-radius:16px;padding:1.8rem;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
-  .tcard:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.07);}
-  .tcard.dark-card{background:var(--dark);border-color:var(--dark3);}
-  .tcard-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.7rem;}
-  .tcard-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:.7rem;}
-  .dark-card .tcard-title{color:#fff;}
-  .tcard-body{font-size:13.5px;line-height:1.75;color:var(--muted);font-weight:300;}
-  .dark-card .tcard-body{color:rgba(255,255,255,.45);}
-  .tkw-list{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.7rem;}
-  .tkw-list li{display:flex;align-items:flex-start;gap:11px;font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;}
-  .tknum{width:26px;height:26px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;}
+
+  /* FINDINGS - Cards */
+  #findings { background: #F5F5F5; }
+  .center-header { text-align: center; margin-bottom: 3.5rem; }
+  .center-label { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 1rem; }
+  .center-label::before, .center-label::after { content: ''; width: 40px; height: 1px; background: currentColor; opacity: 0.2; }
+  .center-label span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+  .center-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 5vw, 4.5rem); letter-spacing: 2px; line-height: 1; color: var(--text); margin-bottom: 0.5rem;}
+  
+  .fgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+  .fcard {
+    background: var(--bg);
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    min-height: 240px; 
+  }
+  .fcard:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+  
+  .fc-r:hover { border-color: rgba(229,57,53,0.2); }
+  .fc-y:hover { border-color: rgba(255,193,7,0.3); }
+  .fc-b:hover { border-color: rgba(43,61,231,0.2); }
+  .fc-o:hover { border-color: rgba(255,107,44,0.2); }
+
+  .bg-icon {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    width: 80px; height: 80px;
+    opacity: 0.04;
+    transition: opacity 0.3s ease;
+  }
+  .fcard:hover .bg-icon { opacity: 0.12; }
+  .fc-r .bg-icon { color: var(--red); }
+  .fc-y .bg-icon { color: #D4A000; }
+  .fc-b .bg-icon { color: var(--blue); }
+  .fc-o .bg-icon { color: var(--orange); }
+
+  .fnum {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+    color: #fff; margin-bottom: 1.5rem;
+  }
+  .fc-r .fnum { background: var(--red); }
+  .fc-y .fnum { background: var(--yellow); color: #000; }
+  .fc-b .fnum { background: var(--blue); }
+  .fc-o .fnum { background: var(--orange); }
+
+  .fname { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 2rem; }
+
+  .fbot { margin-top: auto; }
+
+  .fpill {
+    display: inline-block; padding: 4px 8px; border-radius: 6px;
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 0;
+  }
+  .fc-r .fpill { background: var(--red-dim); color: var(--red); }
+  .fc-y .fpill { background: var(--yellow-dim); color: #A67C00; }
+  .fc-b .fpill { background: var(--blue-dim); color: var(--blue); }
+  .fc-o .fpill { background: var(--orange-dim); color: var(--orange); }
 
   /* METHODOLOGY */
   #methodology{background:var(--dark);}
@@ -150,74 +212,6 @@
   .mtags{display:flex;flex-wrap:wrap;gap:5px;}
   .mtag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.07);}
 
-  /* FINDINGS — compact 4-column horizontal cards */
-  #findings { background: var(--bg); }
-  .fgrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  .fcard {
-    background: var(--card);
-    border-radius: 14px;
-    padding: 1.2rem 1.2rem 0;
-    border: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    transition: transform .25s, box-shadow .25s;
-    position: relative; overflow: hidden;
-  }
-  .fcard:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,.08); }
-  .fcard::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; }
-  .fr::after  { background: var(--red); }
-  .fo::after  { background: var(--orange); }
-  .fy::after  { background: var(--yellow); }
-
-  /* Header row: number badge + title side by side */
-  .frank {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: .8rem;
-  }
-  .rbadge {
-    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
-    color: #fff; margin-top: 1px;
-  }
-  .rb-r  { background: var(--red); }
-  .rb-o  { background: var(--orange); }
-  .rb-y  { background: var(--yellow); color: #000; }
-  .ftitle {
-    font-size: 14px; font-weight: 700; color: var(--text);
-    line-height: 1.3; flex: 1;
-  }
-
-  /* No description text shown in compact mode */
-  .fdesc { display: none; }
-
-  /* Priority chip — small, subtle */
-  .pchip { font-size: 9px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; }
-  .pc-r  { background: var(--red-dim);    color: var(--red); }
-  .pc-o  { background: var(--orange-dim); color: var(--orange); }
-  .pc-y  { background: var(--yellow-dim); color: #906c00; }
-
-  /* Stats row at bottom */
-  .fstats {
-    display: flex; gap: 0;
-    border-top: 1px solid var(--border);
-    padding: .7rem 0 .9rem;
-    margin-top: .8rem;
-  }
-  .fst { flex: 1; text-align: center; padding: 0 .25rem; border-right: 1px solid var(--border); }
-  .fst:last-child { border-right: none; }
-  .fst-v { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: 1px; line-height: 1; }
-  .fr .fst-v { color: var(--red); }
-  .fo .fst-v { color: var(--orange); }
-  .fy .fst-v { color: #906c00; }
-  .fst-l { font-size: 8px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-top: 2px; }
-
   /* DETAIL SECTIONS */
   .dsec{padding:70px 2.5rem;}
   .dsec-light{background:var(--card);}
@@ -226,6 +220,7 @@
   .dl-r{background:var(--red-dim);color:var(--red);}
   .dl-o{background:var(--orange-dim);color:var(--orange);}
   .dl-b{background:var(--blue-dim);color:var(--blue);}
+  .dl-y{background:var(--yellow-dim);color:#906c00;}
   .dblock{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.5rem;align-items:start;}
   .dblock.rev{direction:rtl;}
   .dblock.rev>*{direction:ltr;}
@@ -244,20 +239,6 @@
   .ilist{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:1rem;}
   .iitem{display:flex;align-items:flex-start;gap:11px;padding:.7rem .9rem;border-radius:9px;background:var(--bg);border:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.5;}
   .idot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-
-  /* COMPARISON */
-  #comparison{background:var(--bg);}
-  .ctable-wrap{margin-top:2.5rem;overflow:hidden;border-radius:14px;border:1px solid var(--border);box-shadow:0 6px 30px rgba(0,0,0,.05);}
-  .ctable{width:100%;border-collapse:collapse;}
-  .ctable th{background:var(--dark);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:.9rem 1.1rem;text-align:left;}
-  .ctable td{padding:.9rem 1.1rem;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
-  .ctable tr:last-child td{border-bottom:none;}
-  .ctable tr:nth-child(odd) td{background:rgba(0,0,0,.015);}
-  .ctable td:first-child{font-weight:600;color:var(--text);}
-  .sbadge{display:inline-block;padding:3px 11px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.8px;}
-  .sb-crit{background:var(--red);color:#fff;}
-  .sb-high{background:var(--orange);color:#fff;}
-  .sb-med{background:var(--yellow);color:#000;}
 
   /* ACTIONS */
   #actions{background:var(--dark);}
@@ -282,26 +263,7 @@
   .ac3 .aidot{background:var(--yellow);}
   .akpi{padding:.7rem;border-radius:9px;background:rgba(255,255,255,.04);font-size:10.5px;color:rgba(255,255,255,.28);font-family:'DM Mono',monospace;}
 
-  /* PRIORITY */
-  #priority{background:var(--bg);}
-  .plist{display:flex;flex-direction:column;gap:1.1rem;margin-top:2.5rem;}
-  .prow{display:grid;grid-template-columns:72px 1fr 190px;gap:1.8rem;align-items:center;background:var(--card);border-radius:14px;padding:1.4rem 1.8rem;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
-  .prow:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(0,0,0,.06);}
-  .prank{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:1px;color:#fff;flex-shrink:0;}
-  .pr1{background:var(--red);}
-  .pr2{background:var(--orange);}
-  .pr3{background:var(--yellow);color:#000;}
-  .pcontent{display:flex;flex-direction:column;gap:.4rem;}
-  .ptitle{font-size:17px;font-weight:700;color:var(--text);}
-  .pwhy{font-size:12.5px;color:var(--muted);line-height:1.6;font-weight:300;}
-  .pbadges{display:flex;gap:7px;margin-top:.4rem;}
-  .pbadge{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;}
-  .pbi-h{background:var(--red-dim);color:var(--red);}
-  .pbe-h{background:var(--orange-dim);color:var(--orange);}
-  .pbe-l{background:var(--green-dim);color:var(--green);}
-  .pkpi{text-align:right;}
-  .pkpi-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem;font-family:'DM Mono',monospace;}
-  .pkpi-val{font-size:12.5px;color:var(--text);font-weight:500;line-height:1.55;}
+  /* PRIORITY (Old List Removed, Using New Matrix Below) */
 
   /* APPENDIX */
   #appendix{background:var(--dark2);}
@@ -334,7 +296,7 @@
 
   @media(max-width:860px){
     .mth-grid,.fgrid,.agrid,.apgrid{grid-template-columns:1fr 1fr;}
-    .fgrid{grid-template-columns:1fr 1fr;}
+    .fgrid{grid-template-columns:1fr;}
     .dblock{grid-template-columns:1fr;}
     .dblock.rev{direction:ltr;}
     .prow{grid-template-columns:1fr;gap:1rem;}
@@ -390,160 +352,487 @@
   #triangulation { background: var(--bg); padding: 90px 2.5rem 70px; }
   .triang-inner {
     max-width: 1160px; margin: 0 auto;
-    background: var(--card); border-radius: 20px;
-    border: 1px solid var(--border);
+    background: #FFFFFF; border-radius: 20px;
+    border: 1px solid #E0E0E0;
     padding: 2.5rem 2rem;
-    box-shadow: 0 6px 30px rgba(0,0,0,.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,.04);
     margin-top: 2.5rem;
   }
 
-  /* ── FINDING 4 (Marketing) ─────────────────────── */
-  .fc-blue::after { background: var(--blue); }
-  .rb-b { background: var(--blue); }
-  .pc-b { background: var(--blue-dim); color: var(--blue); }
-  .fb .fst-v { color: var(--blue); }
-  .dl-g { background: var(--green-dim); color: var(--green); }
-
-
-  /* 基础变量和全局样式，确保一致性 */
+  /* 基础变量 */
   :root {
-    --base-font-size: 14px; /* 略微增加基础字号以提高可读性 */
+    --base-font-size: 14px; 
     --line-height-base: 1.6;
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 12px;
-    --spacing-lg: 20px;
-    
-    /* 引用原代码中的颜色变量（假设环境已定义，提供兜底值） */
-    --color-text-primary: #111827;
-    --color-text-secondary: #374151;
-    --color-text-tertiary: #6b7280;
-    --color-border-primary: #e5e7eb;
-    --color-border-secondary: #d1d5db;
-    --color-border-tertiary: #f3f4f6;
-    --color-background-primary: #ffffff;
-    --color-background-secondary: #f9fafb;
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 
-  /* 通用样式 */
-  .ux-doc-wrapper { font-family: var(--font-sans); color: var(--color-text-primary); line-height: var(--line-height-base); font-size: var(--base-font-size); padding: 1rem 0; }
-  .section-sep { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--color-text-tertiary); margin: 0 0 1.5rem; }
-  .divider { height: 1px; background: var(--color-border-tertiary); margin: 2.5rem 0 1.5rem; }
+  .ux-doc-wrapper { font-family: var(--font-sans); color: #111827; line-height: var(--line-height-base); font-size: var(--base-font-size); padding: 0.5rem 0; }
+  .divider { height: 1px; background: #E0E0E0; margin: 2rem 0 1.5rem; }
 
-  /* ----------------------------------------------------------- */
-  /* Part 1: Triangulation Matrix Styles - 强化表格清晰度 */
-  /* ----------------------------------------------------------- */
+  /* COMPRESSED Triangulation Matrix Styles */
   .tm { margin-bottom: 1rem; }
-  .tm-title { font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 0 0 1.5rem; }
-  .tm-table-wrap { overflow-x: auto; border: 1px solid var(--color-border-tertiary); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
-  .tm-table { width: 100%; border-collapse: collapse; min-width: 800px; /* 确保最小宽度以防止过度挤压 */ }
-  
-  /* 表头：提高对比度 */
-  .tm-table th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-primary); padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--color-border-secondary); background: var(--color-background-secondary); white-space: nowrap; }
+  .tm-title-bar {
+    background: var(--dark);
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 8px 8px 0 0;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+  }
+  .tm-table-wrap { 
+    overflow-x: auto; 
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background: var(--card);
+  }
+  .tm-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+  .tm-table th { 
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; 
+    color: #111827; padding: 10px 12px; text-align: left; 
+    border-bottom: 2px solid #E0E0E0; background: #f9fafb; white-space: nowrap; 
+  }
   .tm-table th:first-child { width: 15%; }
   .tm-table th:nth-child(2), .tm-table th:nth-child(3), .tm-table th:nth-child(4) { width: 20%; }
   .tm-table th:last-child { width: 25%; }
-  
-  /* 单元格：增加行高和间距 */
-  .tm-table td { padding: 16px; vertical-align: top; border-bottom: 1px solid var(--color-border-tertiary); color: var(--color-text-secondary); }
+  .tm-table td { 
+    padding: 12px; vertical-align: top; border-bottom: 1px solid #f3f4f6; 
+    color: #374151; font-size: 12.5px; line-height: 1.45; 
+  }
   .tm-table tr:last-child td { border-bottom: none; }
-  
-  /* 首列（Issue）：加粗并稍微调大字号 */
-  .tm-table td:first-child { font-weight: 600; color: var(--color-text-primary); font-size: 13px; padding-top: 16px; }
+  .tm-table td:first-child { font-weight: 600; color: #111827; font-size: 13px; padding-top: 12px; }
 
-  /* 结果框：增强视觉反馈，使用卡片式阴影 */
-  .result-strong { background: #FCEDEA; border-left: 4px solid #D85A30; padding: 12px var(--spacing-md); border-radius: 4px; box-shadow: 0 1px 2px rgba(216, 90, 48, 0.1); }
-  .result-strong p { color: #5C200C; font-size: 13px; margin: 0; }
-  .result-strong .r-label { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #993C1D; margin-bottom: var(--spacing-xs); }
+  .result-strong { background: #F5F5F5; border-left: 4px solid #0F0F0F; padding: 10px; border-radius: 4px; box-shadow: 0 1px 2px rgba(216, 90, 48, 0.1); }
+  .result-strong p { color: #0F0F0F; font-size: 12px; margin: 0; }
+  .result-strong .r-label { font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #993C1D; margin-bottom: 4px; }
   
-  .result-mod { background: #FCF5E8; border-left: 4px solid #BA7517; padding: 12px var(--spacing-md); border-radius: 4px; box-shadow: 0 1px 2px rgba(186, 117, 23, 0.1); }
-  .result-mod p { color: #4B2A03; font-size: 13px; margin: 0; }
-  .result-mod .r-label { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #854F0B; margin-bottom: var(--spacing-xs); }
+  .result-mod { background: #FFFFFF; border-left: 4px solid var(--green); padding: 10px; border-radius: 4px; box-shadow: 0 1px 2px rgba(186, 117, 23, 0.1); }
+  .result-mod p { color: #0F0F0F; font-size: 12px; margin: 0; }
+  .result-mod .r-label { font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #854F0B; margin-bottom: 4px; }
 
-  /* ----------------------------------------------------------- */
-  /* Part 2: Eisenhower Matrix Styles - 转化为卡片式设计，更清晰 */
-  /* ----------------------------------------------------------- */
-  .w { margin-top: 1rem; }
-  .sec-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--color-text-tertiary); margin: 0 0 1.25rem; }
+
+  /* ───────────────────────────────────────────────────────── */
+  /* NEW PRIORITY MATRIX (Eisenhower) DESIGN                   */
+  /* ───────────────────────────────────────────────────────── */
+  .pm-wrapper { 
+    display: flex; flex-direction: column; gap: 2rem; 
+    align-items: center; justify-content: center; 
+    width: 100%; margin-bottom: 2rem; 
+  }
+  @media (min-width: 992px) { .pm-wrapper { flex-direction: row; gap: 3rem; } }
   
-  .matrix-wrap {
+  /* Left Side: The Matrix */
+  .pm-matrix { 
+    width: 100%; max-width: 480px; aspect-ratio: 1/1; 
+    background: var(--bg); border-radius: 32px; padding: 2rem; 
+    position: relative; display: flex; align-items: center; justify-content: center; 
+    border: 1px solid rgba(0,0,0,0.05); 
+  }
+  
+  .pm-y-axis { 
+    position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); 
+    display: flex; flex-direction: column; align-items: center; gap: 3.5rem; 
+  }
+  .pm-x-axis { 
+    position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); 
+    display: flex; align-items: center; gap: 3.5rem; 
+  }
+  
+  .pm-label-rot { writing-mode: vertical-lr; transform: rotate(180deg); }
+  .pm-axis-lbl { font-size: 9px; font-weight: 700; color: rgba(0,0,0,0.3); text-transform: uppercase; letter-spacing: 2px; }
+  .pm-axis-badge { 
+    background: var(--dark); border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; 
+    display: flex; align-items: center; justify-content: center; 
+  }
+  
+  .pm-grid { 
+    width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; 
+    margin-left: 2rem; margin-bottom: 2rem; 
+    border-left: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); 
+  }
+  
+  .pm-quad { padding: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .pm-q-tl { border-right: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
+  .pm-q-tr { border-bottom: 1px solid rgba(0,0,0,0.1); }
+  .pm-q-bl { border-right: 1px solid rgba(0,0,0,0.1); }
+  
+  .pm-q-delegate, .pm-q-delete { opacity: 0.3; }
+  .pm-q-do { background: rgba(229,57,53,0.05); }
+  .pm-q-decide { background: rgba(43,61,231,0.05); }
+  
+  .pm-q-title { font-size: 10px; font-weight: 900; color: var(--dark); text-transform: uppercase; margin-bottom: 12px; }
+  
+  /* Inner Pills */
+  .pm-pill { 
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); 
+    padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
+    font-size: 9px; font-weight: 900; text-transform: uppercase; color: var(--dark); line-height: 1.2; 
+    width: 100%; max-width: 120px; margin-top: 6px; 
+  }
+
+  /* Middle Arrow */
+  .pm-arrow { display: none; flex-shrink: 0; }
+  @media (min-width: 992px) { .pm-arrow { display: block; } }
+
+  /* Right Side: Roadmap */
+  .pm-roadmap { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 1rem; }
+  .pm-rm-card { 
+    background: var(--dark); border-radius: 16px; padding: 1.5rem; 
+    display: flex; flex-direction: column; 
+    border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+  }
+  .pm-rm-badge-green { 
+    background: var(--green); padding: 4px 20px; border-radius: 20px; 
+    font-size: 10px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 2px; 
+    margin-bottom: 1.5rem; display: inline-block; 
+  }
+  .pm-rm-badge-outline { 
+    background: rgba(255,255,255,0.1); padding: 4px 20px; border-radius: 20px; 
+    font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; 
+    margin-bottom: 1.5rem; display: inline-block; 
+  }
+  .pm-rm-item { 
+    display: flex; align-items: center; gap: 12px; 
+    background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); 
+    margin-bottom: 8px; width: 100%; 
+  }
+  .pm-rm-item span { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; }
+  .pm-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── REDESIGNED PM SUB-LABEL ────────────────────
+    Fixes issue where "Priority matrix — Eisenhower" 
+    was too big. Now small, low-hierarchy, mixed-case, 
+    matching "small" requirement.
+    ─────────────────────────────────────────────
+  */
+  .pm-sublabel {
+    font-size: 11px; /* Very small */
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: none; /* Mixed case */
+    margin-top: -0.5rem; /* Pin it to the label above */
+    letter-spacing: 0.5px;
+  }
+
+
+  /* ═══ ACTION SECTIONS — Figma Layout ════════════════ */
+  .act-section {
+    padding: 70px 2.5rem 80px;
+    background: #F5F5F5;
+  }
+  .act-section.act-white { background: #FFFFFF; }
+
+  /* ── Header: number badge + title ── */
+  .act-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .act-badge {
+    width: 58px; height: 54px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 1.8rem; font-weight: 600;
+    color: #fff; flex-shrink: 0;
+    letter-spacing: -1px;
+  }
+  .ab1 { background: var(--red); }
+  .ab2 { background: var(--orange); }
+  .ab3 { background: #906c00; }
+  .act-title {
+    font-family: 'Instrument Sans', 'DM Sans', sans-serif;
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: 700;
+    color: #1e1e1e;
+    line-height: 1.1;
+    letter-spacing: -.03em;
+  }
+
+  /* ── HMW quote bar ── */
+  .act-hmw {
+    display: flex;
+    align-items: stretch;
+    border-radius: 0 5px 5px 0;
+    overflow: hidden;
+    margin-bottom: 1.8rem;
+  }
+  .act-hmw-bar {
+    width: 4px; flex-shrink: 0;
+  }
+  .act-hmw-body {
+    padding: .9rem 1.2rem;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: .05em;
+    color: #1f1f1f;
+  }
+  .hmw1 .act-hmw-bar { background: var(--red); }
+  .hmw2 .act-hmw-bar { background: var(--orange); }
+  .hmw3 .act-hmw-bar { background: #906c00; }
+  .hmw1 .act-hmw-body { background: rgba(6,193,103,0.06); }
+  .hmw2 .act-hmw-body { background: rgba(6,193,103,0.06); }
+  .hmw3 .act-hmw-body { background: rgba(6,193,103,0.06); }
+
+  /* ── Advice block ── */
+  .act-advice-row {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: .8rem;
+  }
+  .act-advice-line {
+    flex: 1; height: 1px; background: #d4d4d4;
+  }
+  .act-advice-label {
+    font-size: 14px; font-weight: 700;
+    color: #1f1f1f; white-space: nowrap;
+  }
+  .act-advice-text {
+    font-size: 14px; line-height: 1.6;
+    color: rgba(0,0,0,.75);
+    letter-spacing: .05em;
+    margin-bottom: 1.8rem;
+  }
+
+  /* ── Action cards (2-col grid) ── */
+  .act-cards {
     display: grid;
-    grid-template-columns: 32px 1fr 1fr;
-    grid-template-rows: 1fr 1fr 32px;
-    gap: 16px; /* 增加象限之间的间距 */
-    width: 100%;
-    margin-bottom: var(--spacing-lg);
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
   }
-  
-  /* 轴线样式 */
-  .y-axis {
-    grid-column: 1; grid-row: 1 / 3;
-    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-    padding: 16px 0;
+  .act-card {
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.4rem;
+    align-items: flex-start;
   }
-  .y-hi, .y-lo { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .06em; }
-  .y-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--color-text-primary); writing-mode: vertical-rl; transform: rotate(180deg); }
+  .ac-card1 { background: #FFFFFF; border: 1px solid #E0E0E0; }
+  .ac-card2 { background: #FFFFFF; border: 1px solid #E0E0E0; }
+  .ac-card3 { background: #FFFFFF; border: 1px solid #E0E0E0; }
+  /* For action 2 */
+  .ac-card4 { background: #FFFFFF; border: 1px solid #E0E0E0; }
+  /* For action 3 */
+  .ac-card5 { background: #FFFFFF; border: 1px solid #E0E0E0; }
+  .ac-card6 { background: #FFFFFF; border: 1px solid #E0E0E0; }
 
-  .x-axis {
-    grid-column: 2 / 4; grid-row: 3;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: var(--spacing-sm) 8px 0;
-  }
-  .x-edge { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); letter-spacing: .06em; }
-  .x-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--color-text-primary); }
-
-  /* 象限卡片：增加阴影和边框圆角 */
-  .q {
-    padding: var(--spacing-lg);
-    border: 1px solid var(--color-border-tertiary);
+  .act-img {
+    width: 160px; min-width: 160px; height: 280px;
     border-radius: 12px;
-    display: flex; flex-direction: column; gap: var(--spacing-md);
-    min-height: 160px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    overflow: hidden;
+    background: #E0E0E0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: #999;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
   }
-  /* 象限标题：加粗并使用对应颜色 */
-  .q-name { font-size: 16px; font-weight: 600; margin: 0 0 var(--spacing-xs); display: flex; align-items: center; justify-content: space-between;}
-  
-  .q-tl { background: #FCF5E8; border-color: #F7E6CA; }
-  .q-tl .q-name { color: #854F0B; }
-  .q-tr { background: #FCEDEA; border-color: #F8D6CC; }
-  .q-tr .q-name { color: #993C1D; }
-  .q-bl { background: var(--color-background-secondary); border-color: var(--color-border-secondary); }
-  .q-bl .q-name { color: var(--color-text-secondary); }
-  .q-br { background: #F1F0FF; border-color: #E0DEFA; }
-  .q-br .q-name { color: #4338CA; }
+  .act-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; border-radius: 8px;
+  }
+  .act-card-content { flex: 1; }
+  .act-card-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; border-radius: 3px;
+    background: #3b3b3b; color: #fff;
+    font-size: 10px; font-weight: 700;
+    margin-bottom: .4rem;
+    margin-right: 4px;
+  }
+  .act-card-label {
+    font-size: 14px; font-weight: 700;
+    color: #1f1f1f; margin-bottom: .5rem;
+    display: inline;
+  }
+  .act-card-text {
+    font-size: 12px; line-height: 1.6;
+    color: rgba(0,0,0,.75);
+    margin-top: .5rem;
+  }
+  .act-card-text ul {
+    margin: .3rem 0 0 1rem;
+    padding: 0;
+  }
+  .act-card-text li { margin-bottom: .2rem; }
 
-  /* 议题条目：卡片式设计，更具实体感 */
-  .issue { background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; padding: 10px 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.01); transition: transform 0.1s; }
-  .issue:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.03); } /* 轻微交互效果 */
-  .issue-name { font-size: 13px; font-weight: 600; color: var(--color-text-primary); line-height: 1.4; }
-  .issue-sub  { font-size: 11px; color: var(--color-text-secondary); line-height: 1.4; margin-top: var(--spacing-xs); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; } /* 使用等宽字体突出数据 */
+  /* ── Bottom: Business Goals + Collaborative ── */
+  .act-bottom {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+  .act-kpi-card {
+    border-radius: 13px;
+    overflow: hidden;
+  }
+  .act-kpi-head {
+    padding: .7rem 1rem;
+    font-family: 'Instrument Sans', 'DM Sans', sans-serif;
+    font-size: 16px; font-weight: 700;
+    color: #fff; line-height: .95; letter-spacing: -.02em;
+  }
+  .act-kpi-body {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem;
+    min-height: 160px;
+  }
+  .kpi-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: .3rem;
+  }
+  .kpi-arrow {
+    width: 100px; height: 64px;
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+  }
+  .kpi-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 900;
+    color: #fff; text-align: center; line-height: 1.2;
+  }
+  .kpi-sub {
+    font-size: 6px; font-weight: 300; color: #fff; text-align: center;
+  }
 
-  /* ----------------------------------------------------------- */
-  /* Part 3: Roadmap Styles - 增强卡片层级和可读性 */
-  /* ----------------------------------------------------------- */
-  .roadmap-wrap { margin-top: var(--spacing-lg); }
-  .timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  
-  .tl-card { background: var(--color-background-primary); border: 1px solid var(--color-border-tertiary); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
-  
-  .tl-head { padding: 12px 16px; border-bottom: 1px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 10px; background: var(--color-background-secondary); }
-  .tl-badge { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; padding: 4px 10px; border-radius: 20px; /* 药丸形 */ }
-  .b-short { background: #FCEDEA; color: #993C1D; border: 1px solid #F8D6CC;}
-  .b-long  { background: #E0DEFA; color: #4338CA; border: 1px solid #C4C0F7;}
-  .tl-title { font-size: 14px; font-weight: 600; color: var(--color-text-primary); }
-  
-  .tl-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-  .tl-row { display: flex; align-items: flex-start; gap: var(--spacing-sm); }
-  .tl-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; } /* 稍微调大一点点 */
-  .dot-red   { background: #D85A30; box-shadow: 0 0 0 2px rgba(216, 90, 48, 0.15); }
-  .dot-purple { background: #6366F1; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15); } /* 使用更亮一点的紫色 */
-  .tl-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
-  .tl-text b { font-weight: 600; color: var(--color-text-primary); }
+  .act-collab-card {
+    border-radius: 13px;
+    overflow: hidden;
+  }
+  .act-collab-head {
+    padding: .7rem 1rem;
+    font-family: 'Instrument Sans', 'DM Sans', sans-serif;
+    font-size: 16px; font-weight: 700;
+    color: #fff; line-height: .95; text-align: center;
+  }
+  .act-collab-body {
+    padding: 1rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .collab-col { display: flex; flex-direction: column; gap: .5rem; }
+  .collab-tag {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 3px 10px; border-radius: 9px;
+    font-size: 10px; font-weight: 500;
+    color: #fff; width: fit-content;
+  }
+  .collab-text {
+    font-size: 12px; line-height: 1.5;
+    color: rgba(0,0,0,.75);
+  }
+
+  /* colour themes per action */
+  .act1 .act-kpi-head  { background: #0F0F0F; }
+  .act1 .act-kpi-body  { background: #F5F5F5; }
+  .act1 .act-collab-head { background: #0F0F0F; }
+  .act1 .act-collab-body { background: #FFFFFF; }
+  .act1 .collab-tag    { background: var(--green); color: #000; }
+
+  .act2 .act-kpi-head  { background: #0F0F0F; }
+  .act2 .act-kpi-body  { background: #F5F5F5; }
+  .act2 .act-collab-head { background: #0F0F0F; }
+  .act2 .act-collab-body { background: #FFFFFF; }
+  .act2 .collab-tag    { background: var(--green); color: #000; }
+
+  .act3 .act-kpi-head  { background: #0F0F0F; }
+  .act3 .act-kpi-body  { background: #F5F5F5; }
+  .act3 .act-collab-head { background: #0F0F0F; }
+  .act3 .act-collab-body { background: #FFFFFF; }
+  .act3 .collab-tag    { background: var(--green); color: #000; }
+
+  @media(max-width:860px){
+    .act-cards  { grid-template-columns: 1fr; }
+    .act-bottom { grid-template-columns: 1fr; }
+  }
+
+
+  /* ── FINDING DETAIL — Figma Layout ─────────────────── */
+  .fd-wrap { padding: 60px 2.5rem 70px; }
+  .fd-wrap.fd-light { background: #FFFFFF; }
+  .fd-wrap.fd-muted  { background: #F5F5F5; }
+  .fd-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    letter-spacing: 1.5px; line-height: .95;
+    color: var(--text); margin: 1rem 0 1.8rem;
+  }
+  .fd-top {
+    display: grid;
+    grid-template-columns: 55% 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-items: stretch;
+  }
+  .fd-video {
+    background: #E0E0E0; border-radius: 12px;
+    overflow: hidden; aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #999; position: relative;
+  }
+  .fd-video video, .fd-video iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; border-radius: 12px; display: block;
+  }
+  .fd-quotes { display: flex; flex-direction: column; gap: .8rem; }
+  .fd-quote {
+    background: #FFFFFF; border: 1px solid #E0E0E0;
+    border-radius: 10px; padding: .85rem 1rem; flex: 1;
+  }
+  .fd-q-text {
+    font-size: 12.5px; font-style: italic;
+    line-height: 1.65; color: var(--text); margin-bottom: .4rem;
+  }
+  .fd-q-attr { font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .fd-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .fd-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #E0E0E0; }
+  .fd-card-head {
+    background: #0F0F0F; color: #fff;
+    padding: .6rem 1rem; font-size: 14px;
+    font-weight: 400; text-align: center;
+  }
+  .fd-card-body { padding: 1rem; display: flex; flex-direction: column; gap: .9rem; background: #F5F5F5; }
+  .fd-stat { background: #fff; border-radius: 7px; padding: .7rem .9rem; text-align: center; }
+  .fd-stat-v { font-size: 28px; font-weight: 700; color: #f83c00; line-height: 1.2; }
+  .fd-stat-v.blue { color: var(--blue); }
+  .fd-stat-v.orange { color: var(--orange); }
+  .fd-stat-v.green { color: var(--green); }
+  .fd-stat-v.muted { color: var(--muted); font-size: 20px; }
+  .fd-stat-l { font-size: 10px; color: #333; line-height: 1.35; margin-top: 3px; }
+  .fd-stat-row { display: flex; gap: .7rem; }
+  .fd-stat-row .fd-stat { flex: 1; }
+  .fd-task-label { font-size: 10px; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+  .fd-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+  .fd-bar-col { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .fd-bar-num { font-size: 11px; font-weight: 700; color: var(--text); }
+  .fd-bar-rect { width: 24px; border-radius: 3px 3px 0 0; background: var(--yellow); }
+  .fd-bar-rect.p1 { background: var(--green); }
+  .fd-bar-rect.p3 { background: var(--red); }
+  .fd-bar-lbl { font-size: 7px; color: var(--muted); text-align: center; }
+  .fd-total { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .fd-star { width: 52px; height: 52px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .fd-star img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .fd-star-num { position: relative; z-index: 1; font-size: 18px; font-weight: 700; color: #fff; }
+  .fd-ai-row { display: flex; gap: .8rem; align-items: center; }
+  .fd-ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; width: 76px; }
+  .fd-ring { width: 66px; height: 66px; position: relative; }
+  .fd-ring img { width: 100%; height: 100%; }
+  .fd-ring-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .fd-ring-val { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1; }
+  .fd-ring-lbl { font-size: 5px; color: var(--text); text-align: center; line-height: 1.3; }
+  @media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } }
 
 </style>
-
+</head>
 <body>
 
 <nav>
@@ -559,6 +848,7 @@
     <li><a href="#methodology">Methods</a></li>
   </ul>
 </nav>
+
 <section id="hero">
   <div class="hero-grid"></div>
   <div class="hero-blocks">
@@ -583,7 +873,6 @@
   </div>
 </section>
 
-<!-- CONTENTS -->
 <section id="contents">
   <div class="hero-grid"></div>
   <div class="container">
@@ -619,27 +908,13 @@
     </div>
   </div>
 </section>
-<!-- TLDR -->
+
 <section id="tldr">
   <div class="container">
     <div class="sec-label">Executive Summary</div>
     <h2 class="sec-title">Summary</h2>
     <p class="sec-sub">Watch the overview video below.</p>
     <div class="tldr-video-wrap reveal">
-      <!--
-        ╔══════════════════════════════════════════════════════════════════╗
-        ║  PASTE YOUR VIDEO HERE — three options:                         ║
-        ║                                                                  ║
-        ║  Option A — Local / uploaded MP4 file:                          ║
-        ║    Change src="YOUR_VIDEO.mp4" to your actual filename          ║
-        ║                                                                  ║
-        ║  Option B — YouTube embed:                                       ║
-        ║    Delete the <video> block and uncomment the <iframe> below    ║
-        ║                                                                  ║
-        ║  Option C — Google Drive:                                        ║
-        ║    File → Share → Copy embed link → paste as <iframe src="..."> ║
-        ╚══════════════════════════════════════════════════════════════════╝
-      -->
       <video class="tldr-video" controls preload="metadata">
         <source src="YOUR_VIDEO.mp4" type="video/mp4" />
         <p style="color:#fff;padding:2rem;text-align:center">
@@ -647,87 +922,64 @@
           <a href="YOUR_VIDEO.mp4" style="color:#06C167">点击下载</a>
         </p>
       </video>
-
-      <!-- YouTube 替代方案（删除上方 <video> 后取消注释）:
-      <iframe class="tldr-video"
-        src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1&color=white"
-        title="TL;DR Overview" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen style="width:100%;height:100%;border-radius:20px;">
-      </iframe>
-      -->
     </div>
   </div>
 </section>
-<!-- KEY FINDINGS -->
+
 <section id="findings">
   <div class="container">
-    <div class="sec-label">Key Insights</div>
-    <h2 class="sec-title">Four Key Findings</h2>
-    <p class="sec-sub">Confirmed and cross-validated across all three research methods.</p>
+    
+    <div class="center-header reveal">
+      <div class="center-label">
+        <span>Research Insights</span>
+      </div>
+      <h2 class="center-title">Four Key Findings</h2>
+      <p class="sec-sub" style="text-align: center;">Confirmed and cross-validated across all three research methods.</p>
+    </div>
+
     <div class="fgrid reveal">
 
-      <!-- 01 Support Invisible -->
-      <div class="fcard fr">
-        <div class="frank">
-          <span class="rbadge rb-r">01</span>
-          <div>
-            <div class="ftitle">Support Invisible</div>
-            <span class="pchip pc-r" style="margin-top:4px;display:inline-block">Priority — Critical</span>
-          </div>
-        </div>
-        <div class="fstats">
-          <div class="fst"><div class="fst-v">0%</div><div class="fst-l">Task Success</div></div>
-          <div class="fst"><div class="fst-v">2.8</div><div class="fst-l">SEQ /7</div></div>
-          <div class="fst"><div class="fst-v">P3</div><div class="fst-l">PURE</div></div>
+      <div class="fcard fc-r">
+        <svg class="bg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/>
+        </svg>
+        <div class="fnum">01</div>
+        <div class="fname">Support Invisible</div>
+        <div class="fbot">
+          <span class="fpill">Priority — Critical</span>
         </div>
       </div>
 
-      <!-- 02 Price Transparency -->
-      <div class="fcard fy">
-        <div class="frank">
-          <span class="rbadge rb-y">02</span>
-          <div>
-            <div class="ftitle">Price Transparency</div>
-            <span class="pchip pc-y" style="margin-top:4px;display:inline-block">Priority — High</span>
-          </div>
-        </div>
-        <div class="fstats">
-          <div class="fst"><div class="fst-v">1.2</div><div class="fst-l">Task Success</div></div>
-          <div class="fst"><div class="fst-v">5.4</div><div class="fst-l">SEQ /7</div></div>
-          <div class="fst"><div class="fst-v">P2</div><div class="fst-l">PURE</div></div>
+      <div class="fcard fc-y">
+        <svg class="bg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        <div class="fnum">02</div>
+        <div class="fname">Price Transparency</div>
+        <div class="fbot">
+          <span class="fpill">Priority — High</span>
         </div>
       </div>
 
-      <!-- 03 Information Architecture -->
-      <div class="fcard fo">
-        <div class="frank">
-          <span class="rbadge rb-o">03</span>
-          <div>
-            <div class="ftitle">Information Architecture</div>
-            <span class="pchip pc-o" style="margin-top:4px;display:inline-block">Priority — High (New)</span>
-          </div>
-        </div>
-        <div class="fstats">
-          <div class="fst"><div class="fst-v">5</div><div class="fst-l">Friction Pts</div></div>
-          <div class="fst"><div class="fst-v">76%</div><div class="fst-l">PURE 2+</div></div>
-          <div class="fst"><div class="fst-v">9</div><div class="fst-l">H. Violations</div></div>
+      <div class="fcard fc-b">
+        <svg class="bg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+        </svg>
+        <div class="fnum">03</div>
+        <div class="fname">Marketing Over Usability</div>
+        <div class="fbot">
+          <span class="fpill">Priority — Medium</span>
         </div>
       </div>
 
-      <!-- 04 Interface / Marketing -->
-      <div class="fcard fc-blue">
-        <div class="frank">
-          <span class="rbadge rb-b">04</span>
-          <div>
-            <div class="ftitle">Interface Prioritized Marketing Over Usability</div>
-            <span class="pchip pc-b" style="margin-top:4px;display:inline-block">Priority — Medium</span>
-          </div>
-        </div>
-        <div class="fstats">
-          <div class="fst"><div class="fst-v" style="color:var(--blue)">68%</div><div class="fst-l">UMUX-Lite</div></div>
-          <div class="fst"><div class="fst-v" style="color:var(--blue)">H2+H5</div><div class="fst-l">Violations</div></div>
-          <div class="fst"><div class="fst-v" style="color:var(--blue)">Med</div><div class="fst-l">Severity</div></div>
+      <div class="fcard fc-o">
+        <svg class="bg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        <div class="fnum">04</div>
+        <div class="fname">Information Architecture</div>
+        <div class="fbot">
+          <span class="fpill">Priority — High</span>
         </div>
       </div>
 
@@ -735,10 +987,6 @@
   </div>
 </section>
 
-
-<!-- TRIANGULATION -->
-
-<!-- TRIANGULATION / EISENHOWER -->
 <section id="triangulation">
   <div class="container">
     <div class="sec-label">Cross-Method Integration</div>
@@ -748,9 +996,11 @@
   <div class="container">
     <div class="triang-inner reveal">
 <div class="ux-doc-wrapper">
+  
   <div class="tm">
-    <p class="tm-title">Triangulation Matrix — Uber Eats UX Evaluation</p>
-
+    <div class="tm-title-bar">
+      Triangulation Matrix — Uber Eats UX Evaluation
+    </div>
     <div class="tm-table-wrap">
       <table class="tm-table">
         <thead>
@@ -818,334 +1068,398 @@
 
   <div class="divider"></div>
 
-  <div class="w">
-    <p class="sec-lbl">Priority matrix — Eisenhower</p>
-
-    <div class="matrix-wrap">
-      <div class="y-axis">
-        <span class="y-hi">high</span>
-        <span class="y-title">Urgent</span>
-        <span class="y-lo">low</span>
-      </div>
-
-      <div class="q q-tl">
-        <p class="q-name">Delegate <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></p>
-        <div style="opacity:.6;font-size:12px;color:var(--color-text-tertiary); font-style: italic; text-align: center; margin-top: 20px;">No issues identified</div>
-      </div>
-
-      <div class="q q-tr">
-        <p class="q-name">Do <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span></p>
-        <div class="issue">
-          <p class="issue-name">Support invisible</p>
-          <p class="issue-sub">100% task failure · SEQ 2/7 · PURE 3</p>
-        </div>
-        <div class="issue">
-          <p class="issue-name">Price transparency</p>
-          <p class="issue-sub">Grand total never shown · SEQ 4/7 · PURE 3</p>
-        </div>
-      </div>
-
-      <div class="q q-bl">
-        <p class="q-name">Delete <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></span></p>
-        <div style="opacity:.6;font-size:12px;color:var(--color-text-tertiary); font-style: italic; text-align: center; margin-top: 20px;">No issues identified</div>
-      </div>
-
-      <div class="q q-br">
-        <p class="q-name">Decide <span style="font-size:12px;font-weight:400;color:var(--color-text-secondary);">(when)</span> <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span></p>
-        <div class="issue">
-          <p class="issue-name">Information architecture</p>
-          <p class="issue-sub">Help buried in nav · H2 + H4 violations</p>
-        </div>
-        <div class="issue">
-          <p class="issue-name">Interface prioritised marketing over usability</p>
-          <p class="issue-sub">Upsells at every decision point · AI + user testing flagged</p>
-        </div>
-      </div>
-
-      <div class="x-axis">
-        <span class="x-edge">low</span>
-        <span class="x-title">Important</span>
-        <span class="x-edge">high</span>
-      </div>
+  <div class="center-header reveal" style="margin-top: 3rem; margin-bottom: 2rem;">
+    <div class="center-label">
+      <span>Strategic Prioritization</span>
     </div>
-
-    <div class="divider"></div>
-
-    <div class="roadmap-wrap">
-      <p class="sec-lbl">Roadmap summary</p>
-      <div class="timeline">
-        <div class="tl-card">
-          <div class="tl-head">
-            <span class="tl-badge b-short">Short term</span>
-            <span class="tl-title">Do — urgent + important</span>
-          </div>
-          <div class="tl-body">
-            <div class="tl-row">
-              <div class="tl-dot dot-red"></div>
-              <span class="tl-text"><b>Support invisible</b> — all three methods align; 100% failure rate</span>
-            </div>
-            <div class="tl-row">
-              <div class="tl-dot dot-red"></div>
-              <span class="tl-text"><b>Price transparency</b> — grand total structurally absent at payment step</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-card">
-          <div class="tl-head">
-            <span class="tl-badge b-long">Long term</span>
-            <span class="tl-title">Decide — important, not urgent</span>
-          </div>
-          <div class="tl-body">
-            <div class="tl-row">
-              <div class="tl-dot dot-purple"></div>
-              <span class="tl-text"><b>Information architecture</b> — users eventually succeed; friction accumulates across tasks</span>
-            </div>
-            <div class="tl-row">
-              <div class="tl-dot dot-purple"></div>
-              <span class="tl-text"><b>Interface prioritised marketing over usability</b> — PURE missed it; AI + user testing both flagged it</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <p class="pm-sublabel">Priority matrix — Eisenhower</p>
   </div>
+
+  <div class="pm-wrapper reveal">
+    
+    <div class="pm-matrix">
+      <div class="pm-y-axis">
+        <span class="pm-axis-lbl pm-label-rot">High</span>
+        <div class="pm-axis-badge pm-label-rot" style="padding: 1.5rem 0.4rem;">Urgent</div>
+        <span class="pm-axis-lbl pm-label-rot">Low</span>
+      </div>
+      <div class="pm-x-axis">
+        <span class="pm-axis-lbl">Low</span>
+        <div class="pm-axis-badge" style="padding: 0.4rem 1.5rem;">Important</div>
+        <span class="pm-axis-lbl">High</span>
+      </div>
+      
+      <div class="pm-grid">
+        <div class="pm-quad pm-q-tl pm-q-delegate">
+          <span class="pm-q-title">Delegate</span>
+        </div>
+        <div class="pm-quad pm-q-tr pm-q-do">
+          <span class="pm-q-title">Do</span>
+          <div class="pm-pill">Support Invisible</div>
+          <div class="pm-pill">Price Transparency</div>
+        </div>
+        <div class="pm-quad pm-q-bl pm-q-delete">
+          <span class="pm-q-title">Delete</span>
+        </div>
+        <div class="pm-quad pm-q-br pm-q-decide">
+          <span class="pm-q-title">Decide</span>
+          <div class="pm-pill">Information Architecture</div>
+          <div class="pm-pill">Interface Prioritized Marketing Over Usability.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pm-arrow">
+      <svg width="60" height="40" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 40H75M75 40L55 20M75 40L55 60" stroke="#06C167" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="pm-roadmap">
+      <div class="pm-rm-card">
+        <div style="text-align: center;"><span class="pm-rm-badge-green">Short Term</span></div>
+        <div class="pm-rm-item">
+          <div class="pm-dot" style="background: var(--red);"></div>
+          <span>Support Invisible</span>
+        </div>
+        <div class="pm-rm-item">
+          <div class="pm-dot" style="background: var(--yellow);"></div>
+          <span>Price Transparency</span>
+        </div>
+      </div>
+      <div class="pm-rm-card">
+        <div style="text-align: center;"><span class="pm-rm-badge-outline">Long Term</span></div>
+        <div class="pm-rm-item">
+          <div class="pm-dot" style="background: var(--orange);"></div>
+          <span>Information Architecture</span>
+        </div>
+        <div class="pm-rm-item">
+          <div class="pm-dot" style="background: var(--blue);"></div>
+          <span>Interface Prioritized Marketing Over Usability.</span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
 </div>
     </div>
   </div>
 </section>
-<!-- FINDING 1 DETAIL -->
-<div class="dsec dsec-light">
+
+
+<div class="fd-wrap fd-light">
   <div class="container">
     <div class="dlabel dl-r">Finding 01 — Critical</div>
-    <div class="dblock reveal">
-      <div>
-        <div class="dheading">Customer Support System Is Invisible</div>
-        <p class="dtext">All three research methods independently converged: reaching a human agent in Uber Eats is architecturally impossible. No phone number exists anywhere in the app. The chatbot presents only chip options — no free-text box means typing "human" is impossible. Every path leads to deeper automation.</p>
-        <div class="qblock qr">
-          <p class="qtext">"it is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</p>
-          <p class="qattr">— PURE Evaluator 2, Task 3-5</p>
-        </div>
-        <div class="qblock qo" style="margin-top:.7rem">
-          <p class="qtext">"it feels like the app is hiding a phone number on purpose to force me to use the bot."</p>
-          <p class="qattr">— AI Participant (Alex) · Task 3 Think-Aloud · SEQ 2/7</p>
+    <div class="fd-heading">Customer Support System Is Invisible</div>
+    <div class="fd-top reveal">
+      <div class="fd-video">
+        <video controls preload="metadata"><source src="YOUR_VIDEO_F1.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="fd-quotes">
+        <div class="fd-quote"><div class="fd-q-text">"It is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</div><div class="fd-q-attr">— PURE Evaluator 2, Task 3-5</div></div>
+        <div class="fd-quote"><div class="fd-q-text">"It feels like the app is hiding a phone number on purpose to force me to use the bot."</div><div class="fd-q-attr">— AI Participant (Alex) · Task 3 Think-Aloud · SEQ 2/7</div></div>
+      </div>
+    </div>
+    <div class="fd-cards reveal">
+      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v">0</div><div class="fd-stat-l">Task Success Rate</div></div><div class="fd-stat"><div class="fd-stat-v">2.8/7</div><div class="fd-stat-l">User Task 3 SEQ (1-7)</div></div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-task-label">Task 3</div><div class="fd-bars"><div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect p3" style="height:36px"></div><div class="fd-bar-lbl">Step 1</div></div>
+<div class="fd-bar-col"><div class="fd-bar-num">1</div><div class="fd-bar-rect p1" style="height:18px"></div><div class="fd-bar-lbl">Step 2</div></div>
+<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Step 3</div></div>
+<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Step 4</div></div>
+<div class="fd-bar-col"><div class="fd-bar-num">3</div><div class="fd-bar-rect p3" style="height:54px"></div><div class="fd-bar-lbl">Step 5</div></div>
+<div class="fd-total"><div class="fd-star"><img src="https://www.figma.com/api/mcp/asset/04de10d0-d09d-413e-80db-6218b70efcf8"/><span class="fd-star-num">10</span></div><div class="fd-bar-lbl">Total</div></div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Task 3</div><div class="fd-ai-row"><div class="fd-ring-wrap"><div class="fd-ring"><img src="https://www.figma.com/api/mcp/asset/2e216357-1449-487b-8fc7-04a1abdad578"/><img src="https://www.figma.com/api/mcp/asset/1c41669d-9122-43e0-84a9-2bb811fd39c4" style="position:absolute;inset:0"/><div class="fd-ring-inner"><div class="fd-ring-val">3/5</div><div class="fd-ring-lbl">Overall cognitive load</div></div></div></div><div class="fd-stat" style="flex:1"><div class="fd-stat-v">2/7</div><div class="fd-stat-l">AI User Task 3 SEQ</div></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="fd-wrap fd-muted">
+  <div class="container">
+    <div class="dlabel dl-y">Finding 02 — High</div>
+    <div class="fd-heading">The Issue of Price Transparency</div>
+    <div class="fd-top reveal">
+      <div class="fd-video">
+        <video controls preload="metadata"><source src="YOUR_VIDEO_F2.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="fd-quotes">
+        <div class="fd-quote"><div class="fd-q-text">"I cannot see the total price after I adding a tip. That's a little bit annoying."</div><div class="fd-q-attr">— Jane (Usability Participant, Task 2)</div></div>
+        <div class="fd-quote"><div class="fd-q-text">"When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere."</div><div class="fd-q-attr">— PURE Evaluator 2, Task 2-7</div></div>
+      </div>
+    </div>
+    <div class="fd-cards reveal">
+      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v orange">1.2</div><div class="fd-stat-l">Task Success Rate</div></div><div class="fd-stat"><div class="fd-stat-v orange">5.4/7</div><div class="fd-stat-l">User Task 2 SEQ (1-7)</div></div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-task-label">Task 2 — Checkout step</div><div class="fd-bars"><div class="fd-bar-col"><div class="fd-bar-num">1</div><div class="fd-bar-rect p1" style="height:18px"></div><div class="fd-bar-lbl">Steps 1-6</div></div>
+<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Step 7</div></div>
+<div class="fd-total"><div class="fd-star"><img src="https://www.figma.com/api/mcp/asset/16ba75cf-bba9-4b0b-a3d2-88d73082e377"/><span class="fd-star-num">2</span></div><div class="fd-bar-lbl">Total</div></div></div><div class="fd-stat"><div class="fd-stat-v" style="color:var(--orange);font-size:18px">PURE 2</div><div class="fd-stat-l">Task 2-7 friction — 2 of 3 evaluators</div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Task 2 — Cognitive load</div><div class="fd-ai-row"><div class="fd-ring-wrap"><div class="fd-ring"><img src="https://www.figma.com/api/mcp/asset/2e216357-1449-487b-8fc7-04a1abdad578"/><img src="https://www.figma.com/api/mcp/asset/1c41669d-9122-43e0-84a9-2bb811fd39c4" style="position:absolute;inset:0"/><div class="fd-ring-inner"><div class="fd-ring-val">2/5</div><div class="fd-ring-lbl">Overall cognitive load</div></div></div></div><div class="fd-stat" style="flex:1"><div class="fd-stat-v orange">4/7</div><div class="fd-stat-l">AI User Task 2 SEQ</div></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="fd-wrap fd-light">
+  <div class="container">
+    <div class="dlabel dl-b">Finding 03 — Medium</div>
+    <div class="fd-heading">Interface Prioritises Marketing Over Usability</div>
+    <div class="fd-top reveal">
+      <div class="fd-video">
+        <video controls preload="metadata"><source src="YOUR_VIDEO_F3.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="fd-quotes">
+        <div class="fd-quote"><div class="fd-q-text">"The interface is a bit too flashy and too complicated... it would be better if the page were simpler."</div><div class="fd-q-attr">— David (Usability Participant)</div></div>
+        <div class="fd-quote"><div class="fd-q-text">"The post-checkout Add-on page is too cumbersome. I have to click through a new page just to say 'No'."</div><div class="fd-q-attr">— Han (Usability Participant)</div></div>
+      </div>
+    </div>
+    <div class="fd-cards reveal">
+      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v blue">68%</div><div class="fd-stat-l">UMUX-Lite Score</div></div><div class="fd-stat"><div class="fd-stat-v blue">80%</div><div class="fd-stat-l">Rated ease 4/7 (neutral)</div></div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-stat"><div class="fd-stat-v muted">N/A</div><div class="fd-stat-l">Not flagged by PURE experts — affects real users more than expert walkthroughs</div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Heuristic violations</div><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v blue">H2</div><div class="fd-stat-l">Real-world language mismatch</div></div><div class="fd-stat"><div class="fd-stat-v blue">H5</div><div class="fd-stat-l">Error prevention (BOGO)</div></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="fd-wrap fd-muted">
+  <div class="container">
+    <div class="dlabel dl-o">Finding 04 — High (New from PURE)</div>
+    <div class="fd-heading">Information Architecture Problems</div>
+    <div class="fd-top reveal">
+      <div class="fd-video">
+        <video controls preload="metadata"><source src="YOUR_VIDEO_F4.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="fd-quotes">
+        <div class="fd-quote"><div class="fd-q-text">"Another issue is hidden in the more option choice which is also in a long list. I have to read all of that to only get started. That's frustrating."</div><div class="fd-q-attr">— PURE Evaluator 2, Task 3</div></div>
+        <div class="fd-quote"><div class="fd-q-text">"The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</div><div class="fd-q-attr">— PURE Evaluator 3, Task 1, Step 2</div></div>
+      </div>
+    </div>
+    <div class="fd-cards reveal">
+      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat"><div class="fd-stat-v green">6.2/7</div><div class="fd-stat-l">Task 1 SEQ — high score masked IA issues</div></div><div class="fd-stat"><div class="fd-stat-v muted">Qualitative</div><div class="fd-stat-l">Hesitation finding help flagged in debrief</div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-task-label">Friction across all tasks (avg PURE 2)</div><div class="fd-bars"><div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Task 1</div></div>
+<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Task 2</div></div>
+<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Task 3</div></div>
+<div class="fd-total"><div class="fd-star"><img src="https://www.figma.com/api/mcp/asset/16ba75cf-bba9-4b0b-a3d2-88d73082e377"/><span class="fd-star-num">5</span></div><div class="fd-bar-lbl">Total</div></div></div><div class="fd-stat" style="margin-top:.3rem"><div class="fd-stat-v orange" style="font-size:18px">5 points</div><div class="fd-stat-l">Total friction points — new finding vs usability</div></div></div></div>
+      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Heuristic violations</div><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v orange">H4</div><div class="fd-stat-l">Consistency & standards</div></div><div class="fd-stat"><div class="fd-stat-v orange">H6</div><div class="fd-stat-l">Recognition over recall</div></div></div><div class="fd-stat"><div class="fd-stat-v orange">9 total</div><div class="fd-stat-l">Heuristic violations across all tasks</div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="actions"></div>
+
+<!-- ACTION 01 -->
+<div class="act-section act-white act1">
+  <div class="container">
+    <div class="act-header">
+      <div class="act-badge ab1">01</div>
+      <div class="act-title">Customer Support Functions are Not Visible</div>
+    </div>
+    <div class="act-hmw hmw1">
+      <div class="act-hmw-bar"></div>
+      <div class="act-hmw-body">How might we establish a transparent communication mechanism within the app that allows users to resolve their needs at any time?</div>
+    </div>
+    <div class="act-advice-row">
+      <div class="act-advice-line"></div>
+      <div class="act-advice-label">Advice</div>
+      <div class="act-advice-line"></div>
+    </div>
+    <p class="act-advice-text">Establish a direct communication platform so that users can directly contact the merchant or rider, reducing the "contact intermediary". The help page needs to be intuitive so that users can quickly capture the required functions.</p>
+    <div class="act-cards reveal">
+            <div class="act-card ac-card1">
+        <div class="act-img"><img src="YOUR_ACTION1A.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">Platform design a <strong>three-way communication platform</strong>: users, merchants, and riders can communicate directly online. Real Reference Case — China's Meituan Delivery Software.</div>
         </div>
       </div>
-      <div>
-        <div class="mgrid">
-          <div class="mbox"><div class="mbox-v" style="color:var(--red)">0%</div><div class="mbox-l">Task 3 completion rate (Usability Study)</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--red)">2.8/7</div><div class="mbox-l">SEQ Score — Task 3 Usability Study</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--red)">PURE 3</div><div class="mbox-l">Task 3-5 max friction — 2 of 3 evaluators</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--orange)">SEQ 2</div><div class="mbox-l">AI Evaluator — "Extremely Difficult"</div></div>
+            <div class="act-card ac-card2">
+        <div class="act-img"><img src="YOUR_ACTION1B.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">The help page should be available on both the home page and the order page. Options:
+        <ul>
+          <li>Add a help icon to the top right corner of the home page.</li>
+          <li>Hover over the help icon so the user can see it wherever they click.</li>
+        </ul></div>
         </div>
-        <ul class="ilist" style="margin-top:1.3rem">
-          <li class="iitem"><span class="idot" style="background:var(--red)"></span>No customer service phone number anywhere in-app</li>
-          <li class="iitem"><span class="idot" style="background:var(--red)"></span>AI chatbot chip-only — no free-text bypass available</li>
-          <li class="iitem"><span class="idot" style="background:var(--red)"></span>"More options" button is a dead-end, not escalation</li>
-          <li class="iitem"><span class="idot" style="background:var(--orange)"></span>Help buried at item 5 of 9 on profile page (H4, H7)</li>
-          <li class="iitem"><span class="idot" style="background:var(--orange)"></span>Zero empathy language anywhere in support flow UI</li>
-        </ul>
+      </div>
+    </div>
+        <div class="act-bottom">
+      <div class="act-kpi-card">
+        <div class="act-kpi-head">Business Goals, KPI</div>
+        <div class="act-kpi-body">
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">KPI</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Churn
+Rate</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">LTV</div>
+        <div class='kpi-sub'>Lifetime Value</div>
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Support
+Cost</div>
+        
+      </div>
+        </div>
+      </div>
+      <div class="act-collab-card">
+        <div class="act-collab-head">Collaborative</div>
+        <div class="act-collab-body">
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">UX designers are responsible for creating communication platforms and helping with interaction design.</p><span class="collab-tag">UX Research</span><p class="collab-text">AB testing to see which design users prefer.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">The front-end is responsible for the interaction with the updated help button.</p><span class="collab-tag">Product Management</span><p class="collab-text">To forecast the increase in direct merchant calls and adjust support capacity.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ACTION 02 -->
+<div class="act-section act2">
+  <div class="container">
+    <div class="act-header">
+      <div class="act-badge ab2">02</div>
+      <div class="act-title">Redesign Information Architecture</div>
+    </div>
+    <div class="act-hmw hmw2">
+      <div class="act-hmw-bar"></div>
+      <div class="act-hmw-body">How might we design an intuitive information architecture that minimises friction points for users during their interactions?</div>
+    </div>
+    <div class="act-advice-row">
+      <div class="act-advice-line"></div>
+      <div class="act-advice-label">Advice</div>
+      <div class="act-advice-line"></div>
+    </div>
+    <p class="act-advice-text">Restructure the navigation so critical functions are visible at a glance. Move the search bar to the top, add a sidebar for menu categories, and redesign the help page hierarchy so users can find support in under 2 steps.</p>
+    <div class="act-cards reveal">
+            <div class="act-card ac-card2">
+        <div class="act-img"><img src="YOUR_ACTION2A.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">Move the search bar from the bottom navigation bar to the <strong>top of the homepage</strong>. Add a vertical sidebar for restaurant menu categories, visible without scrolling.</div>
+        </div>
+      </div>
+            <div class="act-card ac-card4">
+        <div class="act-img"><img src="YOUR_ACTION2B.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">Use <strong>card sorting</strong> to restructure the help page — separate "previous order issues" from "all topics". The help icon should be persistent on both home and order pages.</div>
+        </div>
+      </div>
+    </div>
+        <div class="act-bottom">
+      <div class="act-kpi-card">
+        <div class="act-kpi-head">Business Goals, KPI</div>
+        <div class="act-kpi-body">
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Cart
+Abandonment</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Activation</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Time-to-
+Order</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">NPS</div>
+        
+      </div>
+        </div>
+      </div>
+      <div class="act-collab-card">
+        <div class="act-collab-head">Collaborative</div>
+        <div class="act-collab-body">
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the homepage layout, repositioning search and reducing promotional visual weight.</p><span class="collab-tag">UX Research</span><p class="collab-text">Card sorting studies to validate new information architecture with real users.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement new navigation components and sidebar category menu.</p><span class="collab-tag">Product Management</span><p class="collab-text">Define success metrics for new IA — task completion rate and time-to-first-action.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ACTION 03 -->
+<div class="act-section act-white act3">
+  <div class="container">
+    <div class="act-header">
+      <div class="act-badge ab3">03</div>
+      <div class="act-title">Fix Price Transparency at Checkout</div>
+    </div>
+    <div class="act-hmw hmw3">
+      <div class="act-hmw-bar"></div>
+      <div class="act-hmw-body">How might we redesign the checkout flow to provide full price transparency and eliminate users' fear of price uncertainty?</div>
+    </div>
+    <div class="act-advice-row">
+      <div class="act-advice-line"></div>
+      <div class="act-advice-label">Advice</div>
+      <div class="act-advice-line"></div>
+    </div>
+    <p class="act-advice-text">Show the all-in total (food + fees + tip) immediately after the tip is set, before the user taps "Place Order". Pin a running total to the bottom of the checkout screen throughout scrolling to eliminate any price anxiety.</p>
+    <div class="act-cards reveal">
+            <div class="act-card ac-card3">
+        <div class="act-img"><img src="YOUR_ACTION3A.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">Show the <strong>all-in total</strong> (food + fees + tip) immediately after tip is set — before "Place Order". Add a payment confirmation dialog to prevent accidental orders.</div>
+        </div>
+      </div>
+            <div class="act-card ac-card6">
+        <div class="act-img"><img src="YOUR_ACTION3B.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">Calculate tip percentage on the <strong>actual discounted total</strong> ($17.51), not the pre-discount price ($26.51). Pin a running total to the bottom of the checkout screen while scrolling.</div>
+        </div>
+      </div>
+    </div>
+        <div class="act-bottom">
+      <div class="act-kpi-card">
+        <div class="act-kpi-head">Business Goals, KPI</div>
+        <div class="act-kpi-body">
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Order
+Completion</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Refund
+Rate</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">CLTV</div>
+        
+      </div>
+      <div class="kpi-item">
+        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
+        <div class="kpi-label">Support
+Tickets</div>
+        
+      </div>
+        </div>
+      </div>
+      <div class="act-collab-card">
+        <div class="act-collab-head">Collaborative</div>
+        <div class="act-collab-body">
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the checkout screen to surface the all-in total price at every step.</p><span class="collab-tag">UX Research</span><p class="collab-text">Usability testing on new checkout flow to confirm reduced anxiety and hesitation.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement running total calculation, pinned to bottom bar during checkout.</p><span class="collab-tag">Product Management</span><p class="collab-text">Track order completion rate and refund rate as primary KPIs post-launch.</p></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FINDING 2 DETAIL -->
-<div class="dsec dsec-muted">
-  <div class="container">
-    <div class="dlabel dl-o">Finding 02 — New from PURE Study</div>
-    <div class="dblock rev reveal">
-      <div>
-        <div class="dheading">Information Architecture Problems</div>
-        <p class="dtext">The PURE expert evaluation identified IA as the <strong>core pain point</strong> driving cognitive overload — a finding absent from usability testing. While usability participants gave high SEQ scores for Task 1, PURE evaluators pinpointed why: the ordering interface lacks categorization logic, features are buried, and ads compete visually with key functions.</p>
-        <div class="qblock qo">
-          <p class="qtext">"another issue is hidden in the 'more option' choice which is also in a long list. I have to read all of that to only get started. that's frustrating."</p>
-          <p class="qattr">— PURE Evaluator 2, Task 3</p>
-        </div>
-        <div class="qblock qo" style="margin-top:.7rem">
-          <p class="qtext">"The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</p>
-          <p class="qattr">— PURE Evaluator 3, Task 1, Step 2</p>
-        </div>
-      </div>
-      <div>
-        <ul class="ilist">
-          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Search placement:</strong> Search bar at bottom nav violates H4 (Consistency). Category chip creates competing off-path affordance.</span></li>
-          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Menu hierarchy:</strong> Restaurant opens as bottom sheet with fee info first. Menu items (primary goal) buried below promo content.</span></li>
-          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Help page IA:</strong> "Another order issue" hidden in a long list inside "More Options." Violates recognition over recall (H6).</span></li>
-          <li class="iitem" style="border-left:3px solid var(--orange)"><span class="idot" style="background:var(--orange)"></span><span><strong>Visual hierarchy:</strong> Ads and key content have equal visual prominence. Interface perceived as cluttered marketing.</span></li>
-        </ul>
-        <div style="margin-top:1.2rem;padding:1.1rem;background:var(--card);border-radius:11px;border:1px solid var(--border)">
-          <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:1px">PURE vs Usability Comparison</div>
-          <p style="font-size:13px;line-height:1.7;color:var(--muted);font-weight:300">Usability Testing showed high SEQ for Task 1 (6.2/7), masking IA problems. PURE corrected the assumption — the issue is not "too many ads" but a <strong>lack of visual hierarchy</strong>. PURE 2+ ratings on 13 of 17 steps confirm systemic friction throughout the entire app.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FINDING 3 DETAIL -->
-<div class="dsec dsec-light">
-  <div class="container">
-    <div class="dlabel dl-b">Finding 03 — Confirmed Both Studies</div>
-    <div class="dblock reveal">
-      <div>
-        <div class="dheading">The Issue of Price Transparency</div>
-        <p class="dtext">Both Usability Study and PURE Study independently flagged the same critical friction: users cannot verify the all-in total price before tapping "Place Order." Custom tip entry shows food + fees subtotal only ($17.51) — the tip is never added in the UI. Users must do mental arithmetic. The AI evaluation confirmed this, noting tip was calculated on pre-discount total ($26.51) rather than actual total ($17.51).</p>
-        <div class="qblock qb">
-          <p class="qtext">"I cannot see the total price after I adding a tip. That's a little bit annoying."</p>
-          <p class="qattr">— Jane (Usability Participant, Task 2)</p>
-        </div>
-        <div class="qblock qb" style="margin-top:.7rem">
-          <p class="qtext">"When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere. There was only a 'Place Order' button."</p>
-          <p class="qattr">— PURE Evaluator 2, Task 2-7</p>
-        </div>
-      </div>
-      <div>
-        <div class="mgrid">
-          <div class="mbox"><div class="mbox-v" style="color:var(--blue)">1.2</div><div class="mbox-l">Task 2 success rate (Partial completions)</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--blue)">5.4/7</div><div class="mbox-l">SEQ Score — easy but opacity causes anxiety</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--red)">PURE 2</div><div class="mbox-l">Task 2-7 friction — 2 of 3 evaluators</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--orange)">SEQ 4</div><div class="mbox-l">AI Evaluator — "tedious & opaque"</div></div>
-        </div>
-        <ul class="ilist" style="margin-top:1.2rem">
-          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Pre-selected 18% tip with emotionally loaded labels ("You're my hero" = 25%) — anchoring bias</li>
-          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Tip base calculated on pre-discount total ($26.51) not actual total ($17.51)</li>
-          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Duplicate "Apple Pay" entries in payment modal — no differentiating metadata (H6)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FINDING 4 DETAIL -->
-<div class="dsec dsec-muted">
-  <div class="container">
-    <div class="dlabel dl-g">Finding 04 — Medium Priority</div>
-    <div class="dblock reveal">
-      <div>
-        <div class="dheading">Interface Prioritises Marketing Over Usability</div>
-        <p class="dtext">Users find the interface cluttered because they must navigate extensive promotional content before reaching the restaurant menu. Upsell popups intercept the checkout flow with "No thanks" confirmshaming. The search bar sits at the bottom of the screen, buried below ads. AI and usability testing both flagged this; PURE experts did not encounter it — suggesting it affects real users more than expert walkthroughs.</p>
-        <div class="qblock" style="border-color:var(--blue);background:rgba(43,61,231,.04)">
-          <p class="qtext">"The interface is a bit too flashy and too complicated... it would be better if the page were simpler."</p>
-          <p class="qattr">— David (Usability Participant)</p>
-        </div>
-        <div class="qblock" style="border-color:var(--blue);background:rgba(43,61,231,.04);margin-top:.7rem">
-          <p class="qtext">"The post-checkout Add-on page is too cumbersome. I have to click through a new page just to say 'No'."</p>
-          <p class="qattr">— Han (Usability Participant)</p>
-        </div>
-      </div>
-      <div>
-        <div class="mgrid">
-          <div class="mbox"><div class="mbox-v" style="color:var(--blue)">68%</div><div class="mbox-l">UMUX-Lite Score (medium usability)</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--blue)">80%</div><div class="mbox-l">Users rated ease of use as 4/7 (neutral)</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--muted)">None</div><div class="mbox-l">PURE expert flagged — missed in expert eval</div></div>
-          <div class="mbox"><div class="mbox-v" style="color:var(--blue)">H2+H5</div><div class="mbox-l">AI heuristic violations flagged</div></div>
-        </div>
-        <ul class="ilist" style="margin-top:1.2rem">
-          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Post-checkout "Complete your order" upsell intercepts payment flow with confirmshaming</li>
-          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Search bar positioned at bottom of screen — deviates from platform standard (H4)</li>
-          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>Promotional banners compete visually with primary actions throughout the app</li>
-          <li class="iitem"><span class="idot" style="background:var(--blue)"></span>BOGO pre-sets quantity to 2 without explicit user consent (H5 Error Prevention)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ACTIONS -->
-<section id="actions" class="dark-sec">
-  <div class="container">
-    <div class="sec-label">Actionable Recommendations</div>
-    <h2 class="sec-title">Design Actions</h2>
-    <p class="sec-sub">Specific recommendations derived from all three research sources.</p>
-    <div class="agrid reveal">
-      <div class="acard ac1">
-        <div class="anum">ACTION 01</div>
-        <div class="atitle">Fix Customer Support Visibility</div>
-        <div class="ahmw">How might we establish a transparent communication mechanism that allows users to resolve their needs at any time?</div>
-        <ul class="aitems">
-          <li><span class="aidot"></span>Add a persistent floating Help icon on both home page and order page</li>
-          <li><span class="aidot"></span>Design 3-way communication platform: user ↔ merchant ↔ rider (ref: Meituan)</li>
-          <li><span class="aidot"></span>Expose human agent option prominently before AI chatbot, not after</li>
-          <li><span class="aidot"></span>Add free-text input to chatbot so users can type "human" or "agent"</li>
-        </ul>
-        <div class="akpi">KPI: NPS ↑ · Churn Rate ↓ · Support Cost ↓ · LTV ↑</div>
-      </div>
-      <div class="acard ac2">
-        <div class="anum">ACTION 02</div>
-        <div class="atitle">Redesign Information Architecture</div>
-        <div class="ahmw">How might we design an intuitive IA that minimises friction points for users during their interactions?</div>
-        <ul class="aitems">
-          <li><span class="aidot"></span>Move search bar from bottom nav to top of homepage</li>
-          <li><span class="aidot"></span>Add a visible left sidebar for restaurant menu categories</li>
-          <li><span class="aidot"></span>Redesign homepage: prioritize key functions, reduce ad visual weight</li>
-          <li><span class="aidot"></span>Use card sorting to restructure help page — separate order history from topic list</li>
-        </ul>
-        <div class="akpi">KPI: Cart Abandonment ↓ · Time-to-Order ↓ · Activation ↑</div>
-      </div>
-      <div class="acard ac3">
-        <div class="anum">ACTION 03</div>
-        <div class="atitle">Fix Price Transparency</div>
-        <div class="ahmw">How might we redesign the checkout flow to provide full price transparency and eliminate fear of price uncertainty?</div>
-        <ul class="aitems">
-          <li><span class="aidot"></span>Show all-in total (food + fees + tip) immediately after tip is set</li>
-          <li><span class="aidot"></span>Pin a running total to the bottom of checkout screen while scrolling</li>
-          <li><span class="aidot"></span>Add a payment confirmation dialog before "Place Order" to prevent misclicks</li>
-          <li><span class="aidot"></span>Calculate tip on actual discounted total, not pre-discount price</li>
-        </ul>
-        <div class="akpi">KPI: Order Completion ↑ · Refund Rate ↓ · CLTV ↑</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRIORITY -->
-<section id="priority">
-  <div class="container">
-    <div class="sec-label">Prioritization</div>
-    <h2 class="sec-title">Priority Matrix</h2>
-    <p class="sec-sub">Ranked by severity confirmed across methods, and ease of implementation.</p>
-    <div class="plist reveal">
-      <div class="prow">
-        <div class="prank pr1">01</div>
-        <div class="pcontent">
-          <div class="ptitle">Fix Customer Support Visibility</div>
-          <div class="pwhy">PURE 3 + 0% task success + SEQ 2/7 makes this the most critical fix. Invisible support causes immediate abandonment and long-term brand damage. Users unable to resolve problems switch to DoorDash/Skip permanently.</div>
-          <div class="pbadges"><span class="pbadge pbi-h">Impact: High</span><span class="pbadge pbe-h">Effort: High</span></div>
-        </div>
-        <div class="pkpi">
-          <div class="pkpi-label">Business KPIs</div>
-          <div class="pkpi-val">NPS ↑ · Churn Rate ↓<br>Support Cost ↓ · LTV ↑</div>
-        </div>
-      </div>
-      <div class="prow">
-        <div class="prank pr2">02</div>
-        <div class="pcontent">
-          <div class="ptitle">Redesign Information Architecture</div>
-          <div class="pwhy">Newly confirmed by PURE study with 5 friction points across all tasks. This systemic issue affects the entire ordering experience. Fixing it reduces cognitive load at every step from homepage to help.</div>
-          <div class="pbadges"><span class="pbadge pbi-h">Impact: High</span><span class="pbadge pbe-h">Effort: High</span></div>
-        </div>
-        <div class="pkpi">
-          <div class="pkpi-label">Business KPIs</div>
-          <div class="pkpi-val">Cart Abandonment ↓<br>Time-to-Order ↓ · Activation ↑</div>
-        </div>
-      </div>
-      <div class="prow">
-        <div class="prank pr3">03</div>
-        <div class="pcontent">
-          <div class="ptitle">Fix Price Transparency at Checkout</div>
-          <div class="pwhy">Quickest fix with high business impact. A persistent total display and a confirmation dialog are low-effort UI changes that directly resolve user anxiety, reduce accidental orders, and build trust at the critical conversion moment.</div>
-          <div class="pbadges"><span class="pbadge pbi-h">Impact: High</span><span class="pbadge pbe-l">Effort: Low</span></div>
-        </div>
-        <div class="pkpi">
-          <div class="pkpi-label">Business KPIs</div>
-          <div class="pkpi-val">Order Completion ↑<br>Refund Rate ↓ · CLTV ↑</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- METHODOLOGY -->
 <section id="methodology" class="dark-sec">
   <div class="container">
     <div class="sec-label">Research Methods</div>
@@ -1177,7 +1491,6 @@
   </div>
 </section>
 
-<!-- APPENDIX -->
 <section id="appendix" class="dark-sec">
   <div class="container">
     <div class="sec-label">Appendix</div>
@@ -1214,7 +1527,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="fblocks">
     <div class="fb" style="background:var(--red)"></div>
