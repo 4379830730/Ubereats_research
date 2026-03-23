@@ -6,831 +6,251 @@
 <title>Uber Eats UX Final Research Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    /* ── Brand palette ── */
-    --green: #06C167;
-    --green-dim: rgba(6,193,103,0.10);
-    --green-mid: rgba(6,193,103,0.18);
+:root{--green:#06C167;--green-dim:rgba(6,193,103,0.10);--green-mid:rgba(6,193,103,0.18);--orange:#FF6B2C;--orange-dim:rgba(255,107,44,0.10);--blue:#2B3DE7;--blue-dim:rgba(43,61,231,0.10);--red:#E53935;--red-dim:rgba(229,57,53,0.10);--yellow:#FFC107;--yellow-dim:rgba(255,193,7,0.10);--dark:#0F0F0F;--dark2:#141414;--dark3:#1A1A1A;--card:#FFFFFF;--bg:#F5F5F5;--text:#0F0F0F;--muted:#6B6B80;--border:#E0E0E0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,26,0.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-pill{background:var(--green);color:#000;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;}
+.nav-title{color:rgba(255,255,255,0.5);font-size:13px;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.4);font-size:12px;text-decoration:none;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--green);}
+section{padding:90px 2.5rem 70px;position:relative;}
+.container{max-width:1160px;margin:0 auto;width:100%;}
+#hero{background:var(--dark);min-height:100vh;display:flex;align-items:center;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;}
+.hero-blocks{position:absolute;right:0;top:0;bottom:0;width:40%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,1fr);gap:3px;pointer-events:none;}
+.hb{animation:hbPulse 3.5s ease-in-out infinite alternate;}
+.hb:nth-child(1){background:var(--orange);opacity:.65;}
+.hb:nth-child(2),.hb:nth-child(3),.hb:nth-child(6),.hb:nth-child(7),.hb:nth-child(9),.hb:nth-child(12){background:transparent;}
+.hb:nth-child(4){background:var(--blue);opacity:.55;animation-delay:.7s;}
+.hb:nth-child(5){background:var(--green);opacity:.45;animation-delay:1.4s;}
+.hb:nth-child(8){background:var(--red);opacity:.55;animation-delay:.3s;}
+.hb:nth-child(10){background:var(--orange);opacity:.25;animation-delay:1.1s;}
+.hb:nth-child(11){background:var(--blue);opacity:.35;animation-delay:1.8s;}
+@keyframes hbPulse{from{opacity:.1}to{opacity:.7}}
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:1.8rem;animation:fadeUp .8s ease both;}
+.eyebrow-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);}
+.eyebrow-line{width:40px;height:1px;background:var(--green);}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,9vw,8.5rem);line-height:.9;color:#fff;letter-spacing:2px;animation:fadeUp .8s .12s ease both;}
+.hero-title span{-webkit-text-stroke:2px var(--green);color:transparent;}
+.hero-author{margin-top:2.8rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,0.1);animation:fadeUp .8s .24s ease both;}
+.hero-author-name{font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.3px;margin-bottom:6px;}
+.hero-author-detail{font-size:15px;font-weight:400;color:rgba(255,255,255,0.6);line-height:1.7;}
+.hero-author-tag{display:inline-flex;align-items:center;gap:8px;margin-top:1rem;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);}
+.hero-author-tag::before{content:'';width:20px;height:1px;background:var(--green);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;display:flex;align-items:center;gap:10px;}
+.sec-label::after{content:'';width:50px;height:1px;background:currentColor;opacity:.4;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,4.5vw,4.5rem);letter-spacing:2px;line-height:.95;color:var(--text);}
+.dark-sec .sec-title{color:#fff;}
+.dark-sec .sec-label{color:rgba(255,255,255,.3);}
+.sec-sub{font-size:14px;color:var(--muted);margin-top:.7rem;font-weight:300;}
+.dark-sec .sec-sub{color:rgba(255,255,255,.3);}
+.center-header{text-align:center;margin-bottom:3.5rem;}
+.center-label{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:1rem;color:var(--text);}
+.center-label::before,.center-label::after{content:'';width:40px;height:1px;background:currentColor;opacity:0.2;}
+.center-label span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.center-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,4.5rem);letter-spacing:2px;line-height:1;color:var(--text);margin-bottom:0.5rem;}
+.dark-sec .center-title{color:#fff;}
+.dark-sec .center-label,.dark-sec .center-label span{color:rgba(255,255,255,0.4);}
+#tldr{background:var(--bg);}
+.tldr-video-wrap{margin:2.5rem auto 0;max-width:920px;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 80px rgba(0,0,0,0.18);aspect-ratio:16/9;}
+.tldr-video{display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;}
 
-    /* ── Semantic accent (kept for finding badges / severity chips) ── */
-    --orange: #FF6B2C;
-    --orange-dim: rgba(255,107,44,0.10);
-    --blue: #2B3DE7;
-    --blue-dim: rgba(43,61,231,0.10);
-    --red: #E53935;
-    --red-dim: rgba(229,57,53,0.10);
-    --yellow: #FFC107;
-    --yellow-dim: rgba(255,193,7,0.10);
+/* FINDINGS - Cards */
+#findings { background: #F5F5F5; }
+.fgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
+.fcard { background: var(--bg); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; position: relative; overflow: hidden; border: 1px solid transparent; transition: all 0.3s ease; min-height: 240px; }
+.fcard:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+.fc-r:hover { border-color: rgba(229,57,53,0.2); }
+.fc-y:hover { border-color: rgba(255,193,7,0.3); }
+.fc-o:hover { border-color: rgba(255,107,44,0.2); }
+.bg-icon { position: absolute; top: 1.5rem; right: 1.5rem; width: 80px; height: 80px; opacity: 0.04; transition: opacity 0.3s ease; }
+.fcard:hover .bg-icon { opacity: 0.12; }
+.fc-r .bg-icon { color: var(--red); }
+.fc-y .bg-icon { color: #D4A000; }
+.fc-o .bg-icon { color: var(--orange); }
+.fnum { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 1.5rem; }
+.fc-r .fnum { background: var(--red); }
+.fc-y .fnum { background: var(--yellow); color: #000; }
+.fc-o .fnum { background: var(--orange); }
+.fname { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 2rem; }
+.fbot { margin-top: auto; }
+.fpill { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; }
+.fc-r .fpill { background: var(--red-dim); color: var(--red); }
+.fc-y .fpill { background: var(--yellow-dim); color: #A67C00; }
+.fc-o .fpill { background: var(--orange-dim); color: var(--orange); }
 
-    /* ── Core palette: black · white · light grey ── */
-    --dark:   #0F0F0F;   /* primary black — nav, hero, dark sections */
-    --dark2:  #141414;   /* appendix, footer */
-    --dark3:  #1A1A1A;   /* cards inside dark sections */
-    --card:   #FFFFFF;   /* white cards */
-    --bg:     #F5F5F5;   /* light grey page bg */
-    --text:   #0F0F0F;   /* body text */
-    --muted:  #6B6B80;   /* secondary text */
-    --border: #E0E0E0;   /* dividers */
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+/* ── CONTENTS PAGE ───────────────────────────── */
+#contents { background: var(--dark); min-height: 100vh; display: flex; align-items: center; }
+.contents-inner { position: relative; z-index: 2; }
+.contents-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
+.contents-eyebrow::after { content:''; width:40px; height:1px; background:var(--green); }
+.contents-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,6vw,5.5rem); color: #fff; letter-spacing: 2px; line-height: .9; margin-bottom: 3rem; }
+.contents-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.contents-list li { display: flex; align-items: center; gap: 2rem; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); cursor: pointer; transition: all .25s; text-decoration: none; }
+.contents-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+.contents-list li:hover .cl-title { color: var(--green); }
+.contents-list li:hover .cl-arrow { transform: translateX(6px); opacity: 1; }
+.cl-num { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.2); width: 2.2rem; flex-shrink: 0; }
+.cl-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3.5vw, 3rem); color: #fff; letter-spacing: 1.5px; line-height: 1; flex: 1; transition: color .25s; }
+.cl-sub { font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 300; max-width: 300px; line-height: 1.5; text-align: right; }
+.cl-arrow { font-size: 22px; color: var(--green); opacity: 0; transition: transform .25s, opacity .25s; flex-shrink: 0; }
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(15,15,26,0.94); backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem; height: 56px;
-  }
-  .nav-logo { display: flex; align-items: center; gap: 10px; }
-  .nav-pill { background: var(--green); color: #000; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; }
-  .nav-title { color: rgba(255,255,255,0.5); font-size: 13px; }
-  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.4); font-size: 12px; text-decoration: none; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--green); }
+/* ── MATRIX AND ROADMAP ───────────────────────────── */
+.triang-inner { max-width: 1160px; margin: 0 auto; background: #FFFFFF; border-radius: 20px; border: 1px solid #E0E0E0; padding: 2.5rem 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.04); }
+.ux-doc-wrapper { font-family: var(--font-sans); color: #111827; line-height: 1.6; font-size: 14px; padding: 0.5rem 0; }
+.divider { height: 1px; background: #E0E0E0; margin: 2.5rem 0; }
+.tm-desc { font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 1.5rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;}
 
-  section { padding: 90px 2.5rem 70px; position: relative; }
-  .container { max-width: 1160px; margin: 0 auto; width: 100%; }
+/* 新的 3栏网格 Triangulation Matrix */
+.tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+.tm-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.tm-card-head { padding: 1rem 1.25rem; font-size: 14px; font-weight: 700; color: var(--dark); border-bottom: 1px solid var(--border); }
+.tm-card-head.tc-red { background: rgba(229,57,53,0.06); border-top: 3px solid var(--red); }
+.tm-card-head.tc-yellow { background: rgba(255,193,7,0.08); border-top: 3px solid var(--yellow); }
+.tm-card-head.tc-orange { background: rgba(255,107,44,0.06); border-top: 3px solid var(--orange); }
+.tm-card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
+.tm-point { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 1.5; color: #4b5563; }
+.tm-point svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.6; margin-top: 2px; }
+.tm-final { margin-top: auto; background: #f9fafb; padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
+.tm-final-title { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+.tm-final-text { font-size: 11.5px; line-height: 1.5; color: var(--text); }
+.tag-strong { background: var(--red); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
+.tag-strong.yellow { background: var(--yellow); color: #000; }
+.tag-mod { background: var(--orange); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
 
-  /* HERO */
-  #hero {
-    background: var(--dark); min-height: 100vh;
-    display: flex; align-items: center; overflow: hidden;
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 55px 55px; pointer-events: none;
-  }
-  .hero-blocks {
-    position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
-    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(6,1fr); gap: 3px; pointer-events: none;
-  }
-  .hb { animation: hbPulse 3.5s ease-in-out infinite alternate; }
-  .hb:nth-child(1){background:var(--orange);opacity:.65;}
-  .hb:nth-child(2){background:transparent;}
-  .hb:nth-child(3){background:transparent;}
-  .hb:nth-child(4){background:var(--blue);opacity:.55;animation-delay:.7s}
-  .hb:nth-child(5){background:var(--green);opacity:.45;animation-delay:1.4s}
-  .hb:nth-child(6){background:transparent;}
-  .hb:nth-child(7){background:transparent;}
-  .hb:nth-child(8){background:var(--red);opacity:.55;animation-delay:.3s}
-  .hb:nth-child(9){background:transparent;}
-  .hb:nth-child(10){background:var(--orange);opacity:.25;animation-delay:1.1s}
-  .hb:nth-child(11){background:var(--blue);opacity:.35;animation-delay:1.8s}
-  .hb:nth-child(12){background:transparent;}
-  @keyframes hbPulse{from{opacity:.1}to{opacity:.7}}
+/* Eisenhower & Roadmap */
+.pm-wrapper { display: flex; flex-direction: column; gap: 2rem; align-items: center; justify-content: center; width: 100%; margin-bottom: 1rem; }
+@media (min-width: 992px) { .pm-wrapper { flex-direction: row; gap: 3rem; } }
+.pm-matrix { width: 100%; max-width: 440px; aspect-ratio: 1/1; background: var(--bg); border-radius: 32px; padding: 2rem; position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(0,0,0,0.05); }
+.pm-y-axis { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 3.5rem; }
+.pm-x-axis { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 3.5rem; }
+.pm-label-rot { writing-mode: vertical-lr; transform: rotate(180deg); }
+.pm-axis-lbl { font-size: 9px; font-weight: 700; color: rgba(0,0,0,0.3); text-transform: uppercase; letter-spacing: 2px; }
+.pm-grid { width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; margin-left: 2rem; margin-bottom: 2rem; border-left: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
+.pm-quad { padding: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.pm-q-tl { border-right: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
+.pm-q-tr { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.pm-q-bl { border-right: 1px solid rgba(0,0,0,0.1); }
+.pm-q-delegate, .pm-q-delete { opacity: 0.3; }
+.pm-q-do { background: rgba(229,57,53,0.05); }
+.pm-q-decide { background: rgba(43,61,231,0.05); }
+.pm-q-title { font-size: 10px; font-weight: 900; color: var(--dark); text-transform: uppercase; margin-bottom: 12px; }
+.pm-pill { background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 1px 2px rgba(0,0,0,0.05); font-size: 9px; font-weight: 900; text-transform: uppercase; color: var(--dark); line-height: 1.2; width: 100%; max-width: 120px; margin-top: 6px; }
+.pm-arrow { display: none; flex-shrink: 0; }
+@media (min-width: 992px) { .pm-arrow { display: block; } }
 
-  .hero-content { position: relative; z-index: 2; }
-  .hero-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:1.8rem;animation:fadeUp .8s ease both; }
-  .eyebrow-tag { font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green); }
-  .eyebrow-line { width:40px;height:1px;background:var(--green); }
-  .hero-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,9vw,8.5rem);line-height:.9;color:#fff;letter-spacing:2px;animation:fadeUp .8s .12s ease both; }
-  .hero-title span{-webkit-text-stroke:2px var(--green);color:transparent;}
-  .hero-author {
-    margin-top: 2.8rem;
-    padding-top: 1.6rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    animation: fadeUp .8s .24s ease both;
-  }
-  .hero-author-name {
-    font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; margin-bottom: 6px;
-  }
-  .hero-author-detail {
-    font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.6); line-height: 1.7;
-  }
-  .hero-author-tag {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 1rem;
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--green);
-  }
-  .hero-author-tag::before { content:''; width:20px; height:1px; background:var(--green); }
-  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+/* 新的合并 Roadmap 列表 */
+.roadmap-list { display: flex; flex-direction: column; gap: 1rem; width: 100%; max-width: 480px; }
+.rm-row { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; align-items: flex-start; gap: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.rm-num { width: 26px; height: 26px; background: var(--dark); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.rm-content { flex: 1; }
+.rm-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+.rm-desc { font-size: 12.5px; color: #6b7280; line-height: 1.5; }
+.pm-sublabel { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: none; margin-top: -0.5rem; letter-spacing: 0.5px; }
 
-  /* SHARED */
-  .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;display:flex;align-items:center;gap:10px;}
-  .sec-label::after{content:'';width:50px;height:1px;background:currentColor;opacity:.4;}
-  .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,4.5vw,4.5rem);letter-spacing:2px;line-height:.95;color:var(--text);}
-  .dark-sec .sec-title{color:#fff;}
-  .dark-sec .sec-label{color:rgba(255,255,255,.3);}
-  .sec-sub{font-size:14px;color:var(--muted);margin-top:.7rem;font-weight:300;}
-  .dark-sec .sec-sub{color:rgba(255,255,255,.3);}
+/* ── ACTION SECTIONS ───────────────────────────── */
+.act-section { padding: 70px 2.5rem 80px; background: #F5F5F5; }
+.act-section.act-white { background: #FFFFFF; }
+.act-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; }
+.act-badge { width: 58px; height: 54px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 600; color: #fff; flex-shrink: 0; letter-spacing: -1px; }
+.ab1 { background: var(--red); }
+.ab2 { background: var(--yellow); color: #000; }
+.ab3 { background: var(--orange); }
+.act-title { font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 700; color: #1e1e1e; line-height: 1.1; letter-spacing: -.03em; }
+.act-hmw { display: flex; align-items: stretch; border-radius: 0 5px 5px 0; overflow: hidden; margin-bottom: 1.8rem; }
+.act-hmw-bar { width: 4px; flex-shrink: 0; }
+.act-hmw-body { padding: .9rem 1.2rem; font-style: italic; font-size: 14px; line-height: 1.6; letter-spacing: .05em; color: #1f1f1f; }
+.hmw1 .act-hmw-bar { background: var(--red); }
+.hmw2 .act-hmw-bar { background: var(--yellow); }
+.hmw3 .act-hmw-bar { background: var(--orange); }
+.hmw1 .act-hmw-body { background: rgba(229,57,53,0.06); }
+.hmw2 .act-hmw-body { background: rgba(255,193,7,0.08); }
+.hmw3 .act-hmw-body { background: rgba(255,107,44,0.06); }
+.act-advice-row { display: flex; align-items: center; gap: 1rem; margin-bottom: .8rem; }
+.act-advice-line { flex: 1; height: 1px; background: #d4d4d4; }
+.act-advice-label { font-size: 14px; font-weight: 700; color: #1f1f1f; white-space: nowrap; }
+.act-advice-text { font-size: 14px; line-height: 1.6; color: rgba(0,0,0,.75); letter-spacing: .05em; margin-bottom: 1.8rem; }
+.act-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; }
+.act-card { border-radius: 18px; padding: 1.2rem; display: flex; gap: 1.2rem; align-items: center; min-height: 430px; background: #FFFFFF; border: 1px solid #E0E0E0; }
+.act-img { width: 180px; min-width: 180px; height: 390px; border-radius: 28px; overflow: hidden; background: #1a1a1a; border: 5px solid #1a1a1a; flex-shrink: 0; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+.act-img:hover { transform: translateY(-5px) scale(1.02); }
+.act-img::after { content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 50px; height: 14px; background: #000; border-radius: 10px; z-index: 10; }
+.act-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; display: block; }
+.act-card-content { flex: 1; }
+.act-card-num { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: #3b3b3b; color: #fff; font-size: 10px; font-weight: 700; margin-bottom: .4rem; margin-right: 4px; }
+.act-card-label { font-size: 14px; font-weight: 700; color: #1f1f1f; margin-bottom: .5rem; display: inline; }
+.act-card-text { font-size: 12px; line-height: 1.6; color: rgba(0,0,0,.75); margin-top: .5rem; }
+.act-card-text ul { margin: .3rem 0 0 1rem; padding: 0; }
+.act-card-text li { margin-bottom: .2rem; }
+.act-bottom { display: grid; grid-template-columns: 240px 1fr; gap: 1.2rem; margin-top: 1rem; }
+.act-kpi-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
+.act-kpi-head { padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; letter-spacing: -.02em; }
+.act-kpi-body { padding: 1.5rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
+.act-kpi-body img { width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; }
+.act-collab-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
+.act-collab-head { padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; text-align: center; }
+.act-collab-body { padding: 1rem 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #FFFFFF; flex: 1; }
+.collab-col { display: flex; flex-direction: column; gap: .5rem; }
+.collab-tag { display: inline-flex; align-items: center; justify-content: center; padding: 3px 10px; border-radius: 9px; font-size: 10px; font-weight: 500; color: #fff; width: fit-content; }
+.collab-text { font-size: 12px; line-height: 1.5; color: rgba(0,0,0,.75); }
+.act1 .act-kpi-head,.act1 .act-collab-head{background:#0F0F0F;}
+.act1 .collab-tag{background:var(--red);color:#fff;}
+.act2 .act-kpi-head,.act2 .act-collab-head{background:#0F0F0F;}
+.act2 .collab-tag{background:var(--yellow);color:#000;}
+.act3 .act-kpi-head,.act3 .act-collab-head{background:#0F0F0F;}
+.act3 .collab-tag{background:var(--orange);color:#fff;}
+@media(max-width:860px){.act-cards{grid-template-columns:1fr;}.act-card{flex-direction:column;align-items:center;text-align:center;min-height:auto;}.act-card-text ul{text-align:left;}.act-bottom{grid-template-columns:1fr;}}
 
-  /* TLDR */
-  #tldr{background:var(--bg);}
-  .tldr-video-wrap {
-    margin: 2.5rem auto 0;
-    max-width: 920px; 
-    border-radius: 20px; overflow: hidden;
-    background: #000; box-shadow: 0 24px 80px rgba(0,0,0,0.18);
-    aspect-ratio: 16 / 9;
-  }
-  .tldr-video { display:block; width:100%; height:100%; object-fit:cover; border-radius:20px; }
+/* ── FINDING DETAIL ─────────────────── */
+.fd-wrap { padding: 60px 2.5rem 70px; }
+.fd-wrap.fd-light { background: #FFFFFF; }
+.fd-wrap.fd-muted  { background: #F5F5F5; }
+.fd-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); letter-spacing: 1.5px; line-height: .95; color: var(--text); margin: 1rem 0 1.8rem; }
+.fd-top { display: grid; grid-template-columns: 55% 1fr; gap: 1.5rem; margin-bottom: 1.5rem; align-items: stretch; }
+.fd-video { background: #E0E0E0; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #999; position: relative; }
+.fd-video video,.fd-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 12px; display: block; }
+.fd-quotes { display: flex; flex-direction: column; gap: .8rem; }
+.fd-quote { background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 10px; padding: .85rem 1rem; flex: 1; }
+.fd-q-text { font-size: 12.5px; font-style: italic; line-height: 1.65; color: var(--text); margin-bottom: .4rem; }
+.fd-q-attr { font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
+.fd-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.fd-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #E0E0E0; display: flex; flex-direction: column; }
+.fd-card-head { background: #0F0F0F; color: #fff; padding: .6rem 1rem; font-size: 14px; font-weight: 400; text-align: center; }
+.fd-card-body { padding: 1.5rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
+.fd-card-body img { width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; }
+@media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } .tm-grid{grid-template-columns:1fr;} }
 
-  /* FINDINGS - Cards */
-  #findings { background: #F5F5F5; }
-  .center-header { text-align: center; margin-bottom: 3.5rem; }
-  .center-label { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 1rem; }
-  .center-label::before, .center-label::after { content: ''; width: 40px; height: 1px; background: currentColor; opacity: 0.2; }
-  .center-label span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
-  .center-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 5vw, 4.5rem); letter-spacing: 2px; line-height: 1; color: var(--text); margin-bottom: 0.5rem;}
-  
-  .fgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-
-  .fcard {
-    background: var(--bg);
-    border-radius: 24px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-    min-height: 240px; 
-  }
-  .fcard:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
-  
-  .fc-r:hover { border-color: rgba(229,57,53,0.2); }
-  .fc-y:hover { border-color: rgba(255,193,7,0.3); }
-  .fc-b:hover { border-color: rgba(43,61,231,0.2); }
-  .fc-o:hover { border-color: rgba(255,107,44,0.2); }
-
-  .bg-icon {
-    position: absolute; top: 1.5rem; right: 1.5rem;
-    width: 80px; height: 80px;
-    opacity: 0.04;
-    transition: opacity 0.3s ease;
-  }
-  .fcard:hover .bg-icon { opacity: 0.12; }
-  .fc-r .bg-icon { color: var(--red); }
-  .fc-y .bg-icon { color: #D4A000; }
-  .fc-b .bg-icon { color: var(--blue); }
-  .fc-o .bg-icon { color: var(--orange); }
-
-  .fnum {
-    width: 48px; height: 48px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
-    color: #fff; margin-bottom: 1.5rem;
-  }
-  .fc-r .fnum { background: var(--red); }
-  .fc-y .fnum { background: var(--yellow); color: #000; }
-  .fc-b .fnum { background: var(--blue); }
-  .fc-o .fnum { background: var(--orange); }
-
-  .fname { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 2rem; }
-
-  .fbot { margin-top: auto; }
-
-  .fpill {
-    display: inline-block; padding: 4px 8px; border-radius: 6px;
-    font-size: 9px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; margin-bottom: 0;
-  }
-  .fc-r .fpill { background: var(--red-dim); color: var(--red); }
-  .fc-y .fpill { background: var(--yellow-dim); color: #A67C00; }
-  .fc-b .fpill { background: var(--blue-dim); color: var(--blue); }
-  .fc-o .fpill { background: var(--orange-dim); color: var(--orange); }
-
-  /* METHODOLOGY */
-  #methodology{background:var(--dark);}
-  .mth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
-  .mcard{background:var(--dark3);border-radius:16px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .3s;}
-  .mcard:hover{transform:translateY(-5px);}
-  .mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-  .mc1::before{background:var(--orange);}
-  .mc2::before{background:var(--blue);}
-  .mc3::before{background:var(--green);}
-  .mnum{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;opacity:.07;position:absolute;top:1rem;right:1.2rem;color:#fff;}
-  .micon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem;}
-  .mc1 .micon{background:rgba(255,107,44,.15);}
-  .mc2 .micon{background:rgba(43,61,231,.2);}
-  .mc3 .micon{background:rgba(6,193,103,.15);}
-  .mname{font-size:17px;font-weight:700;color:#fff;margin-bottom:.5rem;}
-  .mdesc{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300;margin-bottom:1rem;}
-  .mtags{display:flex;flex-wrap:wrap;gap:5px;}
-  .mtag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.07);}
-
-  /* DETAIL SECTIONS */
-  .dsec{padding:70px 2.5rem;}
-  .dsec-light{background:var(--card);}
-  .dsec-muted{background:var(--bg);}
-  .dlabel{display:inline-flex;align-items:center;gap:8px;padding:4px 13px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
-  .dl-r{background:var(--red-dim);color:var(--red);}
-  .dl-o{background:var(--orange-dim);color:var(--orange);}
-  .dl-b{background:var(--blue-dim);color:var(--blue);}
-  .dl-y{background:var(--yellow-dim);color:#906c00;}
-  .dblock{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.5rem;align-items:start;}
-  .dblock.rev{direction:rtl;}
-  .dblock.rev>*{direction:ltr;}
-  .dheading{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.2vw,3rem);letter-spacing:1.5px;line-height:.95;margin-bottom:1rem;color:var(--text);}
-  .dtext{font-size:13.5px;line-height:1.8;color:var(--muted);font-weight:300;margin-bottom:1.2rem;}
-  .qblock{border-left:3px solid var(--green);padding:.9rem 1.1rem;background:rgba(6,193,103,.04);border-radius:0 8px 8px 0;margin:.8rem 0;}
-  .qblock.qr{border-color:var(--red);background:rgba(229,57,53,.04);}
-  .qblock.qo{border-color:var(--orange);background:rgba(255,107,44,.04);}
-  .qblock.qb{border-color:var(--blue);background:rgba(43,61,231,.04);}
-  .qtext{font-size:13.5px;font-style:italic;line-height:1.7;color:var(--text);}
-  .qattr{font-size:11px;color:var(--muted);margin-top:.4rem;font-family:'DM Mono',monospace;}
-  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-  .mbox{padding:1.1rem;border-radius:11px;border:1px solid var(--border);background:var(--bg);}
-  .mbox-v{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:1px;line-height:1;}
-  .mbox-l{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
-  .ilist{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:1rem;}
-  .iitem{display:flex;align-items:flex-start;gap:11px;padding:.7rem .9rem;border-radius:9px;background:var(--bg);border:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.5;}
-  .idot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-
-  /* ACTIONS */
-  #actions{background:var(--dark);}
-  .agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
-  .acard{background:var(--dark3);border-radius:18px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:1.1rem;position:relative;overflow:hidden;transition:transform .3s;}
-  .acard:hover{transform:translateY(-5px);}
-  .acard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-  .ac1::before{background:var(--red);}
-  .ac2::before{background:var(--orange);}
-  .ac3::before{background:var(--yellow);}
-  .anum{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:2px;color:rgba(255,255,255,.2);}
-  .atitle{font-size:18px;font-weight:700;color:#fff;line-height:1.2;}
-  .ahmw{font-size:12px;line-height:1.7;padding:.8rem;border-radius:9px;font-style:italic;}
-  .ac1 .ahmw{background:var(--red-dim);color:rgba(229,57,53,.9);}
-  .ac2 .ahmw{background:var(--orange-dim);color:rgba(255,107,44,.9);}
-  .ac3 .ahmw{background:var(--yellow-dim);color:rgba(160,112,10,.95);}
-  .aitems{list-style:none;display:flex;flex-direction:column;gap:.55rem;flex:1;}
-  .aitems li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:rgba(255,255,255,.45);line-height:1.5;}
-  .aidot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px;}
-  .ac1 .aidot{background:var(--red);}
-  .ac2 .aidot{background:var(--orange);}
-  .ac3 .aidot{background:var(--yellow);}
-  .akpi{padding:.7rem;border-radius:9px;background:rgba(255,255,255,.04);font-size:10.5px;color:rgba(255,255,255,.28);font-family:'DM Mono',monospace;}
-
-  /* PRIORITY (Old List Removed, Using New Matrix Below) */
-
-  /* APPENDIX */
-  #appendix{background:var(--dark2);}
-  .apgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;}
-  .apcard{background:var(--dark3);border-radius:14px;padding:1.6rem;border:1px solid rgba(255,255,255,.06);}
-  .aptitle{font-size:13px;font-weight:700;color:#fff;margin-bottom:1.1rem;display:flex;align-items:center;gap:9px;}
-  .aptitle::before{content:'';display:block;width:4px;height:14px;border-radius:2px;}
-  .at-o::before{background:var(--orange);}
-  .at-b::before{background:var(--blue);}
-  .prow-ap{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;}
-  .prow-ap:last-child{border-bottom:none;}
-  .prname{color:rgba(255,255,255,.65);font-weight:500;}
-  .prdetail{color:rgba(255,255,255,.28);font-size:10.5px;text-align:right;}
-  .pure-t{width:100%;border-collapse:collapse;margin-top:1rem;}
-  .pure-t th{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.28);padding:.35rem .55rem;text-align:left;font-weight:600;border-bottom:1px solid rgba(255,255,255,.05);}
-  .pure-t td{font-size:12px;padding:.45rem .55rem;color:rgba(255,255,255,.45);border-bottom:1px solid rgba(255,255,255,.03);}
-  .pure-t td.crit{color:var(--red);font-weight:600;}
-
-  /* FOOTER */
-  footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
-  .ftitle{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:3px;color:#fff;margin-bottom:.4rem;}
-  .ftitle span{color:var(--green);}
-  .fsub{font-size:13px;color:rgba(255,255,255,.28);font-weight:300;line-height:1.6;}
-  .fblocks{display:flex;justify-content:center;gap:3px;margin-bottom:1.5rem;}
-  .fb{width:28px;height:28px;border-radius:4px;}
-
-  /* REVEAL */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
-  .reveal.visible{opacity:1;transform:translateY(0);}
-
-  @media(max-width:860px){
-    .mth-grid,.fgrid,.agrid,.apgrid{grid-template-columns:1fr 1fr;}
-    .fgrid{grid-template-columns:1fr;}
-    .dblock{grid-template-columns:1fr;}
-    .dblock.rev{direction:ltr;}
-    .prow{grid-template-columns:1fr;gap:1rem;}
-    .pkpi{text-align:left;}
-    .hero-blocks{display:none;}
-  }
-
-
-  /* ── CONTENTS PAGE ───────────────────────────── */
-  #contents { background: var(--dark); min-height: 100vh; display: flex; align-items: center; }
-  .contents-inner { position: relative; z-index: 2; }
-  .contents-eyebrow {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .contents-eyebrow::after { content:''; width:40px; height:1px; background:var(--green); }
-  .contents-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem,6vw,5.5rem); color: #fff; letter-spacing: 2px; line-height: .9;
-    margin-bottom: 3rem;
-  }
-  .contents-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-  .contents-list li {
-    display: flex; align-items: center; gap: 2rem;
-    padding: 1.4rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    cursor: pointer; transition: all .25s;
-    text-decoration: none;
-  }
-  .contents-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
-  .contents-list li:hover .cl-title { color: var(--green); }
-  .contents-list li:hover .cl-arrow { transform: translateX(6px); opacity: 1; }
-  .cl-num {
-    font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600;
-    color: rgba(255,255,255,0.2); width: 2.2rem; flex-shrink: 0;
-  }
-  .cl-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 3rem); color: #fff; letter-spacing: 1.5px;
-    line-height: 1; flex: 1; transition: color .25s;
-  }
-  .cl-sub {
-    font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 300;
-    max-width: 300px; line-height: 1.5; text-align: right;
-  }
-  .cl-arrow {
-    font-size: 22px; color: var(--green); opacity: 0;
-    transition: transform .25s, opacity .25s; flex-shrink: 0;
-  }
-
-  /* ── TRIANGULATION section wrapper ──────────────── */
-  #triangulation { background: var(--bg); padding: 90px 2.5rem 70px; }
-  .triang-inner {
-    max-width: 1160px; margin: 0 auto;
-    background: #FFFFFF; border-radius: 20px;
-    border: 1px solid #E0E0E0;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,.04);
-    margin-top: 2.5rem;
-  }
-
-  /* 基础变量 */
-  :root {
-    --base-font-size: 14px; 
-    --line-height-base: 1.6;
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-
-  .ux-doc-wrapper { font-family: var(--font-sans); color: #111827; line-height: var(--line-height-base); font-size: var(--base-font-size); padding: 0.5rem 0; }
-  .divider { height: 1px; background: #E0E0E0; margin: 2rem 0 1.5rem; }
-
-  /* COMPRESSED Triangulation Matrix Styles */
-  .tm { margin-bottom: 1rem; }
-  .tm-title-bar {
-    background: var(--dark);
-    color: #fff;
-    padding: 14px 20px;
-    border-radius: 8px 8px 0 0;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-  }
-  .tm-table-wrap { 
-    overflow-x: auto; 
-    border: 1px solid var(--border);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    background: var(--card);
-  }
-  .tm-table { width: 100%; border-collapse: collapse; min-width: 800px; }
-  .tm-table th { 
-    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; 
-    color: #111827; padding: 10px 12px; text-align: left; 
-    border-bottom: 2px solid #E0E0E0; background: #f9fafb; white-space: nowrap; 
-  }
-  .tm-table th:first-child { width: 15%; }
-  .tm-table th:nth-child(2), .tm-table th:nth-child(3), .tm-table th:nth-child(4) { width: 20%; }
-  .tm-table th:last-child { width: 25%; }
-  .tm-table td { 
-    padding: 12px; vertical-align: top; border-bottom: 1px solid #f3f4f6; 
-    color: #374151; font-size: 12.5px; line-height: 1.45; 
-  }
-  .tm-table tr:last-child td { border-bottom: none; }
-  .tm-table td:first-child { font-weight: 600; color: #111827; font-size: 13px; padding-top: 12px; }
-
-  .result-strong { background: #F5F5F5; border-left: 4px solid #0F0F0F; padding: 10px; border-radius: 4px; box-shadow: 0 1px 2px rgba(216, 90, 48, 0.1); }
-  .result-strong p { color: #0F0F0F; font-size: 12px; margin: 0; }
-  .result-strong .r-label { font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #993C1D; margin-bottom: 4px; }
-  
-  .result-mod { background: #FFFFFF; border-left: 4px solid var(--green); padding: 10px; border-radius: 4px; box-shadow: 0 1px 2px rgba(186, 117, 23, 0.1); }
-  .result-mod p { color: #0F0F0F; font-size: 12px; margin: 0; }
-  .result-mod .r-label { font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #854F0B; margin-bottom: 4px; }
-
-
-  /* ───────────────────────────────────────────────────────── */
-  /* NEW PRIORITY MATRIX (Eisenhower) DESIGN                   */
-  /* ───────────────────────────────────────────────────────── */
-  .pm-wrapper { 
-    display: flex; flex-direction: column; gap: 2rem; 
-    align-items: center; justify-content: center; 
-    width: 100%; margin-bottom: 2rem; 
-  }
-  @media (min-width: 992px) { .pm-wrapper { flex-direction: row; gap: 3rem; } }
-  
-  /* Left Side: The Matrix */
-  .pm-matrix { 
-    width: 100%; max-width: 480px; aspect-ratio: 1/1; 
-    background: var(--bg); border-radius: 32px; padding: 2rem; 
-    position: relative; display: flex; align-items: center; justify-content: center; 
-    border: 1px solid rgba(0,0,0,0.05); 
-  }
-  
-  .pm-y-axis { 
-    position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); 
-    display: flex; flex-direction: column; align-items: center; gap: 3.5rem; 
-  }
-  .pm-x-axis { 
-    position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); 
-    display: flex; align-items: center; gap: 3.5rem; 
-  }
-  
-  .pm-label-rot { writing-mode: vertical-lr; transform: rotate(180deg); }
-  .pm-axis-lbl { font-size: 9px; font-weight: 700; color: rgba(0,0,0,0.3); text-transform: uppercase; letter-spacing: 2px; }
-  .pm-axis-badge { 
-    background: var(--dark); border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-    font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; 
-    display: flex; align-items: center; justify-content: center; 
-  }
-  
-  .pm-grid { 
-    width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; 
-    margin-left: 2rem; margin-bottom: 2rem; 
-    border-left: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); 
-  }
-  
-  .pm-quad { padding: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-  .pm-q-tl { border-right: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
-  .pm-q-tr { border-bottom: 1px solid rgba(0,0,0,0.1); }
-  .pm-q-bl { border-right: 1px solid rgba(0,0,0,0.1); }
-  
-  .pm-q-delegate, .pm-q-delete { opacity: 0.3; }
-  .pm-q-do { background: rgba(229,57,53,0.05); }
-  .pm-q-decide { background: rgba(43,61,231,0.05); }
-  
-  .pm-q-title { font-size: 10px; font-weight: 900; color: var(--dark); text-transform: uppercase; margin-bottom: 12px; }
-  
-  /* Inner Pills */
-  .pm-pill { 
-    background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); 
-    padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
-    font-size: 9px; font-weight: 900; text-transform: uppercase; color: var(--dark); line-height: 1.2; 
-    width: 100%; max-width: 120px; margin-top: 6px; 
-  }
-
-  /* Middle Arrow */
-  .pm-arrow { display: none; flex-shrink: 0; }
-  @media (min-width: 992px) { .pm-arrow { display: block; } }
-
-  /* Right Side: Roadmap */
-  .pm-roadmap { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 1rem; }
-  .pm-rm-card { 
-    background: var(--dark); border-radius: 16px; padding: 1.5rem; 
-    display: flex; flex-direction: column; 
-    border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-  }
-  .pm-rm-badge-green { 
-    background: var(--green); padding: 4px 20px; border-radius: 20px; 
-    font-size: 10px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 2px; 
-    margin-bottom: 1.5rem; display: inline-block; 
-  }
-  .pm-rm-badge-outline { 
-    background: rgba(255,255,255,0.1); padding: 4px 20px; border-radius: 20px; 
-    font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 2px; 
-    margin-bottom: 1.5rem; display: inline-block; 
-  }
-  .pm-rm-item { 
-    display: flex; align-items: center; gap: 12px; 
-    background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); 
-    margin-bottom: 8px; width: 100%; 
-  }
-  .pm-rm-item span { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; }
-  .pm-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-
-  /* ── REDESIGNED PM SUB-LABEL ────────────────────
-    Fixes issue where "Priority matrix — Eisenhower" 
-    was too big. Now small, low-hierarchy, mixed-case, 
-    matching "small" requirement.
-    ─────────────────────────────────────────────
-  */
-  .pm-sublabel {
-    font-size: 11px; /* Very small */
-    font-weight: 500;
-    color: var(--muted);
-    text-transform: none; /* Mixed case */
-    margin-top: -0.5rem; /* Pin it to the label above */
-    letter-spacing: 0.5px;
-  }
-
-
-  /* ═══ ACTION SECTIONS — Figma Layout ════════════════ */
-  .act-section {
-    padding: 70px 2.5rem 80px;
-    background: #F5F5F5;
-  }
-  .act-section.act-white { background: #FFFFFF; }
-
-  /* ── Header: number badge + title ── */
-  .act-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-  .act-badge {
-    width: 58px; height: 54px;
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 1.8rem; font-weight: 600;
-    color: #fff; flex-shrink: 0;
-    letter-spacing: -1px;
-  }
-  .ab1 { background: var(--red); }
-  .ab2 { background: var(--orange); }
-  .ab3 { background: #906c00; }
-  .act-title {
-    font-family: 'Instrument Sans', 'DM Sans', sans-serif;
-    font-size: clamp(1.5rem, 2.8vw, 2rem);
-    font-weight: 700;
-    color: #1e1e1e;
-    line-height: 1.1;
-    letter-spacing: -.03em;
-  }
-
-  /* ── HMW quote bar ── */
-  .act-hmw {
-    display: flex;
-    align-items: stretch;
-    border-radius: 0 5px 5px 0;
-    overflow: hidden;
-    margin-bottom: 1.8rem;
-  }
-  .act-hmw-bar {
-    width: 4px; flex-shrink: 0;
-  }
-  .act-hmw-body {
-    padding: .9rem 1.2rem;
-    font-style: italic;
-    font-size: 14px;
-    line-height: 1.6;
-    letter-spacing: .05em;
-    color: #1f1f1f;
-  }
-  .hmw1 .act-hmw-bar { background: var(--red); }
-  .hmw2 .act-hmw-bar { background: var(--orange); }
-  .hmw3 .act-hmw-bar { background: #906c00; }
-  .hmw1 .act-hmw-body { background: rgba(6,193,103,0.06); }
-  .hmw2 .act-hmw-body { background: rgba(6,193,103,0.06); }
-  .hmw3 .act-hmw-body { background: rgba(6,193,103,0.06); }
-
-  /* ── Advice block ── */
-  .act-advice-row {
-    display: flex; align-items: center; gap: 1rem;
-    margin-bottom: .8rem;
-  }
-  .act-advice-line {
-    flex: 1; height: 1px; background: #d4d4d4;
-  }
-  .act-advice-label {
-    font-size: 14px; font-weight: 700;
-    color: #1f1f1f; white-space: nowrap;
-  }
-  .act-advice-text {
-    font-size: 14px; line-height: 1.6;
-    color: rgba(0,0,0,.75);
-    letter-spacing: .05em;
-    margin-bottom: 1.8rem;
-  }
-
-  /* ── Action cards (2-col grid) ── */
-  .act-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-  .act-card {
-    border-radius: 14px;
-    padding: 1.5rem;
-    display: flex;
-    gap: 1.4rem;
-    align-items: flex-start;
-  }
-  .ac-card1 { background: #FFFFFF; border: 1px solid #E0E0E0; }
-  .ac-card2 { background: #FFFFFF; border: 1px solid #E0E0E0; }
-  .ac-card3 { background: #FFFFFF; border: 1px solid #E0E0E0; }
-  /* For action 2 */
-  .ac-card4 { background: #FFFFFF; border: 1px solid #E0E0E0; }
-  /* For action 3 */
-  .ac-card5 { background: #FFFFFF; border: 1px solid #E0E0E0; }
-  .ac-card6 { background: #FFFFFF; border: 1px solid #E0E0E0; }
-
-  .act-img {
-    width: 160px; min-width: 160px; height: 280px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #E0E0E0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; color: #999;
-    flex-shrink: 0;
-    position: relative;
-    box-shadow: 0 8px 24px rgba(0,0,0,.1);
-  }
-  .act-img img {
-    width: 100%; height: 100%;
-    object-fit: cover; border-radius: 8px;
-  }
-  .act-card-content { flex: 1; }
-  .act-card-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 16px; height: 16px; border-radius: 3px;
-    background: #3b3b3b; color: #fff;
-    font-size: 10px; font-weight: 700;
-    margin-bottom: .4rem;
-    margin-right: 4px;
-  }
-  .act-card-label {
-    font-size: 14px; font-weight: 700;
-    color: #1f1f1f; margin-bottom: .5rem;
-    display: inline;
-  }
-  .act-card-text {
-    font-size: 12px; line-height: 1.6;
-    color: rgba(0,0,0,.75);
-    margin-top: .5rem;
-  }
-  .act-card-text ul {
-    margin: .3rem 0 0 1rem;
-    padding: 0;
-  }
-  .act-card-text li { margin-bottom: .2rem; }
-
-  /* ── Bottom: Business Goals + Collaborative ── */
-  .act-bottom {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 1.2rem;
-    margin-top: 1rem;
-  }
-  .act-kpi-card {
-    border-radius: 13px;
-    overflow: hidden;
-  }
-  .act-kpi-head {
-    padding: .7rem 1rem;
-    font-family: 'Instrument Sans', 'DM Sans', sans-serif;
-    font-size: 16px; font-weight: 700;
-    color: #fff; line-height: .95; letter-spacing: -.02em;
-  }
-  .act-kpi-body {
-    padding: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .8rem;
-    min-height: 160px;
-  }
-  .kpi-item {
-    display: flex; flex-direction: column; align-items: center;
-    gap: .3rem;
-  }
-  .kpi-arrow {
-    width: 100px; height: 64px;
-    background-size: contain; background-repeat: no-repeat; background-position: center;
-  }
-  .kpi-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 900;
-    color: #fff; text-align: center; line-height: 1.2;
-  }
-  .kpi-sub {
-    font-size: 6px; font-weight: 300; color: #fff; text-align: center;
-  }
-
-  .act-collab-card {
-    border-radius: 13px;
-    overflow: hidden;
-  }
-  .act-collab-head {
-    padding: .7rem 1rem;
-    font-family: 'Instrument Sans', 'DM Sans', sans-serif;
-    font-size: 16px; font-weight: 700;
-    color: #fff; line-height: .95; text-align: center;
-  }
-  .act-collab-body {
-    padding: 1rem 1.2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .collab-col { display: flex; flex-direction: column; gap: .5rem; }
-  .collab-tag {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 3px 10px; border-radius: 9px;
-    font-size: 10px; font-weight: 500;
-    color: #fff; width: fit-content;
-  }
-  .collab-text {
-    font-size: 12px; line-height: 1.5;
-    color: rgba(0,0,0,.75);
-  }
-
-  /* colour themes per action */
-  .act1 .act-kpi-head  { background: #0F0F0F; }
-  .act1 .act-kpi-body  { background: #F5F5F5; }
-  .act1 .act-collab-head { background: #0F0F0F; }
-  .act1 .act-collab-body { background: #FFFFFF; }
-  .act1 .collab-tag    { background: var(--green); color: #000; }
-
-  .act2 .act-kpi-head  { background: #0F0F0F; }
-  .act2 .act-kpi-body  { background: #F5F5F5; }
-  .act2 .act-collab-head { background: #0F0F0F; }
-  .act2 .act-collab-body { background: #FFFFFF; }
-  .act2 .collab-tag    { background: var(--green); color: #000; }
-
-  .act3 .act-kpi-head  { background: #0F0F0F; }
-  .act3 .act-kpi-body  { background: #F5F5F5; }
-  .act3 .act-collab-head { background: #0F0F0F; }
-  .act3 .act-collab-body { background: #FFFFFF; }
-  .act3 .collab-tag    { background: var(--green); color: #000; }
-
-  @media(max-width:860px){
-    .act-cards  { grid-template-columns: 1fr; }
-    .act-bottom { grid-template-columns: 1fr; }
-  }
-
-
-  /* ── FINDING DETAIL — Figma Layout ─────────────────── */
-  .fd-wrap { padding: 60px 2.5rem 70px; }
-  .fd-wrap.fd-light { background: #FFFFFF; }
-  .fd-wrap.fd-muted  { background: #F5F5F5; }
-  .fd-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-    letter-spacing: 1.5px; line-height: .95;
-    color: var(--text); margin: 1rem 0 1.8rem;
-  }
-  .fd-top {
-    display: grid;
-    grid-template-columns: 55% 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-    align-items: stretch;
-  }
-  .fd-video {
-    background: #E0E0E0; border-radius: 12px;
-    overflow: hidden; aspect-ratio: 16/9;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; color: #999; position: relative;
-  }
-  .fd-video video, .fd-video iframe {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; border-radius: 12px; display: block;
-  }
-  .fd-quotes { display: flex; flex-direction: column; gap: .8rem; }
-  .fd-quote {
-    background: #FFFFFF; border: 1px solid #E0E0E0;
-    border-radius: 10px; padding: .85rem 1rem; flex: 1;
-  }
-  .fd-q-text {
-    font-size: 12.5px; font-style: italic;
-    line-height: 1.65; color: var(--text); margin-bottom: .4rem;
-  }
-  .fd-q-attr { font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
-  .fd-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-  .fd-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #E0E0E0; }
-  .fd-card-head {
-    background: #0F0F0F; color: #fff;
-    padding: .6rem 1rem; font-size: 14px;
-    font-weight: 400; text-align: center;
-  }
-  .fd-card-body { padding: 1rem; display: flex; flex-direction: column; gap: .9rem; background: #F5F5F5; }
-  .fd-stat { background: #fff; border-radius: 7px; padding: .7rem .9rem; text-align: center; }
-  .fd-stat-v { font-size: 28px; font-weight: 700; color: #f83c00; line-height: 1.2; }
-  .fd-stat-v.blue { color: var(--blue); }
-  .fd-stat-v.orange { color: var(--orange); }
-  .fd-stat-v.green { color: var(--green); }
-  .fd-stat-v.muted { color: var(--muted); font-size: 20px; }
-  .fd-stat-l { font-size: 10px; color: #333; line-height: 1.35; margin-top: 3px; }
-  .fd-stat-row { display: flex; gap: .7rem; }
-  .fd-stat-row .fd-stat { flex: 1; }
-  .fd-task-label { font-size: 10px; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
-  .fd-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
-  .fd-bar-col { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .fd-bar-num { font-size: 11px; font-weight: 700; color: var(--text); }
-  .fd-bar-rect { width: 24px; border-radius: 3px 3px 0 0; background: var(--yellow); }
-  .fd-bar-rect.p1 { background: var(--green); }
-  .fd-bar-rect.p3 { background: var(--red); }
-  .fd-bar-lbl { font-size: 7px; color: var(--muted); text-align: center; }
-  .fd-total { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .fd-star { width: 52px; height: 52px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .fd-star img { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .fd-star-num { position: relative; z-index: 1; font-size: 18px; font-weight: 700; color: #fff; }
-  .fd-ai-row { display: flex; gap: .8rem; align-items: center; }
-  .fd-ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; width: 76px; }
-  .fd-ring { width: 66px; height: 66px; position: relative; }
-  .fd-ring img { width: 100%; height: 100%; }
-  .fd-ring-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .fd-ring-val { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1; }
-  .fd-ring-lbl { font-size: 5px; color: var(--text); text-align: center; line-height: 1.3; }
-  @media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } }
-
+/* METHODOLOGY */
+#methodology{background:var(--dark);}
+.mth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
+.mcard{background:var(--dark3);border-radius:16px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .3s;}
+.mcard:hover{transform:translateY(-5px);}
+.mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.mc1::before{background:var(--orange);}
+.mc2::before{background:var(--blue);}
+.mc3::before{background:var(--green);}
+.mnum{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;opacity:.07;position:absolute;top:1rem;right:1.2rem;color:#fff;}
+.micon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem;}
+.mc1 .micon{background:rgba(255,107,44,.15);}
+.mc2 .micon{background:rgba(43,61,231,.2);}
+.mc3 .micon{background:rgba(6,193,103,.15);}
+.mname{font-size:17px;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.mdesc{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300;margin-bottom:1rem;}
+.mtags{display:flex;flex-wrap:wrap;gap:5px;}
+.mtag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.07);}
+footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
+.ftitle{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:3px;color:#fff;margin-bottom:.4rem;}
+.ftitle span{color:var(--green);}
+.fsub{font-size:13px;color:rgba(255,255,255,.28);font-weight:300;line-height:1.6;}
+.fblocks{display:flex;justify-content:center;gap:3px;margin-bottom:1.5rem;}
+.fb{width:28px;height:28px;border-radius:4px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
 </style>
 </head>
 <body>
@@ -889,7 +309,7 @@
         <li onclick="location.href='#findings'">
           <span class="cl-num">02</span>
           <span class="cl-title">Key Findings</span>
-          <span class="cl-sub">Triangulation matrix + 4 problem evidence sections</span>
+          <span class="cl-sub">Triangulation matrix + 3 problem evidence sections</span>
           <span class="cl-arrow">→</span>
         </li>
         <li onclick="location.href='#actions'">
@@ -911,9 +331,13 @@
 
 <section id="tldr">
   <div class="container">
-    <div class="sec-label">Executive Summary</div>
-    <h2 class="sec-title">Summary</h2>
-    <p class="sec-sub">Watch the overview video below.</p>
+    <div class="center-header reveal">
+      <div class="center-label">
+        <span>Executive Summary</span>
+      </div>
+      <h2 class="center-title">Summary</h2>
+      <p class="sec-sub" style="text-align: center;">Watch the overview video below.</p>
+    </div>
     <div class="tldr-video-wrap reveal">
       <video class="tldr-video" controls preload="metadata">
         <source src="YOUR_VIDEO.mp4" type="video/mp4" />
@@ -928,17 +352,15 @@
 
 <section id="findings">
   <div class="container">
-    
     <div class="center-header reveal">
       <div class="center-label">
         <span>Research Insights</span>
       </div>
-      <h2 class="center-title">Four Key Findings</h2>
+      <h2 class="center-title">Three Key Findings</h2>
       <p class="sec-sub" style="text-align: center;">Confirmed and cross-validated across all three research methods.</p>
     </div>
 
-    <div class="fgrid reveal">
-
+    <div class="fgrid reveal" style="max-width: 960px; margin: 0 auto;">
       <div class="fcard fc-r">
         <svg class="bg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/>
@@ -961,192 +383,19 @@
         </div>
       </div>
 
-      <div class="fcard fc-b">
-        <svg class="bg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-        </svg>
-        <div class="fnum">03</div>
-        <div class="fname">Marketing Over Usability</div>
-        <div class="fbot">
-          <span class="fpill">Priority — Medium</span>
-        </div>
-      </div>
-
       <div class="fcard fc-o">
         <svg class="bg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
         </svg>
-        <div class="fnum">04</div>
+        <div class="fnum">03</div>
         <div class="fname">Information Architecture</div>
         <div class="fbot">
           <span class="fpill">Priority — High</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-
-<section id="triangulation">
-  <div class="container">
-    <div class="sec-label">Cross-Method Integration</div>
-    <h2 class="sec-title">Triangulation &amp; Priority</h2>
-    <p class="sec-sub">How all three methods align — and what to do about it.</p>
-  </div>
-  <div class="container">
-    <div class="triang-inner reveal">
-<div class="ux-doc-wrapper">
-  
-  <div class="tm">
-    <div class="tm-title-bar">
-      Triangulation Matrix — Uber Eats UX Evaluation
-    </div>
-    <div class="tm-table-wrap">
-      <table class="tm-table">
-        <thead>
-          <tr>
-            <th>Issue</th>
-            <th>Usability testing</th>
-            <th>PURE evaluation</th>
-            <th>AI heuristic analysis</th>
-            <th>Triangulation result</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Support invisible</td>
-            <td>100% task failure. Users felt frustrated and helpless ("I can't find a phone number anywhere"). Task 3 success rate = 0.</td>
-            <td>Expert rating: PURE 3 — high friction. Task 3 is worth 10 points total; 4 friction points identified.</td>
-            <td>AI assigns extremely high cognitive load (5/5). AI persona gives the lowest SEQ score (2/7, extremely difficult). Heuristic violation: H3 User Control and Freedom.</td>
-            <td>
-              <div class="result-strong">
-                <p class="r-label">Strong alignment</p>
-                <p>All three methods highlight a critical blocker. The complete absence of a human escalation path creates severe emotional friction and guarantees task failure.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Price transparency</td>
-            <td>Users noticeably hesitated during checkout, leading to decreased financial confidence. Quantitative data shows 80% of users cannot find the final price. SEQ 4/7 (slightly difficult).</td>
-            <td>Expert could not find a summary of the total price anywhere. Expert rating: PURE 3 — medium friction.</td>
-            <td>Heuristic violations: serious violation of visibility of system status (H1). PURE 3 — high friction, cognitive load 4/5. AI persona gave a rating of 4/7 and did not confirm the final price during the task.</td>
-            <td>
-              <div class="result-strong">
-                <p class="r-label">Strong alignment</p>
-                <p>Real user hesitation is directly explained by the structural flaws identified by experts and AI — specifically, the hidden grand total and ambiguous payment UI.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Information architecture</td>
-            <td>Users show noticeable hesitation when looking for the after-sales support option; some users have reported that the help option is not clearly visible.</td>
-            <td>Tasks 1, 2, and 3 all have several sticking points.</td>
-            <td>Heuristic violations: H2 (abbreviations do not conform to natural language), H4 (search box placement deviates from standards), AI experiences increased cognitive load when processing redundant hierarchical menus.</td>
-            <td>
-              <div class="result-mod">
-                <p class="r-label">Moderate alignment</p>
-                <p>Analytical methods (PURE/AI) pinpointed specific structural issues that perfectly align with the minor delays and confusion observed in real users.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Interface prioritised marketing over usability</td>
-            <td>To retaliate against advertiser, the participant keeps clicking all the ads trying to drive up their ad costs.</td>
-            <td>No relevant problems were mentioned by the expert evaluators.</td>
-            <td>The AI feedback promotion mechanism appears at every decision point, constantly interrupting the core task workflow.</td>
-            <td>
-              <div class="result-mod">
-                <p class="r-label">Moderate alignment</p>
-                <p>While AI flagged aggressive upselling and real users felt the interruption, PURE experts entirely missed this friction. Despite the annoyance, users pushed through due to task urgency.</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="center-header reveal" style="margin-top: 3rem; margin-bottom: 2rem;">
-    <div class="center-label">
-      <span>Strategic Prioritization</span>
-    </div>
-    <p class="pm-sublabel">Priority matrix — Eisenhower</p>
-  </div>
-
-  <div class="pm-wrapper reveal">
-    
-    <div class="pm-matrix">
-      <div class="pm-y-axis">
-        <span class="pm-axis-lbl pm-label-rot">High</span>
-        <div class="pm-axis-badge pm-label-rot" style="padding: 1.5rem 0.4rem;">Urgent</div>
-        <span class="pm-axis-lbl pm-label-rot">Low</span>
-      </div>
-      <div class="pm-x-axis">
-        <span class="pm-axis-lbl">Low</span>
-        <div class="pm-axis-badge" style="padding: 0.4rem 1.5rem;">Important</div>
-        <span class="pm-axis-lbl">High</span>
-      </div>
-      
-      <div class="pm-grid">
-        <div class="pm-quad pm-q-tl pm-q-delegate">
-          <span class="pm-q-title">Delegate</span>
-        </div>
-        <div class="pm-quad pm-q-tr pm-q-do">
-          <span class="pm-q-title">Do</span>
-          <div class="pm-pill">Support Invisible</div>
-          <div class="pm-pill">Price Transparency</div>
-        </div>
-        <div class="pm-quad pm-q-bl pm-q-delete">
-          <span class="pm-q-title">Delete</span>
-        </div>
-        <div class="pm-quad pm-q-br pm-q-decide">
-          <span class="pm-q-title">Decide</span>
-          <div class="pm-pill">Information Architecture</div>
-          <div class="pm-pill">Interface Prioritized Marketing Over Usability.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pm-arrow">
-      <svg width="60" height="40" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 40H75M75 40L55 20M75 40L55 60" stroke="#06C167" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-
-    <div class="pm-roadmap">
-      <div class="pm-rm-card">
-        <div style="text-align: center;"><span class="pm-rm-badge-green">Short Term</span></div>
-        <div class="pm-rm-item">
-          <div class="pm-dot" style="background: var(--red);"></div>
-          <span>Support Invisible</span>
-        </div>
-        <div class="pm-rm-item">
-          <div class="pm-dot" style="background: var(--yellow);"></div>
-          <span>Price Transparency</span>
-        </div>
-      </div>
-      <div class="pm-rm-card">
-        <div style="text-align: center;"><span class="pm-rm-badge-outline">Long Term</span></div>
-        <div class="pm-rm-item">
-          <div class="pm-dot" style="background: var(--orange);"></div>
-          <span>Information Architecture</span>
-        </div>
-        <div class="pm-rm-item">
-          <div class="pm-dot" style="background: var(--blue);"></div>
-          <span>Interface Prioritized Marketing Over Usability.</span>
-        </div>
-      </div>
-    </div>
-    
-  </div>
-
-</div>
-    </div>
-  </div>
-</section>
-
 
 <div class="fd-wrap fd-light">
   <div class="container">
@@ -1161,15 +410,20 @@
         <div class="fd-quote"><div class="fd-q-text">"It feels like the app is hiding a phone number on purpose to force me to use the bot."</div><div class="fd-q-attr">— AI Participant (Alex) · Task 3 Think-Aloud · SEQ 2/7</div></div>
       </div>
     </div>
+    
     <div class="fd-cards reveal">
-      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v">0</div><div class="fd-stat-l">Task Success Rate</div></div><div class="fd-stat"><div class="fd-stat-v">2.8/7</div><div class="fd-stat-l">User Task 3 SEQ (1-7)</div></div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-task-label">Task 3</div><div class="fd-bars"><div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect p3" style="height:36px"></div><div class="fd-bar-lbl">Step 1</div></div>
-<div class="fd-bar-col"><div class="fd-bar-num">1</div><div class="fd-bar-rect p1" style="height:18px"></div><div class="fd-bar-lbl">Step 2</div></div>
-<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Step 3</div></div>
-<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Step 4</div></div>
-<div class="fd-bar-col"><div class="fd-bar-num">3</div><div class="fd-bar-rect p3" style="height:54px"></div><div class="fd-bar-lbl">Step 5</div></div>
-<div class="fd-total"><div class="fd-star"><img src="https://www.figma.com/api/mcp/asset/04de10d0-d09d-413e-80db-6218b70efcf8"/><span class="fd-star-num">10</span></div><div class="fd-bar-lbl">Total</div></div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Task 3</div><div class="fd-ai-row"><div class="fd-ring-wrap"><div class="fd-ring"><img src="https://www.figma.com/api/mcp/asset/2e216357-1449-487b-8fc7-04a1abdad578"/><img src="https://www.figma.com/api/mcp/asset/1c41669d-9122-43e0-84a9-2bb811fd39c4" style="position:absolute;inset:0"/><div class="fd-ring-inner"><div class="fd-ring-val">3/5</div><div class="fd-ring-lbl">Overall cognitive load</div></div></div></div><div class="fd-stat" style="flex:1"><div class="fd-stat-v">2/7</div><div class="fd-stat-l">AI User Task 3 SEQ</div></div></div></div></div>
+      <div class="fd-card">
+        <div class="fd-card-head">Usability Testing</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING1_USABILITY.png" alt="Usability Testing Data"></div>
+      </div>
+      <div class="fd-card">
+        <div class="fd-card-head">PURE</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING1_PURE.png" alt="PURE Evaluation Data"></div>
+      </div>
+      <div class="fd-card">
+        <div class="fd-card-head">AI</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING1_AI.png" alt="AI Heuristic Analysis Data"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1187,40 +441,27 @@
         <div class="fd-quote"><div class="fd-q-text">"When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere."</div><div class="fd-q-attr">— PURE Evaluator 2, Task 2-7</div></div>
       </div>
     </div>
+    
     <div class="fd-cards reveal">
-      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v orange">1.2</div><div class="fd-stat-l">Task Success Rate</div></div><div class="fd-stat"><div class="fd-stat-v orange">5.4/7</div><div class="fd-stat-l">User Task 2 SEQ (1-7)</div></div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-task-label">Task 2 — Checkout step</div><div class="fd-bars"><div class="fd-bar-col"><div class="fd-bar-num">1</div><div class="fd-bar-rect p1" style="height:18px"></div><div class="fd-bar-lbl">Steps 1-6</div></div>
-<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Step 7</div></div>
-<div class="fd-total"><div class="fd-star"><img src="https://www.figma.com/api/mcp/asset/16ba75cf-bba9-4b0b-a3d2-88d73082e377"/><span class="fd-star-num">2</span></div><div class="fd-bar-lbl">Total</div></div></div><div class="fd-stat"><div class="fd-stat-v" style="color:var(--orange);font-size:18px">PURE 2</div><div class="fd-stat-l">Task 2-7 friction — 2 of 3 evaluators</div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Task 2 — Cognitive load</div><div class="fd-ai-row"><div class="fd-ring-wrap"><div class="fd-ring"><img src="https://www.figma.com/api/mcp/asset/2e216357-1449-487b-8fc7-04a1abdad578"/><img src="https://www.figma.com/api/mcp/asset/1c41669d-9122-43e0-84a9-2bb811fd39c4" style="position:absolute;inset:0"/><div class="fd-ring-inner"><div class="fd-ring-val">2/5</div><div class="fd-ring-lbl">Overall cognitive load</div></div></div></div><div class="fd-stat" style="flex:1"><div class="fd-stat-v orange">4/7</div><div class="fd-stat-l">AI User Task 2 SEQ</div></div></div></div></div>
+      <div class="fd-card">
+        <div class="fd-card-head">Usability Testing</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING2_USABILITY.png" alt="Usability Testing Data"></div>
+      </div>
+      <div class="fd-card">
+        <div class="fd-card-head">PURE</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING2_PURE.png" alt="PURE Evaluation Data"></div>
+      </div>
+      <div class="fd-card">
+        <div class="fd-card-head">AI</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING2_AI.png" alt="AI Heuristic Analysis Data"></div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="fd-wrap fd-light">
   <div class="container">
-    <div class="dlabel dl-b">Finding 03 — Medium</div>
-    <div class="fd-heading">Interface Prioritises Marketing Over Usability</div>
-    <div class="fd-top reveal">
-      <div class="fd-video">
-        <video controls preload="metadata"><source src="YOUR_VIDEO_F3.mp4" type="video/mp4"/></video>
-      </div>
-      <div class="fd-quotes">
-        <div class="fd-quote"><div class="fd-q-text">"The interface is a bit too flashy and too complicated... it would be better if the page were simpler."</div><div class="fd-q-attr">— David (Usability Participant)</div></div>
-        <div class="fd-quote"><div class="fd-q-text">"The post-checkout Add-on page is too cumbersome. I have to click through a new page just to say 'No'."</div><div class="fd-q-attr">— Han (Usability Participant)</div></div>
-      </div>
-    </div>
-    <div class="fd-cards reveal">
-      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v blue">68%</div><div class="fd-stat-l">UMUX-Lite Score</div></div><div class="fd-stat"><div class="fd-stat-v blue">80%</div><div class="fd-stat-l">Rated ease 4/7 (neutral)</div></div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-stat"><div class="fd-stat-v muted">N/A</div><div class="fd-stat-l">Not flagged by PURE experts — affects real users more than expert walkthroughs</div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Heuristic violations</div><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v blue">H2</div><div class="fd-stat-l">Real-world language mismatch</div></div><div class="fd-stat"><div class="fd-stat-v blue">H5</div><div class="fd-stat-l">Error prevention (BOGO)</div></div></div></div></div>
-    </div>
-  </div>
-</div>
-
-<div class="fd-wrap fd-muted">
-  <div class="container">
-    <div class="dlabel dl-o">Finding 04 — High (New from PURE)</div>
+    <div class="dlabel dl-o">Finding 03 — High</div>
     <div class="fd-heading">Information Architecture Problems</div>
     <div class="fd-top reveal">
       <div class="fd-video">
@@ -1231,24 +472,253 @@
         <div class="fd-quote"><div class="fd-q-text">"The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</div><div class="fd-q-attr">— PURE Evaluator 3, Task 1, Step 2</div></div>
       </div>
     </div>
+    
     <div class="fd-cards reveal">
-      <div class="fd-card"><div class="fd-card-head">Usability Testing</div><div class="fd-card-body"><div class="fd-stat"><div class="fd-stat-v green">6.2/7</div><div class="fd-stat-l">Task 1 SEQ — high score masked IA issues</div></div><div class="fd-stat"><div class="fd-stat-v muted">Qualitative</div><div class="fd-stat-l">Hesitation finding help flagged in debrief</div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">PURE</div><div class="fd-card-body"><div class="fd-task-label">Friction across all tasks (avg PURE 2)</div><div class="fd-bars"><div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Task 1</div></div>
-<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Task 2</div></div>
-<div class="fd-bar-col"><div class="fd-bar-num">2</div><div class="fd-bar-rect " style="height:36px"></div><div class="fd-bar-lbl">Task 3</div></div>
-<div class="fd-total"><div class="fd-star"><img src="https://www.figma.com/api/mcp/asset/16ba75cf-bba9-4b0b-a3d2-88d73082e377"/><span class="fd-star-num">5</span></div><div class="fd-bar-lbl">Total</div></div></div><div class="fd-stat" style="margin-top:.3rem"><div class="fd-stat-v orange" style="font-size:18px">5 points</div><div class="fd-stat-l">Total friction points — new finding vs usability</div></div></div></div>
-      <div class="fd-card"><div class="fd-card-head">AI</div><div class="fd-card-body"><div class="fd-task-label">Heuristic violations</div><div class="fd-stat-row"><div class="fd-stat"><div class="fd-stat-v orange">H4</div><div class="fd-stat-l">Consistency & standards</div></div><div class="fd-stat"><div class="fd-stat-v orange">H6</div><div class="fd-stat-l">Recognition over recall</div></div></div><div class="fd-stat"><div class="fd-stat-v orange">9 total</div><div class="fd-stat-l">Heuristic violations across all tasks</div></div></div></div>
+      <div class="fd-card">
+        <div class="fd-card-head">Usability Testing</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING3_USABILITY.png" alt="Usability Testing Data"></div>
+      </div>
+      <div class="fd-card">
+        <div class="fd-card-head">PURE</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING3_PURE.png" alt="PURE Evaluation Data"></div>
+      </div>
+      <div class="fd-card">
+        <div class="fd-card-head">AI</div>
+        <div class="fd-card-body"><img src="YOUR_FINDING3_AI.png" alt="AI Heuristic Analysis Data"></div>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="actions"></div>
 
-<!-- ACTION 01 -->
+<section id="actions" style="background: #F5F5F5; padding: 90px 2.5rem 0;">
+  <div class="container">
+    <div class="center-header">
+      <div class="center-label">
+        <span>Design Recommendations</span>
+      </div>
+      <h2 class="center-title">Actions</h2>
+      <p class="sec-sub" style="text-align: center;">Prioritised solutions to resolve the identified friction points.</p>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="triang-inner reveal" style="margin-top: 0; margin-bottom: 4rem;">
+      <div class="ux-doc-wrapper">
+        
+        <p class="tm-desc">
+          We utilized a Triangulation Matrix to cross-validate the identified usability issues, and applied the Eisenhower Matrix to determine the priority of the problems to be solved.
+        </p>
+
+        <div class="tm">
+          <div class="tm-title-bar">
+            Triangulation Matrix — Uber Eats UX Evaluation
+          </div>
+          
+          <div class="tm-grid">
+            
+            <div class="tm-card">
+              <div class="tm-card-head tc-red">Issue: Support Invisible</div>
+              <div class="tm-card-body">
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span><strong>Usability Testing Findings:</strong> Behavior: 100% task failure. Users felt frustrated and helpless ("I can't find a phone number anywhere"). Task 3 success rate is 0.</span>
+                </div>
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                  <span><strong>PURE Evaluation Findings:</strong> Expert Rating: Score 3 – High friction. Task 3 is worth a total of 10 points; there are 4 friction points in Task 3.</span>
+                </div>
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span><strong>AI Heuristic Analysis Findings:</strong> The AI assigns an extremely high cognitive load (5/5). AI Persona assigns the lowest SEQ score (2/7, extremely difficult). Heuristics violation: Violates H3 User Control and Freedom.</span>
+                </div>
+              </div>
+              <div class="tm-final">
+                <div class="tm-final-title">Final Triangulation <span class="tag-strong">Strong Alignment</span></div>
+                <div class="tm-final-text">All three methods highlight a critical blocker. The complete absence of a human escalation path creates severe emotional friction and guarantees task failure.</div>
+              </div>
+            </div>
+
+            <div class="tm-card">
+              <div class="tm-card-head tc-yellow">Issue: Price Transparency</div>
+              <div class="tm-card-body">
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span><strong>Usability Testing Findings:</strong> Behavior: Users noticeably hesitated during checkout, leading to decreased financial confidence. Quan show 80% users can not find the final price. SEQ 评分偏低。</span>
+                </div>
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                  <span><strong>PURE Evaluation Findings:</strong> Expert reflect couldn't find a summary of the total price anywhere. Expert Rating: Score 3 – Medium friction.</span>
+                </div>
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span><strong>AI Heuristic Analysis Findings:</strong> Heuristic violations: Serious violation of the visibility of system status (H1). PURE 3 — High friction, Cognitive load 4 / 5. The AI persona gave a rating of 4 out of 7 and did not confirm the final price during the task.</span>
+                </div>
+              </div>
+              <div class="tm-final">
+                <div class="tm-final-title">Final Triangulation <span class="tag-strong yellow">Strong Alignment</span></div>
+                <div class="tm-final-text">Real user hesitation is directly explained by the structural flaws identified by experts and AI—specifically, the hidden grand total and ambiguous payment UI.</div>
+              </div>
+            </div>
+
+            <div class="tm-card">
+              <div class="tm-card-head tc-orange">Issue: Information Architecture</div>
+              <div class="tm-card-body">
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span><strong>Usability Testing Findings:</strong> User Behavior: Users show noticeable hesitation when looking for the after-sales support option; some users have reported that the help option is not clearly visible.</span>
+                </div>
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                  <span><strong>PURE Evaluation Findings:</strong> Tasks 1, 2, and 3 all have several sticking points.</span>
+                </div>
+                <div class="tm-point">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span><strong>AI Heuristic Analysis Findings:</strong> Heuristic violations: H2 (abbreviations do not conform to natural language), H4 (search box placement deviates from standards). The AI experiences increased cognitive load when processing redundant hierarchical menus. The AI feedback promotion mechanism appears at every decision point, constantly interrupting the core task workflow.</span>
+                </div>
+              </div>
+              <div class="tm-final">
+                <div class="tm-final-title">Final Triangulation <span class="tag-mod">Moderate Alignment</span></div>
+                <div class="tm-final-text">Analytical methods (PURE/AI) pinpointed specific structural issues that perfectly align with the minor delays and confusion observed in real users.</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="center-header reveal" style="margin-top: 3rem; margin-bottom: 2rem;">
+          <div class="center-label">
+            <span>Strategic Prioritization</span>
+          </div>
+          <p class="pm-sublabel">Priority matrix — Eisenhower</p>
+        </div>
+
+        <div class="pm-wrapper reveal">
+          
+          <div class="pm-matrix">
+            <div class="pm-y-axis">
+              <span class="pm-axis-lbl pm-label-rot">High</span>
+              <div class="pm-axis-badge pm-label-rot" style="padding: 1.5rem 0.4rem;">Urgent</div>
+              <span class="pm-axis-lbl pm-label-rot">Low</span>
+            </div>
+            <div class="pm-x-axis">
+              <span class="pm-axis-lbl">Low</span>
+              <div class="pm-axis-badge" style="padding: 0.4rem 1.5rem;">Important</div>
+              <span class="pm-axis-lbl">High</span>
+            </div>
+            
+            <div class="pm-grid">
+              <div class="pm-quad pm-q-tl pm-q-delegate">
+                <span class="pm-q-title">Delegate</span>
+              </div>
+              <div class="pm-quad pm-q-tr pm-q-do">
+                <span class="pm-q-title">Do</span>
+                <div class="pm-pill">1. Price Transparency</div>
+                <div class="pm-pill">2. Support Invisible</div>
+              </div>
+              <div class="pm-quad pm-q-bl pm-q-delete">
+                <span class="pm-q-title">Delete</span>
+              </div>
+              <div class="pm-quad pm-q-br pm-q-decide">
+                <span class="pm-q-title">Decide</span>
+                <div class="pm-pill">3. Information Architecture</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pm-arrow">
+            <svg width="60" height="40" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 40H75M75 40L55 20M75 40L55 60" stroke="#06C167" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="roadmap-list">
+            <div class="rm-row">
+              <div class="rm-num">1</div>
+              <div class="rm-content">
+                <div class="rm-title">Price Transparency</div>
+                <div class="rm-desc">Explaining that this problem is very serious and can be quickly solved, quickly improving the user experience.</div>
+              </div>
+            </div>
+            <div class="rm-row">
+              <div class="rm-num">2</div>
+              <div class="rm-content">
+                <div class="rm-title">Support Invisible</div>
+                <div class="rm-desc">Although seeking help is the final step in the user flow, a reliable and user-friendly “safety net” is crucial. In the long term, resolving this significant friction point is decisive for restoring user trust, reducing frustration, and ultimately ensuring customer retention.</div>
+              </div>
+            </div>
+            <div class="rm-row">
+              <div class="rm-num">3</div>
+              <div class="rm-content">
+                <div class="rm-title">Information Architecture</div>
+                <div class="rm-desc">Simplified navigation and mental model. Refines global and local navigation for faster task completion and smoother interactions.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="act-section act-white act1">
   <div class="container">
     <div class="act-header">
-      <div class="act-badge ab1">01</div>
+      <div class="act-badge ab2">01</div>
+      <div class="act-title">Fix Price Transparency at Checkout</div>
+    </div>
+    <div class="act-hmw hmw2">
+      <div class="act-hmw-bar"></div>
+      <div class="act-hmw-body">How might we redesign the checkout flow to provide full price transparency and eliminate users' fear of price uncertainty?</div>
+    </div>
+    <div class="act-advice-row">
+      <div class="act-advice-line"></div>
+      <div class="act-advice-label">Advice</div>
+      <div class="act-advice-line"></div>
+    </div>
+    <p class="act-advice-text">Show the all-in total (food + fees + tip) immediately after the tip is set, before the user taps "Place Order". Pin a running total to the bottom of the checkout screen throughout scrolling to eliminate any price anxiety.</p>
+    <div class="act-cards reveal">
+      <div class="act-card ac-card3">
+        <div class="act-img"><img src="YOUR_ACTION3A.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">Show the <strong>all-in total</strong> (food + fees + tip) immediately after tip is set — before "Place Order". Add a payment confirmation dialog to prevent accidental orders.</div>
+        </div>
+      </div>
+      <div class="act-card ac-card6">
+        <div class="act-img"><img src="YOUR_ACTION3B.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text">Calculate tip percentage on the <strong>actual discounted total</strong> ($17.51), not the pre-discount price ($26.51). Pin a running total to the bottom of the checkout screen while scrolling.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="act-bottom">
+      <div class="act-kpi-card">
+        <div class="act-kpi-head">Business Goals, KPI</div>
+        <div class="act-kpi-body">
+          <img src="YOUR_ACTION2_KPI.png" alt="Business Goals KPI">
+        </div>
+      </div>
+      <div class="act-collab-card">
+        <div class="act-collab-head">Collaborative</div>
+        <div class="act-collab-body">
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the checkout screen to surface the all-in total price at every step.</p><span class="collab-tag">UX Research</span><p class="collab-text">Usability testing on new checkout flow to confirm reduced anxiety and hesitation.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement running total calculation, pinned to bottom bar during checkout.</p><span class="collab-tag">Product Management</span><p class="collab-text">Track order completion rate and refund rate as primary KPIs post-launch.</p></div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="act-section act2">
+  <div class="container">
+    <div class="act-header">
+      <div class="act-badge ab1">02</div>
       <div class="act-title">Customer Support Functions are Not Visible</div>
     </div>
     <div class="act-hmw hmw1">
@@ -1262,14 +732,14 @@
     </div>
     <p class="act-advice-text">Establish a direct communication platform so that users can directly contact the merchant or rider, reducing the "contact intermediary". The help page needs to be intuitive so that users can quickly capture the required functions.</p>
     <div class="act-cards reveal">
-            <div class="act-card ac-card1">
+      <div class="act-card ac-card1">
         <div class="act-img"><img src="YOUR_ACTION1A.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
           <div class="act-card-text">Platform design a <strong>three-way communication platform</strong>: users, merchants, and riders can communicate directly online. Real Reference Case — China's Meituan Delivery Software.</div>
         </div>
       </div>
-            <div class="act-card ac-card2">
+      <div class="act-card ac-card2">
         <div class="act-img"><img src="YOUR_ACTION1B.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
@@ -1281,51 +751,32 @@
         </div>
       </div>
     </div>
-        <div class="act-bottom">
+    
+    <div class="act-bottom">
       <div class="act-kpi-card">
         <div class="act-kpi-head">Business Goals, KPI</div>
         <div class="act-kpi-body">
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">KPI</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Churn
-Rate</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">LTV</div>
-        <div class='kpi-sub'>Lifetime Value</div>
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Support
-Cost</div>
-        
-      </div>
+          <img src="YOUR_ACTION1_KPI.png" alt="Business Goals KPI">
         </div>
       </div>
       <div class="act-collab-card">
         <div class="act-collab-head">Collaborative</div>
         <div class="act-collab-body">
-          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">UX designers are responsible for creating communication platforms and helping with interaction design.</p><span class="collab-tag">UX Research</span><p class="collab-text">AB testing to see which design users prefer.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">The front-end is responsible for the interaction with the updated help button.</p><span class="collab-tag">Product Management</span><p class="collab-text">To forecast the increase in direct merchant calls and adjust support capacity.</p></div>
+          <div class="collab-col"><span class="collab-tag" style="background:var(--red);">UI&UX Designer</span><p class="collab-text">UX designers are responsible for creating communication platforms and helping with interaction design.</p><span class="collab-tag" style="background:var(--red);">UX Research</span><p class="collab-text">AB testing to see which design users prefer.</p></div><div class="collab-col"><span class="collab-tag" style="background:var(--red);">Engineering</span><p class="collab-text">The front-end is responsible for the interaction with the updated help button.</p><span class="collab-tag" style="background:var(--red);">Product Management</span><p class="collab-text">To forecast the increase in direct merchant calls and adjust support capacity.</p></div>
         </div>
       </div>
     </div>
+    
   </div>
 </div>
-<!-- ACTION 02 -->
-<div class="act-section act2">
+
+<div class="act-section act-white act3">
   <div class="container">
     <div class="act-header">
-      <div class="act-badge ab2">02</div>
+      <div class="act-badge ab3">03</div>
       <div class="act-title">Redesign Information Architecture</div>
     </div>
-    <div class="act-hmw hmw2">
+    <div class="act-hmw hmw3">
       <div class="act-hmw-bar"></div>
       <div class="act-hmw-body">How might we design an intuitive information architecture that minimises friction points for users during their interactions?</div>
     </div>
@@ -1336,14 +787,14 @@ Cost</div>
     </div>
     <p class="act-advice-text">Restructure the navigation so critical functions are visible at a glance. Move the search bar to the top, add a sidebar for menu categories, and redesign the help page hierarchy so users can find support in under 2 steps.</p>
     <div class="act-cards reveal">
-            <div class="act-card ac-card2">
+      <div class="act-card ac-card4">
         <div class="act-img"><img src="YOUR_ACTION2A.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
           <div class="act-card-text">Move the search bar from the bottom navigation bar to the <strong>top of the homepage</strong>. Add a vertical sidebar for restaurant menu categories, visible without scrolling.</div>
         </div>
       </div>
-            <div class="act-card ac-card4">
+      <div class="act-card ac-card5">
         <div class="act-img"><img src="YOUR_ACTION2B.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
@@ -1351,120 +802,35 @@ Cost</div>
         </div>
       </div>
     </div>
-        <div class="act-bottom">
+    
+    <div class="act-bottom">
       <div class="act-kpi-card">
         <div class="act-kpi-head">Business Goals, KPI</div>
         <div class="act-kpi-body">
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Cart
-Abandonment</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Activation</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Time-to-
-Order</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">NPS</div>
-        
-      </div>
+          <img src="YOUR_ACTION3_KPI.png" alt="Business Goals KPI">
         </div>
       </div>
       <div class="act-collab-card">
         <div class="act-collab-head">Collaborative</div>
         <div class="act-collab-body">
-          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the homepage layout, repositioning search and reducing promotional visual weight.</p><span class="collab-tag">UX Research</span><p class="collab-text">Card sorting studies to validate new information architecture with real users.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement new navigation components and sidebar category menu.</p><span class="collab-tag">Product Management</span><p class="collab-text">Define success metrics for new IA — task completion rate and time-to-first-action.</p></div>
+          <div class="collab-col"><span class="collab-tag" style="background:var(--orange);">UI&UX Designer</span><p class="collab-text">Redesign the homepage layout, repositioning search and reducing promotional visual weight.</p><span class="collab-tag" style="background:var(--orange);">UX Research</span><p class="collab-text">Card sorting studies to validate new information architecture with real users.</p></div><div class="collab-col"><span class="collab-tag" style="background:var(--orange);">Engineering</span><p class="collab-text">Implement new navigation components and sidebar category menu.</p><span class="collab-tag" style="background:var(--orange);">Product Management</span><p class="collab-text">Define success metrics for new IA — task completion rate and time-to-first-action.</p></div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- ACTION 03 -->
-<div class="act-section act-white act3">
-  <div class="container">
-    <div class="act-header">
-      <div class="act-badge ab3">03</div>
-      <div class="act-title">Fix Price Transparency at Checkout</div>
-    </div>
-    <div class="act-hmw hmw3">
-      <div class="act-hmw-bar"></div>
-      <div class="act-hmw-body">How might we redesign the checkout flow to provide full price transparency and eliminate users' fear of price uncertainty?</div>
-    </div>
-    <div class="act-advice-row">
-      <div class="act-advice-line"></div>
-      <div class="act-advice-label">Advice</div>
-      <div class="act-advice-line"></div>
-    </div>
-    <p class="act-advice-text">Show the all-in total (food + fees + tip) immediately after the tip is set, before the user taps "Place Order". Pin a running total to the bottom of the checkout screen throughout scrolling to eliminate any price anxiety.</p>
-    <div class="act-cards reveal">
-            <div class="act-card ac-card3">
-        <div class="act-img"><img src="YOUR_ACTION3A.png" alt="Action screenshot"></div>
-        <div class="act-card-content">
-          <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text">Show the <strong>all-in total</strong> (food + fees + tip) immediately after tip is set — before "Place Order". Add a payment confirmation dialog to prevent accidental orders.</div>
-        </div>
-      </div>
-            <div class="act-card ac-card6">
-        <div class="act-img"><img src="YOUR_ACTION3B.png" alt="Action screenshot"></div>
-        <div class="act-card-content">
-          <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text">Calculate tip percentage on the <strong>actual discounted total</strong> ($17.51), not the pre-discount price ($26.51). Pin a running total to the bottom of the checkout screen while scrolling.</div>
-        </div>
-      </div>
-    </div>
-        <div class="act-bottom">
-      <div class="act-kpi-card">
-        <div class="act-kpi-head">Business Goals, KPI</div>
-        <div class="act-kpi-body">
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Order
-Completion</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Refund
-Rate</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/be8ac00e-444a-49fe-8f58-e8d0cf502dce" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">CLTV</div>
-        
-      </div>
-      <div class="kpi-item">
-        <img src="https://www.figma.com/api/mcp/asset/b3e10208-33a6-4858-bfe6-c8fa48bf3edb" style="width:80px;height:52px;object-fit:contain" alt="">
-        <div class="kpi-label">Support
-Tickets</div>
-        
-      </div>
-        </div>
-      </div>
-      <div class="act-collab-card">
-        <div class="act-collab-head">Collaborative</div>
-        <div class="act-collab-body">
-          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the checkout screen to surface the all-in total price at every step.</p><span class="collab-tag">UX Research</span><p class="collab-text">Usability testing on new checkout flow to confirm reduced anxiety and hesitation.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement running total calculation, pinned to bottom bar during checkout.</p><span class="collab-tag">Product Management</span><p class="collab-text">Track order completion rate and refund rate as primary KPIs post-launch.</p></div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </div>
 
+
 <section id="methodology" class="dark-sec">
   <div class="container">
-    <div class="sec-label">Research Methods</div>
-    <h2 class="sec-title">Research Methods</h2>
-    <p class="sec-sub">Three progressive methods, designed to cross-validate each other.</p>
+    <div class="center-header reveal">
+      <div class="center-label">
+        <span>Research Process</span>
+      </div>
+      <h2 class="center-title">Methodology</h2>
+      <p class="sec-sub" style="text-align: center;">Three progressive methods, designed to cross-validate each other.</p>
+    </div>
     <div class="mth-grid reveal">
       <div class="mcard mc1">
         <div class="mnum">01</div>
@@ -1486,42 +852,6 @@ Tickets</div>
         <div class="mname">AI Heuristic Eval</div>
         <div class="mdesc">Gemini (Thinking) used as AI participant proxy with simulated think-aloud. Same 3 tasks evaluated against Nielsen's 10 Heuristics with SEQ scores recorded.</div>
         <div class="mtags"><span class="mtag">Gemini Thinking</span><span class="mtag">Nielsen's 10H</span><span class="mtag">SEQ Scores</span><span class="mtag">Think-Aloud</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="appendix" class="dark-sec">
-  <div class="container">
-    <div class="sec-label">Appendix</div>
-    <h2 class="sec-title">Methods &amp; Participants</h2>
-    <div class="apgrid reveal">
-      <div class="apcard">
-        <div class="aptitle at-o">Usability Study — N=5 Participants</div>
-        <div class="prow-ap"><div class="prname">P1 — Jane</div><div class="prdetail">Age 20 · Student · Low-freq (1–2×/month) · Zoom</div></div>
-        <div class="prow-ap"><div class="prname">P2 — Dan</div><div class="prdetail">Age 22 · Student · High-freq (2–3×/week) · Zoom</div></div>
-        <div class="prow-ap"><div class="prname">P3 — Han</div><div class="prdetail">Age 22 · Freelancer · High-freq · Zoom</div></div>
-        <div class="prow-ap"><div class="prname">P4 — David</div><div class="prdetail">Age 21 · Student · High-freq (1–3×/week) · Zoom</div></div>
-        <div class="prow-ap"><div class="prname">P5</div><div class="prdetail">Age 25 · Freelancer · Med-low (1×/week) · Zoom</div></div>
-        <div style="margin-top:1rem;padding:.7rem;border-radius:8px;background:rgba(255,255,255,.04);font-size:10.5px;color:rgba(255,255,255,.28);font-family:'DM Mono',monospace;line-height:1.7">
-          Methods: Usability Research · SEQ & UX Metrics · Affinity Map<br>
-          Tools: Zoom · Figma · Google Doc · Gemini · CapCut
-        </div>
-      </div>
-      <div class="apcard">
-        <div class="aptitle at-b">PURE Study — N=3 Expert Evaluators</div>
-        <div class="prow-ap"><div class="prname">Evaluator 1</div><div class="prdetail">6 yrs UX · iPhone 14 Pro · iOS 18.6.2</div></div>
-        <div class="prow-ap"><div class="prname">Evaluator 2</div><div class="prdetail">1 yr UX · iPhone 12 · iOS 18.5</div></div>
-        <div class="prow-ap"><div class="prname">Evaluator 3</div><div class="prdetail">1 yr UX · iPhone 13 · iOS 18.1.1</div></div>
-        <div style="font-size:11px;color:rgba(255,255,255,.25);padding:.5rem 0">All: WLU UX Master's students · Recruited independently</div>
-        <table class="pure-t">
-          <thead><tr><th>Step</th><th>E1</th><th>E2</th><th>E3</th><th>AI</th><th>Total</th></tr></thead>
-          <tbody>
-            <tr><td>Task 2-7 (Tip/Price)</td><td>2</td><td>2</td><td>1</td><td class="crit">3</td><td>PURE 2</td></tr>
-            <tr><td>Task 3-4 (Order Issue)</td><td>2</td><td>2</td><td>1</td><td>2</td><td>PURE 2</td></tr>
-            <tr><td>Task 3-5 (Human Agent)</td><td class="crit">3</td><td class="crit">3</td><td>1</td><td class="crit">3</td><td class="crit">PURE 3 ⚠</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>
