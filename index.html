@@ -31,7 +31,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .hb:nth-child(2),.hb:nth-child(3),.hb:nth-child(6),.hb:nth-child(7),.hb:nth-child(9),.hb:nth-child(12){background:transparent;}
 .hb:nth-child(4){background:var(--theme-f1);opacity:.55;animation-delay:.7s;}
 .hb:nth-child(5){background:var(--theme-f3);opacity:.45;animation-delay:1.4s;}
-.hb:nth-child(8){background:var(--theme-f1);opacity:.55;animation-delay:.3s;}
+.hb:nth-child(8){background:#E53935;opacity:.75;animation-delay:.3s;}
 .hb:nth-child(10){background:var(--theme-f2);opacity:.25;animation-delay:1.1s;}
 .hb:nth-child(11){background:var(--theme-f3);opacity:.35;animation-delay:1.8s;}
 @keyframes hbPulse{from{opacity:.1}to{opacity:.7}}
@@ -75,19 +75,19 @@ section{padding:90px 2.5rem 70px;position:relative;}
 /* Finding 01 - Blue */
 .fc-r:hover { border-color: rgba(28, 64, 207, 0.3); }
 .fc-r .bg-icon { color: var(--theme-f1); }
-.fc-r .fnum { background: #000000; color: var(--theme-f1); }
+.fc-r .fnum { background: #1C40CF; color: #fff; }
 .fc-r .fpill { background: rgba(28, 64, 207, 0.1); color: var(--theme-f1); }
 
 /* Finding 02 - Yellow */
 .fc-y:hover { border-color: rgba(252, 190, 29, 0.3); }
 .fc-y .bg-icon { color: var(--theme-f2); }
-.fc-y .fnum { background: #000000; color: var(--theme-f2); }
+.fc-y .fnum { background: var(--theme-f2); color: #fff; }
 .fc-y .fpill { background: rgba(252, 190, 29, 0.1); color: #B38200; } 
 
 /* Finding 03 - Green */
 .fc-o:hover { border-color: rgba(0, 207, 65, 0.3); }
 .fc-o .bg-icon { color: var(--theme-f3); }
-.fc-o .fnum { background: #000000; color: var(--theme-f3); }
+.fc-o .fnum { background: var(--theme-f3); color: #fff; }
 .fc-o .fpill { background: rgba(0, 207, 65, 0.1); color: var(--theme-f3); }
 
 .bg-icon { position: absolute; top: 1.5rem; right: 1.5rem; width: 80px; height: 80px; opacity: 0.04; transition: opacity 0.3s ease; }
@@ -103,6 +103,8 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .contents-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--theme-f3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
 .contents-eyebrow::after { content:''; width:40px; height:1px; background:var(--theme-f3); }
 .contents-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,6vw,5.5rem); color: #fff; letter-spacing: 2px; line-height: .9; margin-bottom: 3rem; }
+.contents-intro { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); max-width: 650px; margin-bottom: 3rem; font-weight: 300; }
+.intro-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #fff; letter-spacing: 1.5px; margin-bottom: 0.8rem; margin-top: 0.5rem; }
 .contents-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
 .contents-list li { display: flex; align-items: center; gap: 2rem; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); cursor: pointer; transition: all .25s; text-decoration: none; }
 .contents-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
@@ -423,6 +425,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 </h1>
       <div class="hero-author">
         <div class="hero-author-name">Carol Chen</div>
+        <div class="hero-author-detail">Independent UX Researcher</div>
         <div class="hero-author-detail">Professor Susie Simon</div>
         <div class="hero-author-detail">Wilfrid Laurier University</div>
         <span class="hero-author-tag">UX604 · Research Method 2 · Winter 2026</span>
@@ -436,7 +439,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   <div class="container">
     <div class="contents-inner">
       <div class="contents-eyebrow">Table of Contents</div>
-      <h2 class="contents-heading">What's<br>Inside</h2>
+     
+      
+      <h3 class="intro-title">Intro</h3>
+      <p class="contents-intro">Evaluate the usability of the Uber Eats app and identify underlying issues that cause cognitive friction and erode user trust, particularly addressing pain points such as price transparency, accessibility of customer support, and confusing information architecture.</p>
       <ul class="contents-list">
         <li onclick="location.href='#tldr'">
           <span class="cl-num">01</span>
