@@ -277,13 +277,13 @@ section{padding:90px 2.5rem 70px;position:relative;}
 
 /* 数据卡片标题栏基础样式，按 Finding 分离颜色 */
 .fd-card-head { color: #fff; padding: .6rem 1rem; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
-.head-f1 { background: var(--theme-f1); color: #000000; }
+.head-f1 { background: var(--theme-f1); color: #ffffff; }
 .head-f2 { background: var(--theme-f2); color: #000000; }
 .head-f3 { background: var(--theme-f3); color: #000000; }
 
 /* 图片背景变成浅灰 */
-.fd-card-body { padding: 1.5rem; background: #F9FAFC; display: flex; flex: 1; align-items: flex-start; justify-content: center; }
-.fd-card-body img { width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; }
+.fd-card-body { padding: 0.8rem; background: #ffffff; display: flex; flex: 1; align-items: flex-start; justify-content: center; }
+.fd-card-body img { width: 100%; height: auto; max-height: 240px; object-fit: contain; display: block; }
 
 @media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } .tm-grid{grid-template-columns:1fr;} }
 
@@ -528,7 +528,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="fd-card-themed th-red" style="height: 100%;">
         <div class="fd-head-themed th-red">Problem Highlight: Support Invisible</div>
         <div style="position: relative; flex: 1; background: #000; min-height: 240px;">
-          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;">
             <source src="YOUR_VIDEO_F1.mp4" type="video/mp4"/>
           </video>
         </div>
@@ -591,7 +591,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="fd-card-themed th-yellow" style="height: 100%;">
         <div class="fd-head-themed th-yellow">Problem Highlight: Price Transparency</div>
         <div style="position: relative; flex: 1; background: #000; min-height: 240px;">
-          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;">
             <source src="YOUR_VIDEO_F2.mp4" type="video/mp4"/>
           </video>
         </div>
@@ -654,7 +654,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="fd-card-themed th-orange" style="height: 100%;">
         <div class="fd-head-themed th-orange">Problem Highlight: Architecture</div>
         <div style="position: relative; flex: 1; background: #000; min-height: 240px;">
-          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;">
             <source src="YOUR_VIDEO_F3.mp4" type="video/mp4"/>
           </video>
         </div>
@@ -762,7 +762,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
               <div class="tm-card-body">
                 <div class="tm-point">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  <span><strong>Usability Testing Findings:</strong> Behavior: Users noticeably hesitated during checkout, leading to decreased financial confidence. Quan show 80% users can not find the final price. SEQ 评分偏低。</span>
+                  <span><strong>Usability Testing Findings:</strong> Behavior: Users noticeably hesitated during checkout, leading to decreased financial confidence. Quan show 80% users can not find the final price. SEQ score is low</span>
                 </div>
                 <div class="tm-point">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
