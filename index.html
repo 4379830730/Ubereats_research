@@ -209,12 +209,16 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .act-advice-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); letter-spacing: .05em; margin-bottom: 1.8rem; font-family: 'DM Sans', sans-serif; }
 
 .act-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; }
-.act-card { border-radius: 18px; padding: 1.2rem; display: flex; gap: 1.2rem; align-items: center; min-height: 430px; background: #FFFFFF; border: 1px solid #E0E0E0; }
+/* 修改了 padding 增加卡片内部整体留白，并把 gap 从 1.2rem 改大到了 2.5rem */
+.act-card { border-radius: 18px; padding: 1.8rem; display: flex; gap: 2.5rem; align-items: center; min-height: 430px; background: #FFFFFF; border: 1px solid #E0E0E0; }
+
 .act-img { width: 180px; min-width: 180px; height: 390px; border-radius: 28px; overflow: hidden; background: #1a1a1a; border: 5px solid #1a1a1a; flex-shrink: 0; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
 .act-img:hover { transform: translateY(-5px) scale(1.02); }
 .act-img::after { content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 50px; height: 14px; background: #000; border-radius: 10px; z-index: 10; }
 .act-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; display: block; }
-.act-card-content { flex: 1; }
+/* 增加了 padding-right: 2rem，强制给文字右侧留出足够的呼吸空间 */
+.act-card-content { flex: 1; padding-right: 2rem; }
+
 .act-card-num { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: #3b3b3b; color: #fff; font-size: 10px; font-weight: 700; margin-bottom: .4rem; margin-right: 4px; }
 .act-card-label { font-size: 14px; font-weight: 700; color: #1f1f1f; margin-bottom: .5rem; display: inline; }
 .act-card-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); margin-top: .5rem; font-family: 'DM Sans', sans-serif; }
@@ -237,7 +241,8 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .collab-tag { display: inline-flex; align-items: center; justify-content: center; padding: 3px 10px; border-radius: 9px; font-size: 10px; font-weight: 500; color: #fff; width: fit-content; }
 .collab-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); font-family: 'DM Sans', sans-serif; }
 
-@media(max-width:860px){.act-cards{grid-template-columns:1fr;}.act-card{flex-direction:column;align-items:center;text-align:center;min-height:auto;}.act-card-text ul{text-align:left;}.act-bottom{grid-template-columns:1fr;}}
+/* 告诉浏览器：如果在小屏幕/手机上，把右侧留白取消掉，不然文字就不居中了 */
+@media(max-width:860px){.act-cards{grid-template-columns:1fr;}.act-card{flex-direction:column;align-items:center;text-align:center;min-height:auto;padding:1.5rem;gap:1.5rem;}.act-card-content{padding-right:0;}.act-card-text ul{text-align:left;}.act-bottom{grid-template-columns:1fr;}}
 
 /* ── FINDING DETAIL & NEW CARDS ─────────────────── */
 .fd-wrap { padding: 60px 2.5rem 70px; }
@@ -660,7 +665,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div style="background: var(--theme-f3); border-radius: 8px; padding: 2rem; color: #0F0F0F;">
           <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">Problem Overview</div>
           <div style="font-size: 14px; line-height: 1.4; font-weight: 400; font-family: 'DM Sans', sans-serif;">
-            Users show noticeable hesitation when looking for specific app functions due to a complex layout. Essential options like search and help are not clearly visible, hidden inside redundant hierarchical menus.
+           Through three research, we found that the current software’s information architecture is complex, with ad display taking precedence over usability. This results in cognitive overload for users, while the complex information indexing makes it difficult for them to find the information they need. New users struggle to adapt, which negatively impacts the user experience.
           </div>
         </div>
         
