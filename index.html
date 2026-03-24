@@ -114,6 +114,13 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .cl-arrow { font-size: 22px; color: var(--theme-f3); opacity: 0; transition: transform .25s, opacity .25s; flex-shrink: 0; }
 
 /* MATRIX AND ROADMAP */
+.tm-title-bar {
+  font-size: 24px;       /* 👈 在这里修改字体大小！你可以改成 16px, 18px 或 20px */
+  font-weight: 700;      /* 700代表加粗，如果不想太粗可以改成 600 或 500 */
+  color: var(--text);    /* 深黑色 */
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 1.0rem; /* 标题和下面内容的间距 */
+}
 .triang-inner { max-width: 1160px; margin: 0 auto; background: #FFFFFF; border-radius: 20px; border: 1px solid #E0E0E0; padding: 2.5rem 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.04); }
 .ux-doc-wrapper { font-family: var(--font-sans); color: #111827; line-height: 1.6; font-size: 14px; padding: 0.5rem 0; }
 .divider { height: 1px; background: #E0E0E0; margin: 2.5rem 0; }
@@ -171,7 +178,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
 /* ── ACTION SECTIONS (Color matched to Findings) ── */
 .act-section { padding: 70px 2.5rem 80px; background: #F5F5F5; }
 .act-section.act-white { background: #FFFFFF; }
-.act-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; }
+.act-header { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; }
 .act-badge { width: 58px; height: 54px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 600; color: #fff; flex-shrink: 0; letter-spacing: -1px; }
 
 /* Action 1 (Price) -> Yellow F2 */
@@ -219,7 +226,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
 /* KPI 图片卡片设定 */
 .act-kpi-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
 .act-kpi-head { background: #000; padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; letter-spacing: -.02em; text-align: center; }
-.act-kpi-body { padding: 0.4rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
+.act-kpi-body { padding: 0.4rem; background: #FFFFFF; display: flex; flex: 1; align-items: center; justify-content: center; }
 .act-kpi-body img { width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; }
 
 /* Collaborative 文本卡片设定 */
@@ -265,12 +272,12 @@ section{padding:90px 2.5rem 70px;position:relative;}
 
 /* 数据卡片标题栏基础样式，按 Finding 分离颜色 */
 .fd-card-head { color: #fff; padding: .6rem 1rem; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
-.head-f1 { background: var(--theme-f1); color: #ffffff; }
-.head-f2 { background: var(--theme-f2); color: #ffffff; }
-.head-f3 { background: var(--theme-f3); color: #ffffff; }
+.head-f1 { background: var(--theme-f1); color: #000000; }
+.head-f2 { background: var(--theme-f2); color: #000000; }
+.head-f3 { background: var(--theme-f3); color: #000000; }
 
 /* 图片背景变成浅灰 */
-.fd-card-body { padding: 1.5rem; background: #F0F0F0; display: flex; flex: 1; align-items: flex-start; justify-content: center; }
+.fd-card-body { padding: 1.5rem; background: #F9FAFC; display: flex; flex: 1; align-items: flex-start; justify-content: center; }
 .fd-card-body img { width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; }
 
 @media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } .tm-grid{grid-template-columns:1fr;} }
@@ -413,19 +420,19 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <li onclick="location.href='#findings'">
           <span class="cl-num">02</span>
           <span class="cl-title">Key Findings</span>
-          <span class="cl-sub">Triangulation matrix + 3 problem evidence sections</span>
+          <span class="cl-sub">3 problem evidence sections</span>
           <span class="cl-arrow">→</span>
         </li>
         <li onclick="location.href='#actions'">
           <span class="cl-num">03</span>
           <span class="cl-title">Actions</span>
-          <span class="cl-sub">Prioritised design recommendations</span>
+          <span class="cl-sub">Triangulation matrix + Prioritised design recommendations</span>
           <span class="cl-arrow">→</span>
         </li>
         <li onclick="location.href='#methodology'">
           <span class="cl-num">04</span>
           <span class="cl-title">Methods</span>
-          <span class="cl-sub">Research methods &amp; participants</span>
+          <span class="cl-sub">Research methods &amp; Participants &amp; Data</span>
           <span class="cl-arrow">→</span>
         </li>
         <li onclick="location.href='#reflection'">
@@ -527,7 +534,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div style="background: var(--theme-f1); border-radius: 8px; padding: 2rem; color: #FFFFFF;">
           <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">Problem Overview</div>
           <div style="font-size: 14px; line-height: 1.4; font-weight: 400; font-family: 'DM Sans', sans-serif;">
-            The customer help of Uber Eats is invisible, and there is no direct human contact option to the restaurant. <strong>Users feel forced into an AI loop when they have an issue with an order.</strong>
+            The customer help of Uber Eats is invisible, and there is no direct human contact option to the restaurant. Users feel forced into an AI loop when they have an issue with an order.
           </div>
         </div>
         
@@ -536,16 +543,16 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
             <div style="display: flex; gap: 10px;">
               <span class="quote-mark th-f1">“</span>
-              <div>
-                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">It is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</p>
-                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 3-5</p>
+              <div style="flex: 1;">
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">Because it just don't show the number, and I have to connect AI and then ask the AI to go through the agent stuff."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; text-align: right;">— Participants 1</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px;">
               <span class="quote-mark th-f1">“</span>
-              <div>
-                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">It feels like the app is hiding a phone number on purpose to force me to use the bot."</p>
-                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— AI Participant (Alex) · Task 3</p>
+              <div style="flex: 1;">
+              <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">I just couldn't find the phone number."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; text-align: right;">— Participant 5</p>
               </div>
             </div>
           </div>
@@ -590,7 +597,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div style="background: var(--theme-f2); border-radius: 8px; padding: 2rem; color: #0F0F0F;">
           <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">Problem Overview</div>
           <div style="font-size: 14px; line-height: 1.4; font-weight: 400; font-family: 'DM Sans', sans-serif;">
-            Users experience noticeable hesitation during the final payment stage, leading to a decrease in financial confidence. <strong>The grand total is hidden behind ambiguous UI elements, making it impossible to confirm the final amount easily.</strong>
+            Users experience noticeable hesitation during the final payment stage, leading to a decrease in financial confidence. The grand total is hidden behind ambiguous UI elements, making it impossible to confirm the final amount easily.
           </div>
         </div>
         
@@ -599,16 +606,16 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
             <div style="display: flex; gap: 10px;">
               <span class="quote-mark th-f2">“</span>
-              <div>
+              <div style="flex: 1;">
                 <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">I cannot see the total price after I add a tip. That's a little bit annoying."</p>
-                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— Jane (Usability participant, Task 2)</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;text-align: right;">— Participants 1</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px;">
               <span class="quote-mark th-f2">“</span>
-              <div>
+              <div style="flex: 1;">
                 <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere."</p>
-                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 2-7</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;text-align: right;">— PURE Evaluator 2</p>
               </div>
             </div>
           </div>
@@ -643,7 +650,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div class="fd-head-themed th-orange">Problem Highlight: Architecture</div>
         <div style="position: relative; flex: 1; background: #000; min-height: 240px;">
           <video controls preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
-            <source src="YOUR_VIDEO_F4.mp4" type="video/mp4"/>
+            <source src="YOUR_VIDEO_F3.mp4" type="video/mp4"/>
           </video>
         </div>
       </div>
@@ -653,7 +660,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div style="background: var(--theme-f3); border-radius: 8px; padding: 2rem; color: #0F0F0F;">
           <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">Problem Overview</div>
           <div style="font-size: 14px; line-height: 1.4; font-weight: 400; font-family: 'DM Sans', sans-serif;">
-            Users show noticeable hesitation when looking for specific app functions due to a complex layout. <strong>Essential options like search and help are not clearly visible, hidden inside redundant hierarchical menus.</strong>
+            Users show noticeable hesitation when looking for specific app functions due to a complex layout. Essential options like search and help are not clearly visible, hidden inside redundant hierarchical menus.
           </div>
         </div>
         
@@ -662,16 +669,16 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
             <div style="display: flex; gap: 10px;">
               <span class="quote-mark th-f3">“</span>
-              <div>
-                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">Another issue is hidden in the more option choice which is also in a long list. I have to read all of that to only get started."</p>
-                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 3</p>
+              <div style="flex: 1;">
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">The interface is a bit too flashy and too complicated... it would be better if the page were simpler."</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;text-align: right;">— Participants 5</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px;">
               <span class="quote-mark th-f3">“</span>
-              <div>
+              <div style="flex: 1;">
                 <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</p>
-                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 3, Task 1, Step 2</p>
+                <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;text-align: right;">— PURE Evaluator 3</p>
               </div>
             </div>
           </div>
@@ -718,7 +725,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 
         <div class="tm">
           <div class="tm-title-bar">
-            Triangulation Matrix — Uber Eats UX Evaluation
+            <strong>Triangulation Matrix — Uber Eats UX Evaluation </strong>
           </div>
           
           <div class="tm-grid">
@@ -794,12 +801,9 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 
         <div class="divider"></div>
 
-        <div class="center-header reveal" style="margin-top: 3rem; margin-bottom: 2rem;">
-          <div class="center-label">
-            <span>Strategic Prioritization</span>
-          </div>
-          <p class="pm-sublabel">Priority matrix — Eisenhower</p>
-        </div>
+       <div class="reveal" style="margin-top: 3rem; margin-bottom: 2rem;">
+  <div class="tm-title-bar"><strong>Priority matrix — Eisenhower</strong></div>
+</div>
 
         <div class="pm-wrapper reveal">
           
@@ -885,7 +889,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="act-advice-label">Advice</div>
       <div class="act-advice-line"></div>
     </div>
-    <p class="act-advice-text">Show the all-in total (food + fees + tip) immediately after the tip is set, before the user taps "Place Order". Pin a running total to the bottom of the checkout screen throughout scrolling to eliminate any price anxiety.</p>
+    <p class="act-advice-text">Redesign the layout of the pricing page to ensure price transparency, allowing users to clearly see the total amount they will be charged, while also adding safeguards to prevent accidental orders.</p>
     <div class="act-cards reveal">
       <div class="act-card ac-card3">
         <div class="act-img"><img src="YOUR_ACTION1A.png" alt="Action screenshot"></div>
@@ -992,24 +996,41 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="act-advice-line"></div>
     </div>
     <p class="act-advice-text">Restructure the navigation so critical functions are visible at a glance. Move the search bar to the top, add a sidebar for menu categories, and redesign the help page hierarchy so users can find support in under 2 steps.</p>
+    
     <div class="act-cards reveal">
+      
       <div class="act-card ac-card4">
         <div class="act-img"><img src="YOUR_ACTION3A.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text">Product categories should be prominently displayed, with recommended items consolidated into a section below. Users without specific preferences can browse the content below. Any advertising sections must be clearly labeled, but should not be overly prominent.</div>
-          <div class="act-card-text"><strong>Search:</strong> change the search bar from the bottom to the top, in line with the user's habit.</div>
+          <div class="act-card-text">Product categories should be prominently displayed, with recommended items consolidated into a section below. Users without specific preferences can browse the content below. Any advertising sections must be clearly labeled, but should not be overly prominent.
+</div>
+<div class="act-card-text"><strong>Search:</strong> change the search bar from the bottom to the top, in line with the user's habit.</div>
         </div>
       </div>
+      
       <div class="act-card ac-card5">
         <div class="act-img"><img src="YOUR_ACTION3B.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text"><strong>Help Page:</strong></div>
-          <div class="act-card-text"><ul><li>Use card sorting to rearrange the information architecture, then test whether the proposed new structure is viable.</li>
-          <li>Previous orders should not be limited to displaying only the most recent one. While showing the last order directly allows users to find it quickly, it prevents them from accessing other orders. Therefore, create a module where users can click to view all pending orders requiring attention.</li></ul></div>
+          <div class="act-card-text"><strong>Sidebar:</strong> Although the current product selection page provides grouping, but the user needs to scroll down to see, click into the home page can not be seen directly, not intuitive, can be directly designed in the user click into the user can see, vertical row on the left of the form, the user can see at a glance what the grouping, do not need to because of sliding.</div>
         </div>
       </div>
+
+      <div class="act-card ac-card6" style="grid-column: 1 / -1;">
+        <div class="act-img"><img src="YOUR_ACTION3C.png" alt="Action screenshot"></div>
+        <div class="act-card-content">
+          <div><span class="act-card-num">3</span><span class="act-card-label">Action</span></div>
+          <div class="act-card-text"><strong>Help Page:</strong></div>
+          <div class="act-card-text">
+            <ul>
+              <li>Use card sorting to rearrange the information architecture, then test whether the proposed new structure is viable.</li>
+              <li>Previous orders should not be limited to displaying only the most recent one. While showing the last order directly allows users to find it quickly, it prevents them from accessing other orders. Therefore, create a module where users can click to view all pending orders requiring attention.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
     
     <div class="act-bottom">
