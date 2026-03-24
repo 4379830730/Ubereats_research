@@ -50,6 +50,31 @@
             color: #555;
         }
 
+        /* 按钮组样式 */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            text-transform: capitalize;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
         /* 卡片网格系统 */
         .grid-container {
             display: grid;
@@ -173,6 +198,13 @@
             <p><strong>Scope:</strong> 3 Evaluators | 3 Tasks | 17 Total Steps</p>
             <p><strong>Scoring:</strong> 1 = Easy, 2 = Moderate, 3 = High Friction</p>
         </div>
+    </div>
+
+    <h2>Evaluators Record</h2>
+    <div class="btn-group">
+        <a href="https://drive.google.com/file/d/1mdRi4KymhOoWRVd_nTOpGlEfbtFTE_Nx/view?usp=drive_link" target="_blank" class="btn">Evaluator 1 Record</a>
+        <a href="https://drive.google.com/file/d/1vPiPRRkQa4nrHRcxEW0lY4gu1BiOiaem/view?usp=drive_link" target="_blank" class="btn">Evaluator 2 Record</a>
+        <a href="https://drive.google.com/file/d/1oxS3FI-t0Ar4H9vsMuERwT5CD5CxE0i7/view?usp=drive_link" target="_blank" class="btn">Evaluator 3 Record</a>
     </div>
 
     <h2>Task Overview & Friction Scores</h2>

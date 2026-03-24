@@ -6,41 +6,46 @@
 <title>Uber Eats UX Final Research Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
-:root{--green:#06C167;--green-dim:rgba(6,193,103,0.10);--green-mid:rgba(6,193,103,0.18);--orange:#FF6B2C;--orange-dim:rgba(255,107,44,0.10);--blue:#2B3DE7;--blue-dim:rgba(43,61,231,0.10);--red:#E53935;--red-dim:rgba(229,57,53,0.10);--yellow:#FFC107;--yellow-dim:rgba(255,193,7,0.10);--dark:#0F0F0F;--dark2:#141414;--dark3:#1A1A1A;--card:#FFFFFF;--bg:#F5F5F5;--text:#0F0F0F;--muted:#6B6B80;--border:#E0E0E0;}
+:root{--green:#06C167; --dark:#0F0F0F; --dark2:#141414; --dark3:#1A1A1A; --card:#FFFFFF; --bg:#F5F5F5; --text:#0F0F0F; --muted:#6B6B80; --border:#E0E0E0;
+  /* 全局新主题色 */
+  --theme-f1: #1C40CF; /* Blue */
+  --theme-f2: #FCBE1D; /* Yellow */
+  --theme-f3: #00CF41; /* Green */
+}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,26,0.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-pill{background:var(--green);color:#000;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;}
+.nav-pill{background:var(--theme-f3);color:#000;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;}
 .nav-title{color:rgba(255,255,255,0.5);font-size:13px;}
 .nav-links{display:flex;gap:1.8rem;list-style:none;}
 .nav-links a{color:rgba(255,255,255,0.4);font-size:12px;text-decoration:none;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
-.nav-links a:hover{color:var(--green);}
+.nav-links a:hover{color:var(--theme-f3);}
 section{padding:90px 2.5rem 70px;position:relative;}
 .container{max-width:1160px;margin:0 auto;width:100%;}
 #hero{background:var(--dark);min-height:100vh;display:flex;align-items:center;overflow:hidden;}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;}
 .hero-blocks{position:absolute;right:0;top:0;bottom:0;width:40%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,1fr);gap:3px;pointer-events:none;}
 .hb{animation:hbPulse 3.5s ease-in-out infinite alternate;}
-.hb:nth-child(1){background:var(--orange);opacity:.65;}
+.hb:nth-child(1){background:var(--theme-f2);opacity:.65;}
 .hb:nth-child(2),.hb:nth-child(3),.hb:nth-child(6),.hb:nth-child(7),.hb:nth-child(9),.hb:nth-child(12){background:transparent;}
-.hb:nth-child(4){background:var(--blue);opacity:.55;animation-delay:.7s;}
-.hb:nth-child(5){background:var(--green);opacity:.45;animation-delay:1.4s;}
-.hb:nth-child(8){background:var(--red);opacity:.55;animation-delay:.3s;}
-.hb:nth-child(10){background:var(--orange);opacity:.25;animation-delay:1.1s;}
-.hb:nth-child(11){background:var(--blue);opacity:.35;animation-delay:1.8s;}
+.hb:nth-child(4){background:var(--theme-f1);opacity:.55;animation-delay:.7s;}
+.hb:nth-child(5){background:var(--theme-f3);opacity:.45;animation-delay:1.4s;}
+.hb:nth-child(8){background:var(--theme-f1);opacity:.55;animation-delay:.3s;}
+.hb:nth-child(10){background:var(--theme-f2);opacity:.25;animation-delay:1.1s;}
+.hb:nth-child(11){background:var(--theme-f3);opacity:.35;animation-delay:1.8s;}
 @keyframes hbPulse{from{opacity:.1}to{opacity:.7}}
 .hero-content{position:relative;z-index:2;}
 .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:1.8rem;animation:fadeUp .8s ease both;}
-.eyebrow-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);}
-.eyebrow-line{width:40px;height:1px;background:var(--green);}
+.eyebrow-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--theme-f3);}
+.eyebrow-line{width:40px;height:1px;background:var(--theme-f3);}
 .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,9vw,8.5rem);line-height:.9;color:#fff;letter-spacing:2px;animation:fadeUp .8s .12s ease both;}
-.hero-title span{-webkit-text-stroke:2px var(--green);color:transparent;}
+.hero-title span { color: var(--theme-f3); }
 .hero-author{margin-top:2.8rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,0.1);animation:fadeUp .8s .24s ease both;}
 .hero-author-name{font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.3px;margin-bottom:6px;}
 .hero-author-detail{font-size:15px;font-weight:400;color:rgba(255,255,255,0.6);line-height:1.7;}
-.hero-author-tag{display:inline-flex;align-items:center;gap:8px;margin-top:1rem;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);}
-.hero-author-tag::before{content:'';width:20px;height:1px;background:var(--green);}
+.hero-author-tag{display:inline-flex;align-items:center;gap:8px;margin-top:1rem;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--theme-f3);}
+.hero-author-tag::before{content:'';width:20px;height:1px;background:var(--theme-f3);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;display:flex;align-items:center;gap:10px;}
 .sec-label::after{content:'';width:50px;height:1px;background:currentColor;opacity:.4;}
@@ -56,8 +61,6 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .center-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,4.5rem);letter-spacing:2px;line-height:1;color:var(--text);margin-bottom:0.5rem;}
 .dark-sec .center-title{color:#fff;}
 .dark-sec .center-label,.dark-sec .center-label span{color:rgba(255,255,255,0.4);}
-
-/* TLDR */
 #tldr{background:var(--bg);}
 .tldr-video-wrap{margin:2.5rem auto 0;max-width:920px;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 80px rgba(0,0,0,0.18);aspect-ratio:16/9;}
 .tldr-video{display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;}
@@ -67,63 +70,73 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .fgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
 .fcard { background: var(--bg); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; position: relative; overflow: hidden; border: 1px solid transparent; transition: all 0.3s ease; min-height: 240px; }
 .fcard:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
-.fc-r:hover { border-color: rgba(229,57,53,0.2); }
-.fc-y:hover { border-color: rgba(255,193,7,0.3); }
-.fc-o:hover { border-color: rgba(255,107,44,0.2); }
+
+/* Finding Themes for Grid Cards */
+/* Finding 01 - Blue */
+.fc-r:hover { border-color: rgba(28, 64, 207, 0.3); }
+.fc-r .bg-icon { color: var(--theme-f1); }
+.fc-r .fnum { background: #000000; color: var(--theme-f1); }
+.fc-r .fpill { background: rgba(28, 64, 207, 0.1); color: var(--theme-f1); }
+
+/* Finding 02 - Yellow */
+.fc-y:hover { border-color: rgba(252, 190, 29, 0.3); }
+.fc-y .bg-icon { color: var(--theme-f2); }
+.fc-y .fnum { background: #000000; color: var(--theme-f2); }
+.fc-y .fpill { background: rgba(252, 190, 29, 0.1); color: #B38200; } 
+
+/* Finding 03 - Green */
+.fc-o:hover { border-color: rgba(0, 207, 65, 0.3); }
+.fc-o .bg-icon { color: var(--theme-f3); }
+.fc-o .fnum { background: #000000; color: var(--theme-f3); }
+.fc-o .fpill { background: rgba(0, 207, 65, 0.1); color: var(--theme-f3); }
+
 .bg-icon { position: absolute; top: 1.5rem; right: 1.5rem; width: 80px; height: 80px; opacity: 0.04; transition: opacity 0.3s ease; }
 .fcard:hover .bg-icon { opacity: 0.12; }
-.fc-r .bg-icon { color: var(--red); }
-.fc-y .bg-icon { color: #D4A000; }
-.fc-o .bg-icon { color: var(--orange); }
 .fnum { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 1.5rem; }
-.fc-r .fnum { background: var(--red); }
-.fc-y .fnum { background: var(--yellow); color: #000; }
-.fc-o .fnum { background: var(--orange); }
-.fname { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 2rem; }
+.fname { font-size: 24px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 2rem; }
 .fbot { margin-top: auto; }
 .fpill { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; }
-.fc-r .fpill { background: var(--red-dim); color: var(--red); }
-.fc-y .fpill { background: var(--yellow-dim); color: #A67C00; }
-.fc-o .fpill { background: var(--orange-dim); color: var(--orange); }
 
 /* CONTENTS */
 #contents { background: var(--dark); min-height: 100vh; display: flex; align-items: center; }
 .contents-inner { position: relative; z-index: 2; }
-.contents-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
-.contents-eyebrow::after { content:''; width:40px; height:1px; background:var(--green); }
+.contents-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--theme-f3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
+.contents-eyebrow::after { content:''; width:40px; height:1px; background:var(--theme-f3); }
 .contents-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,6vw,5.5rem); color: #fff; letter-spacing: 2px; line-height: .9; margin-bottom: 3rem; }
 .contents-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
 .contents-list li { display: flex; align-items: center; gap: 2rem; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); cursor: pointer; transition: all .25s; text-decoration: none; }
 .contents-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
-.contents-list li:hover .cl-title { color: var(--green); }
+.contents-list li:hover .cl-title { color: var(--theme-f3); }
 .contents-list li:hover .cl-arrow { transform: translateX(6px); opacity: 1; }
 .cl-num { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.2); width: 2.2rem; flex-shrink: 0; }
 .cl-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3.5vw, 3rem); color: #fff; letter-spacing: 1.5px; line-height: 1; flex: 1; transition: color .25s; }
-.cl-sub { font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 300; max-width: 300px; line-height: 1.5; text-align: right; }
-.cl-arrow { font-size: 22px; color: var(--green); opacity: 0; transition: transform .25s, opacity .25s; flex-shrink: 0; }
+.cl-sub { font-size: 14px; font-family: 'DM Sans', sans-serif; color: rgba(255,255,255,0.3); font-weight: 300; max-width: 300px; line-height: 1.5; text-align: right; }
+.cl-arrow { font-size: 22px; color: var(--theme-f3); opacity: 0; transition: transform .25s, opacity .25s; flex-shrink: 0; }
 
 /* MATRIX AND ROADMAP */
 .triang-inner { max-width: 1160px; margin: 0 auto; background: #FFFFFF; border-radius: 20px; border: 1px solid #E0E0E0; padding: 2.5rem 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.04); }
 .ux-doc-wrapper { font-family: var(--font-sans); color: #111827; line-height: 1.6; font-size: 14px; padding: 0.5rem 0; }
 .divider { height: 1px; background: #E0E0E0; margin: 2.5rem 0; }
-.tm-desc { font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 1.5rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;}
+.tm-desc { font-size: 14px; line-height: 1.5; color: var(--muted); margin-bottom: 1.5rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; font-family: 'DM Sans', sans-serif; }
 
-/* 3栏网格 Triangulation Matrix */
+/* 3栏网格 Triangulation Matrix - Color Coded to Findings */
 .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
 .tm-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
 .tm-card-head { padding: 1rem 1.25rem; font-size: 14px; font-weight: 700; color: var(--dark); border-bottom: 1px solid var(--border); }
-.tm-card-head.tc-red { background: rgba(229,57,53,0.06); border-top: 3px solid var(--red); }
-.tm-card-head.tc-yellow { background: rgba(255,193,7,0.08); border-top: 3px solid var(--yellow); }
-.tm-card-head.tc-orange { background: rgba(255,107,44,0.06); border-top: 3px solid var(--orange); }
+.tm-card-head.tc-blue { background: rgba(28, 64, 207, 0.06); border-top: 3px solid var(--theme-f1); }
+.tm-card-head.tc-yellow { background: rgba(252, 190, 29, 0.08); border-top: 3px solid var(--theme-f2); }
+.tm-card-head.tc-green { background: rgba(0, 207, 65, 0.06); border-top: 3px solid var(--theme-f3); }
+
 .tm-card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
-.tm-point { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 1.5; color: #4b5563; }
+.tm-point { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #4b5563; font-family: 'DM Sans', sans-serif; }
 .tm-point svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.6; margin-top: 2px; }
 .tm-final { margin-top: auto; background: #f9fafb; padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
 .tm-final-title { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
-.tm-final-text { font-size: 11.5px; line-height: 1.5; color: var(--text); }
-.tag-strong { background: var(--red); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
-.tag-strong.yellow { background: var(--yellow); color: #000; }
-.tag-mod { background: var(--orange); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
+.tm-final-text { font-size: 14px; line-height: 1.5; color: var(--text); font-family: 'DM Sans', sans-serif; }
+
+.tag-strong { background: var(--theme-f1); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
+.tag-strong.yellow { background: var(--theme-f2); color: #000; }
+.tag-mod { background: var(--theme-f3); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
 
 /* Eisenhower & Roadmap */
 .pm-wrapper { display: flex; flex-direction: column; gap: 2rem; align-items: center; justify-content: center; width: 100%; margin-bottom: 1rem; }
@@ -152,31 +165,42 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .rm-num { width: 26px; height: 26px; background: var(--dark); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 .rm-content { flex: 1; }
 .rm-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-.rm-desc { font-size: 12.5px; color: #6b7280; line-height: 1.5; }
+.rm-desc { font-size: 14px; color: #6b7280; line-height: 1.5; font-family: 'DM Sans', sans-serif; }
 .pm-sublabel { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: none; margin-top: -0.5rem; letter-spacing: 0.5px; }
 
-/* ── ACTION SECTIONS ───────────────────────────── */
+/* ── ACTION SECTIONS (Color matched to Findings) ── */
 .act-section { padding: 70px 2.5rem 80px; background: #F5F5F5; }
 .act-section.act-white { background: #FFFFFF; }
 .act-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; }
 .act-badge { width: 58px; height: 54px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 600; color: #fff; flex-shrink: 0; letter-spacing: -1px; }
-.ab1 { background: var(--red); }
-.ab2 { background: var(--red); color: #fff; }
-.ab3 { background: var(--orange); }
+
+/* Action 1 (Price) -> Yellow F2 */
+.ab-price { background: var(--theme-f2); color: #000; }
+.hmw-price .act-hmw-bar { background: var(--theme-f2); }
+.hmw-price .act-hmw-body { background: rgba(252, 190, 29, 0.06); }
+.act-price .collab-tag { background: var(--theme-f2); color: #000; }
+
+/* Action 2 (Support) -> Blue F1 */
+.ab-support { background: var(--theme-f1); color: #fff; }
+.hmw-support .act-hmw-bar { background: var(--theme-f1); }
+.hmw-support .act-hmw-body { background: rgba(28, 64, 207, 0.06); }
+.act-support .collab-tag { background: var(--theme-f1); color: #fff; }
+
+/* Action 3 (IA) -> Green F3 */
+.ab-ia { background: var(--theme-f3); color: #fff; }
+.hmw-ia .act-hmw-bar { background: var(--theme-f3); }
+.hmw-ia .act-hmw-body { background: rgba(0, 207, 65, 0.06); }
+.act-ia .collab-tag { background: var(--theme-f3); color: #fff; }
+
 .act-title { font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 700; color: #1e1e1e; line-height: 1.1; letter-spacing: -.03em; }
 .act-hmw { display: flex; align-items: stretch; border-radius: 0 5px 5px 0; overflow: hidden; margin-bottom: 1.8rem; }
 .act-hmw-bar { width: 4px; flex-shrink: 0; }
-.act-hmw-body { padding: .9rem 1.2rem; font-style: italic; font-size: 14px; line-height: 1.6; letter-spacing: .05em; color: #1f1f1f; }
-.hmw1 .act-hmw-bar { background: var(--red); }
-.hmw2 .act-hmw-bar { background: var(--red); }
-.hmw3 .act-hmw-bar { background: var(--orange); }
-.hmw1 .act-hmw-body { background: rgba(229,57,53,0.06); }
-.hmw2 .act-hmw-body { background: rgba(229,57,53,0.06); }
-.hmw3 .act-hmw-body { background: rgba(255,107,44,0.06); }
+.act-hmw-body { padding: .9rem 1.2rem; font-style: italic; font-size: 14px; line-height: 1.5; font-family: 'DM Sans', sans-serif; letter-spacing: .05em; color: #1f1f1f; }
 .act-advice-row { display: flex; align-items: center; gap: 1rem; margin-bottom: .8rem; }
 .act-advice-line { flex: 1; height: 1px; background: #d4d4d4; }
 .act-advice-label { font-size: 14px; font-weight: 700; color: #1f1f1f; white-space: nowrap; }
-.act-advice-text { font-size: 14px; line-height: 1.6; color: rgba(0,0,0,.75); letter-spacing: .05em; margin-bottom: 1.8rem; }
+.act-advice-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); letter-spacing: .05em; margin-bottom: 1.8rem; font-family: 'DM Sans', sans-serif; }
+
 .act-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; }
 .act-card { border-radius: 18px; padding: 1.2rem; display: flex; gap: 1.2rem; align-items: center; min-height: 430px; background: #FFFFFF; border: 1px solid #E0E0E0; }
 .act-img { width: 180px; min-width: 180px; height: 390px; border-radius: 28px; overflow: hidden; background: #1a1a1a; border: 5px solid #1a1a1a; flex-shrink: 0; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
@@ -186,32 +210,25 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .act-card-content { flex: 1; }
 .act-card-num { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: #3b3b3b; color: #fff; font-size: 10px; font-weight: 700; margin-bottom: .4rem; margin-right: 4px; }
 .act-card-label { font-size: 14px; font-weight: 700; color: #1f1f1f; margin-bottom: .5rem; display: inline; }
-.act-card-text { font-size: 12px; line-height: 1.6; color: rgba(0,0,0,.75); margin-top: .5rem; }
+.act-card-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); margin-top: .5rem; font-family: 'DM Sans', sans-serif; }
 .act-card-text ul { margin: .3rem 0 0 1rem; padding: 0; }
 .act-card-text li { margin-bottom: .2rem; }
-.act-bottom { display: grid; grid-template-columns: 240px 1fr; gap: 1.2rem; margin-top: 1rem; }
 
-/* KPI 图片卡片设定 - 已修复图片尺寸问题 */
+.act-bottom { display: grid; grid-template-columns: 280px 1fr; gap: 1.2rem; margin-top: 1rem; }
+
+/* KPI 图片卡片设定 */
 .act-kpi-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
-.act-kpi-head { padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; letter-spacing: -.02em; }
-.act-kpi-body { padding: 1.5rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
+.act-kpi-head { background: #000; padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; letter-spacing: -.02em; text-align: center; }
+.act-kpi-body { padding: 0.4rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
 .act-kpi-body img { width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; }
 
 /* Collaborative 文本卡片设定 */
 .act-collab-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
-.act-collab-head { padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; text-align: center; }
+.act-collab-head { background: #000; padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; text-align: center; }
 .act-collab-body { padding: 1rem 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #FFFFFF; flex: 1; }
 .collab-col { display: flex; flex-direction: column; gap: .5rem; }
 .collab-tag { display: inline-flex; align-items: center; justify-content: center; padding: 3px 10px; border-radius: 9px; font-size: 10px; font-weight: 500; color: #fff; width: fit-content; }
-.collab-text { font-size: 12px; line-height: 1.5; color: rgba(0,0,0,.75); }
-
-/* colour themes per action */
-.act1 .act-kpi-head,.act1 .act-collab-head{background:#0F0F0F;}
-.act1 .collab-tag{background:var(--red);color:#fff;}
-.act2 .act-kpi-head,.act2 .act-collab-head{background:#0F0F0F;}
-.act2 .collab-tag{background:var(--red);color:#fff;} 
-.act3 .act-kpi-head,.act3 .act-collab-head{background:#0F0F0F;}
-.act3 .collab-tag{background:var(--orange);color:#fff;}
+.collab-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); font-family: 'DM Sans', sans-serif; }
 
 @media(max-width:860px){.act-cards{grid-template-columns:1fr;}.act-card{flex-direction:column;align-items:center;text-align:center;min-height:auto;}.act-card-text ul{text-align:left;}.act-bottom{grid-template-columns:1fr;}}
 
@@ -219,31 +236,43 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .fd-wrap { padding: 60px 2.5rem 70px; }
 .fd-wrap.fd-light { background: #FFFFFF; }
 .fd-wrap.fd-muted  { background: #F5F5F5; }
+
+/* Finding Labels */
+.dlabel { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+.dl-r { color: var(--theme-f1); }
+.dl-y { color: var(--theme-f2); }
+.dl-o { color: var(--theme-f3); }
+
 .fd-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); letter-spacing: 1.5px; line-height: .95; color: var(--text); margin: 1rem 0 1.8rem; }
 .fd-top { display: grid; grid-template-columns: 55% 1fr; gap: 1.5rem; margin-bottom: 1.5rem; align-items: stretch; }
 
-/* 带有标题的主题色卡片 (用于包住视频、Overview、Quotes) */
+/* 带有标题的主题色卡片 (用于包住视频、Quotes) */
 .fd-card-themed { border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-.fd-card-themed.th-red { border-color: rgba(229,57,53,0.4); }
-.fd-card-themed.th-yellow { border-color: rgba(255,193,7,0.5); }
-.fd-card-themed.th-orange { border-color: rgba(255,107,44,0.4); }
-
 .fd-head-themed { padding: .6rem 1rem; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.fd-head-themed.th-red { background: #E53935; color: #fff; }
-.fd-head-themed.th-yellow { background: #FFC107; color: #000; }
-.fd-head-themed.th-orange { background: #FF6B2C; color: #fff; }
 
+/* Top Highlight Bars for Videos/Quotes - Always Black */
+.fd-head-themed.th-red, .fd-head-themed.th-yellow, .fd-head-themed.th-orange { background: #000000; color: #fff; }
+
+/* Quotes Marks Colors */
 .quote-mark { font-size: 28px; font-family: serif; font-weight: bold; line-height: 0.8; margin-top: 4px; }
-.quote-mark.th-red { color: #E53935; }
-.quote-mark.th-yellow { color: #D4A000; }
-.quote-mark.th-orange { color: #FF6B2C; }
+.quote-mark.th-f1 { color: var(--theme-f1); }
+.quote-mark.th-f2 { color: var(--theme-f2); }
+.quote-mark.th-f3 { color: var(--theme-f3); }
 
-/* 底部的三张图片数据卡片 - 已恢复完美排版 */
+/* 底部的三张图片数据卡片 */
 .fd-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 .fd-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #E0E0E0; display: flex; flex-direction: column; }
-.fd-card-head { background: #0F0F0F; color: #fff; padding: .6rem 1rem; font-size: 14px; font-weight: 400; text-align: center; }
-.fd-card-body { padding: 1.5rem; background: #F5F5F5; display: flex; flex: 1; align-items: center; justify-content: center; }
+
+/* 数据卡片标题栏基础样式，按 Finding 分离颜色 */
+.fd-card-head { color: #fff; padding: .6rem 1rem; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+.head-f1 { background: var(--theme-f1); color: #ffffff; }
+.head-f2 { background: var(--theme-f2); color: #ffffff; }
+.head-f3 { background: var(--theme-f3); color: #ffffff; }
+
+/* 图片背景变成浅灰 */
+.fd-card-body { padding: 1.5rem; background: #F0F0F0; display: flex; flex: 1; align-items: flex-start; justify-content: center; }
 .fd-card-body img { width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; }
+
 @media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } .tm-grid{grid-template-columns:1fr;} }
 
 /* METHODOLOGY */
@@ -252,28 +281,22 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .mcard{background:var(--dark3);border-radius:16px;padding:1.8rem;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .3s; display: flex; flex-direction: column;}
 .mcard:hover{transform:translateY(-5px);}
 .mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.mc1::before{background:var(--orange);}
-.mc2::before{background:var(--blue);}
-.mc3::before{background:var(--green);}
+.mc1::before{background:var(--theme-f1);}
+.mc2::before{background:var(--theme-f2);}
+.mc3::before{background:var(--theme-f3);}
 .mnum{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;opacity:.07;position:absolute;top:1rem;right:1.2rem;color:#fff;}
 .micon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem;}
-.mc1 .micon{background:rgba(255,107,44,.15);}
-.mc2 .micon{background:rgba(43,61,231,.2);}
-.mc3 .micon{background:rgba(6,193,103,.15);}
+.mc1 .micon{background:rgba(28, 64, 207,.15);}
+.mc2 .micon{background:rgba(252, 190, 29,.2);}
+.mc3 .micon{background:rgba(0, 207, 65,.15);}
 .mname{font-size:17px;font-weight:700;color:#fff;margin-bottom:.5rem;}
-.mdesc{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300;margin-bottom:1rem; flex: 1;}
+.mdesc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.5;font-weight:300;margin-bottom:1rem; flex: 1; font-family: 'DM Sans', sans-serif;}
 .mtags{display:flex;flex-wrap:wrap;gap:5px;}
 .mtag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.07);}
 
 /* Methodology Link Button */
-.m-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 10px 15px; margin-top: 1.5rem; width: 100%;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px; color: #fff; font-size: 12px; font-weight: 600;
-  text-decoration: none; transition: all 0.25s ease;
-}
-.m-btn:hover { background: var(--green); color: #000; border-color: var(--green); }
+.m-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 15px; margin-top: 1.5rem; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.25s ease; }
+.m-btn:hover { background: var(--theme-f3); color: #000; border-color: var(--theme-f3); }
 
 /* ── TIMELINE WIDGET ───────────────────────────── */
 .tl-scroll-wrapper { width: 100%; overflow-x: auto; margin-top: 3.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); }
@@ -281,7 +304,6 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .tl-scroll-wrapper::-webkit-scrollbar-track { background: #141620; border-radius: 0 0 16px 16px; }
 .tl-scroll-wrapper::-webkit-scrollbar-thumb { background: #3A3D52; border-radius: 10px; }
 .tl-scroll-wrapper::-webkit-scrollbar-thumb:hover { background: #5B6AE8; }
-
 .tl-root { min-width: 960px; width: 100%; background: var(--dark); font-family: 'DM Sans', sans-serif; color: #fff; position: relative; overflow: hidden; padding: 30px 40px 25px; border-radius: 16px; }
 .tl-glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
 .tl-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
@@ -305,7 +327,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .tl-phase-week { font-size: 11px; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 2px; }
 .tl-phase-name { font-size: 10px; font-weight: 400; color: rgba(255,255,255,.6); line-height: 1.3; margin-bottom: 8px; }
 .tl-divider { height: 1px; background: rgba(255,255,255,.06); margin-bottom: 8px; }
-.tl-milestone-text { font-size: 10.5px; color: rgba(255,255,255,.38); line-height: 1.5; font-weight: 300; flex: 1; }
+.tl-milestone-text { font-size: 12px; color: rgba(255,255,255,.6); line-height: 1.5; font-weight: 300; flex: 1; font-family: 'DM Sans', sans-serif; }
 .tl-phase-status { margin-top: 10px; font-size: 9px; font-weight: 600; padding: 3px 9px; border-radius: 20px; background: rgba(255,255,255,.05) !important; border: 1px solid rgba(255,255,255,.07); display: inline-block; align-self: flex-start; }
 .tl-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.06); margin-top: 15px; }
 .tl-foot-note { font-size: 10px; color: rgba(255,255,255,.4); }
@@ -313,52 +335,17 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .tl-check { width: 16px; height: 16px; border-radius: 50%; background: #0D2B20; display: flex; align-items: center; justify-content: center; font-size: 10px; }
 
 /* REFLECTION CARD STYLE */
-.reflection-card {
-  max-width: 860px;
-  margin: 0 auto;
-  background: #FFFFFF;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  padding: 3rem 4rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-}
-
-.ref-point {
-  margin-bottom: 2rem;
-}
-.ref-point:last-child {
-  margin-bottom: 0;
-}
-.ref-point h4 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.ref-point h4::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-}
-.ref-point p {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #4b5563;
-}
-
-@media(max-width:860px){
-  .reflection-card { padding: 2rem; }
-}
+.reflection-card { max-width: 860px; margin: 0 auto; background: #FFFFFF; border-radius: 20px; border: 1px solid var(--border); padding: 3rem 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+.ref-point { margin-bottom: 2rem; }
+.ref-point:last-child { margin-bottom: 0; }
+.ref-point h4 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
+.ref-point h4::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--theme-f3); }
+.ref-point p { font-size: 14px; line-height: 1.5; color: #4b5563; font-family: 'DM Sans', sans-serif; }
+@media(max-width:860px){ .reflection-card { padding: 2rem; } }
 
 footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
 .ftitle{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:3px;color:#fff;margin-bottom:.4rem;}
-.ftitle span{color:var(--green);}
+.ftitle span{color:var(--theme-f3);}
 .fsub{font-size:13px;color:rgba(255,255,255,.28);font-weight:300;line-height:1.6;}
 .fblocks{display:flex;justify-content:center;gap:3px;margin-bottom:1.5rem;}
 .fb{width:28px;height:28px;border-radius:4px;}
@@ -369,10 +356,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 <body>
 
 <nav>
-  <div class="nav-logo">
-    <span class="nav-pill">Uber Eats</span>
-    <span class="nav-title">UX Final Research Report</span>
-  </div>
+  <div class="nav-logo"></div>
   <ul class="nav-links">
     <li><a href="#contents">Contents</a></li>
     <li><a href="#tldr">Summary</a></li>
@@ -396,7 +380,13 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <span class="eyebrow-tag">UX604 · Research Method 2 · Winter 2026</span>
         <span class="eyebrow-line"></span>
       </div>
-      <h1 class="hero-title">UX<br><span>Research</span><br>Final Report</h1>
+      <h1 class="hero-title">
+  <div style="margin-bottom: 10px;">
+    <img src="YOUR_UBEREATS_LOGO.png" alt="Uber Eats" style="height: 80px; width: auto; object-fit: contain;">
+  </div>
+  <span>Uber Eats</span><br>
+  UX Research
+</h1>
       <div class="hero-author">
         <div class="hero-author-name">Carol Chen</div>
         <div class="hero-author-detail">Professor Susie Simon</div>
@@ -499,7 +489,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div class="fnum">02</div>
         <div class="fname">Price Transparency</div>
         <div class="fbot">
-          <span class="fpill">Priority — High</span>
+          <span class="fpill">Priority — Critical</span>
         </div>
       </div>
 
@@ -534,9 +524,9 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
         
-        <div class="fd-card-themed th-red">
-          <div class="fd-head-themed th-red">Problem Overview</div>
-          <div style="padding: 1.25rem; font-size: 14px; line-height: 1.6; color: var(--text);">
+        <div style="background: var(--theme-f1); border-radius: 8px; padding: 2rem; color: #FFFFFF;">
+          <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">Problem Overview</div>
+          <div style="font-size: 14px; line-height: 1.4; font-weight: 400; font-family: 'DM Sans', sans-serif;">
             The customer help of Uber Eats is invisible, and there is no direct human contact option to the restaurant. <strong>Users feel forced into an AI loop when they have an issue with an order.</strong>
           </div>
         </div>
@@ -545,16 +535,16 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <div class="fd-head-themed th-red">Selected User Quotes</div>
           <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
             <div style="display: flex; gap: 10px;">
-              <span class="quote-mark th-red">“</span>
+              <span class="quote-mark th-f1">“</span>
               <div>
-                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">It is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</p>
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">It is really hard to find a human service to help. I did not finish the task eventually. AI makes it more difficult and longer time."</p>
                 <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 3-5</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px;">
-              <span class="quote-mark th-red">“</span>
+              <span class="quote-mark th-f1">“</span>
               <div>
-                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">It feels like the app is hiding a phone number on purpose to force me to use the bot."</p>
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">It feels like the app is hiding a phone number on purpose to force me to use the bot."</p>
                 <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— AI Participant (Alex) · Task 3</p>
               </div>
             </div>
@@ -565,15 +555,15 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     
     <div class="fd-cards reveal">
       <div class="fd-card">
-        <div class="fd-card-head">Usability Testing</div>
+        <div class="fd-card-head head-f1">Usability Testing</div>
         <div class="fd-card-body"><img src="YOUR_FINDING1_USABILITY.png" alt="Usability Testing Data"></div>
       </div>
       <div class="fd-card">
-        <div class="fd-card-head">PURE</div>
+        <div class="fd-card-head head-f1">PURE</div>
         <div class="fd-card-body"><img src="YOUR_FINDING1_PURE.png" alt="PURE Evaluation Data"></div>
       </div>
       <div class="fd-card">
-        <div class="fd-card-head">AI</div>
+        <div class="fd-card-head head-f1">AI</div>
         <div class="fd-card-body"><img src="YOUR_FINDING1_AI.png" alt="AI Heuristic Analysis Data"></div>
       </div>
     </div>
@@ -582,7 +572,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 
 <div class="fd-wrap fd-muted">
   <div class="container">
-    <div class="dlabel dl-y">Finding 02 — High</div>
+    <div class="dlabel dl-y">Finding 02 — Critical</div>
     <div class="fd-heading">The Issue of Price Transparency</div>
     
     <div class="fd-top reveal">
@@ -596,9 +586,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       </div>
       
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <div class="fd-card-themed th-yellow">
-          <div class="fd-head-themed th-yellow">Problem Overview</div>
-          <div style="padding: 1.25rem; font-size: 14px; line-height: 1.6; color: var(--text);">
+        
+        <div style="background: var(--theme-f2); border-radius: 8px; padding: 2rem; color: #0F0F0F;">
+          <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">Problem Overview</div>
+          <div style="font-size: 14px; line-height: 1.4; font-weight: 400; font-family: 'DM Sans', sans-serif;">
             Users experience noticeable hesitation during the final payment stage, leading to a decrease in financial confidence. <strong>The grand total is hidden behind ambiguous UI elements, making it impossible to confirm the final amount easily.</strong>
           </div>
         </div>
@@ -607,16 +598,16 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <div class="fd-head-themed th-yellow">Selected User Quotes</div>
           <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
             <div style="display: flex; gap: 10px;">
-              <span class="quote-mark th-yellow">“</span>
+              <span class="quote-mark th-f2">“</span>
               <div>
-                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">I cannot see the total price after I add a tip. That's a little bit annoying."</p>
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">I cannot see the total price after I add a tip. That's a little bit annoying."</p>
                 <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— Jane (Usability participant, Task 2)</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px;">
-              <span class="quote-mark th-yellow">“</span>
+              <span class="quote-mark th-f2">“</span>
               <div>
-                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere."</p>
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">When I reached the final step after selecting the tip, I couldn't find a summary of the total price anywhere."</p>
                 <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 2-7</p>
               </div>
             </div>
@@ -627,15 +618,15 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     
     <div class="fd-cards reveal">
       <div class="fd-card">
-        <div class="fd-card-head">Usability Testing</div>
+        <div class="fd-card-head head-f2">Usability Testing</div>
         <div class="fd-card-body"><img src="YOUR_FINDING2_USABILITY.png" alt="Usability Testing Data"></div>
       </div>
       <div class="fd-card">
-        <div class="fd-card-head">PURE</div>
+        <div class="fd-card-head head-f2">PURE</div>
         <div class="fd-card-body"><img src="YOUR_FINDING2_PURE.png" alt="PURE Evaluation Data"></div>
       </div>
       <div class="fd-card">
-        <div class="fd-card-head">AI</div>
+        <div class="fd-card-head head-f2">AI</div>
         <div class="fd-card-body"><img src="YOUR_FINDING2_AI.png" alt="AI Heuristic Analysis Data"></div>
       </div>
     </div>
@@ -658,9 +649,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       </div>
       
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <div class="fd-card-themed th-orange">
-          <div class="fd-head-themed th-orange">Problem Overview</div>
-          <div style="padding: 1.25rem; font-size: 14px; line-height: 1.6; color: var(--text);">
+        
+        <div style="background: var(--theme-f3); border-radius: 8px; padding: 2rem; color: #0F0F0F;">
+          <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.8rem;">Problem Overview</div>
+          <div style="font-size: 14px; line-height: 1.4; font-weight: 400; font-family: 'DM Sans', sans-serif;">
             Users show noticeable hesitation when looking for specific app functions due to a complex layout. <strong>Essential options like search and help are not clearly visible, hidden inside redundant hierarchical menus.</strong>
           </div>
         </div>
@@ -669,16 +661,16 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <div class="fd-head-themed th-orange">Selected User Quotes</div>
           <div style="padding: 1.25rem; background: #F9FAFB; display: flex; flex-direction: column; gap: 1.2rem; flex: 1; justify-content: center;">
             <div style="display: flex; gap: 10px;">
-              <span class="quote-mark th-orange">“</span>
+              <span class="quote-mark th-f3">“</span>
               <div>
-                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">Another issue is hidden in the more option choice which is also in a long list. I have to read all of that to only get started."</p>
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">Another issue is hidden in the more option choice which is also in a long list. I have to read all of that to only get started."</p>
                 <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 2, Task 3</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px;">
-              <span class="quote-mark th-orange">“</span>
+              <span class="quote-mark th-f3">“</span>
               <div>
-                <p style="font-size: 13.5px; font-style: italic; color: var(--text); margin-bottom: 4px;">The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</p>
+                <p style="font-size: 14px; line-height: 1.5; font-style: italic; color: var(--text); margin-bottom: 4px; font-family: 'DM Sans', sans-serif;">The search bar is not on the top of the screen. It makes me confused a little bit. Then I find it on the bottom."</p>
                 <p style="font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace;">— PURE Evaluator 3, Task 1, Step 2</p>
               </div>
             </div>
@@ -689,15 +681,15 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     
     <div class="fd-cards reveal">
       <div class="fd-card">
-        <div class="fd-card-head">Usability Testing</div>
+        <div class="fd-card-head head-f3">Usability Testing</div>
         <div class="fd-card-body"><img src="YOUR_FINDING3_USABILITY.png" alt="Usability Testing Data"></div>
       </div>
       <div class="fd-card">
-        <div class="fd-card-head">PURE</div>
+        <div class="fd-card-head head-f3">PURE</div>
         <div class="fd-card-body"><img src="YOUR_FINDING3_PURE.png" alt="PURE Evaluation Data"></div>
       </div>
       <div class="fd-card">
-        <div class="fd-card-head">AI</div>
+        <div class="fd-card-head head-f3">AI</div>
         <div class="fd-card-body"><img src="YOUR_FINDING3_AI.png" alt="AI Heuristic Analysis Data"></div>
       </div>
     </div>
@@ -732,7 +724,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
           <div class="tm-grid">
             
             <div class="tm-card">
-              <div class="tm-card-head tc-red">Issue: Support Invisible</div>
+              <div class="tm-card-head tc-blue">Issue: Support Invisible</div>
               <div class="tm-card-body">
                 <div class="tm-point">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -754,7 +746,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
             </div>
 
             <div class="tm-card">
-              <div class="tm-card-head tc-red">Issue: Price Transparency</div>
+              <div class="tm-card-head tc-yellow">Issue: Price Transparency</div>
               <div class="tm-card-body">
                 <div class="tm-point">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -770,13 +762,13 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
                 </div>
               </div>
               <div class="tm-final">
-                <div class="tm-final-title">Final Triangulation <span class="tag-strong">Strong Alignment</span></div>
+                <div class="tm-final-title">Final Triangulation <span class="tag-strong yellow">Strong Alignment</span></div>
                 <div class="tm-final-text">Real user hesitation is directly explained by the structural flaws identified by experts and AI—specifically, the hidden grand total and ambiguous payment UI.</div>
               </div>
             </div>
 
             <div class="tm-card">
-              <div class="tm-card-head tc-orange">Issue: Information Architecture</div>
+              <div class="tm-card-head tc-green">Issue: Information Architecture</div>
               <div class="tm-card-body">
                 <div class="tm-point">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -878,13 +870,13 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   </div>
 </section>
 
-<div class="act-section act-white act1">
+<div class="act-section act-white act-price">
   <div class="container">
     <div class="act-header">
-      <div class="act-badge ab2">01</div>
+      <div class="act-badge ab-price">01</div>
       <div class="act-title">Fix Price Transparency at Checkout</div>
     </div>
-    <div class="act-hmw hmw2">
+    <div class="act-hmw hmw-price">
       <div class="act-hmw-bar"></div>
       <div class="act-hmw-body">How might we redesign the checkout flow to provide full price transparency and eliminate users' fear of price uncertainty?</div>
     </div>
@@ -896,17 +888,17 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     <p class="act-advice-text">Show the all-in total (food + fees + tip) immediately after the tip is set, before the user taps "Place Order". Pin a running total to the bottom of the checkout screen throughout scrolling to eliminate any price anxiety.</p>
     <div class="act-cards reveal">
       <div class="act-card ac-card3">
-        <div class="act-img"><img src="YOUR_ACTION3A.png" alt="Action screenshot"></div>
+        <div class="act-img"><img src="YOUR_ACTION1A.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text">Show the <strong>all-in total</strong> (food + fees + tip) immediately after tip is set — before "Place Order". Add a payment confirmation dialog to prevent accidental orders.</div>
+          <div class="act-card-text">The total price can be positioned at the bottom of the screen so that users can see it at any time by scrolling; the tax amount can be adjusted on the payment page.</div>
         </div>
       </div>
       <div class="act-card ac-card6">
-        <div class="act-img"><img src="YOUR_ACTION3B.png" alt="Action screenshot"></div>
+        <div class="act-img"><img src="YOUR_ACTION1B.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text">Calculate tip percentage on the <strong>actual discounted total</strong> ($17.51), not the pre-discount price ($26.51). Pin a running total to the bottom of the checkout screen while scrolling.</div>
+          <div class="act-card-text">Provide payment system to prevent misuse, the user clicks on the place order should provide a confirmation of payment steps to avoid misuse.</div>
         </div>
       </div>
     </div>
@@ -929,13 +921,13 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   </div>
 </div>
 
-<div class="act-section act2">
+<div class="act-section act-support">
   <div class="container">
     <div class="act-header">
-      <div class="act-badge ab1">02</div>
+      <div class="act-badge ab-support">02</div>
       <div class="act-title">Customer Support Functions are Not Visible</div>
     </div>
-    <div class="act-hmw hmw1">
+    <div class="act-hmw hmw-support">
       <div class="act-hmw-bar"></div>
       <div class="act-hmw-body">How might we establish a transparent communication mechanism within the app that allows users to resolve their needs at any time?</div>
     </div>
@@ -947,14 +939,14 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     <p class="act-advice-text">Establish a direct communication platform so that users can directly contact the merchant or rider, reducing the "contact intermediary". The help page needs to be intuitive so that users can quickly capture the required functions.</p>
     <div class="act-cards reveal">
       <div class="act-card ac-card1">
-        <div class="act-img"><img src="YOUR_ACTION1A.png" alt="Action screenshot"></div>
+        <div class="act-img"><img src="YOUR_ACTION2A.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
           <div class="act-card-text">Platform design a <strong>three-way communication platform</strong>: users, merchants, and riders can communicate directly online. Real Reference Case — China's Meituan Delivery Software.</div>
         </div>
       </div>
       <div class="act-card ac-card2">
-        <div class="act-img"><img src="YOUR_ACTION1B.png" alt="Action screenshot"></div>
+        <div class="act-img"><img src="YOUR_ACTION2B.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
           <div class="act-card-text">The help page should be available on both the home page and the order page. Options:
@@ -976,7 +968,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="act-collab-card">
         <div class="act-collab-head">Collaborative</div>
         <div class="act-collab-body">
-          <div class="collab-col"><span class="collab-tag" style="background:var(--red);">UI&UX Designer</span><p class="collab-text">UX designers are responsible for creating communication platforms and helping with interaction design.</p><span class="collab-tag" style="background:var(--red);">UX Research</span><p class="collab-text">AB testing to see which design users prefer.</p></div><div class="collab-col"><span class="collab-tag" style="background:var(--red);">Engineering</span><p class="collab-text">The front-end is responsible for the interaction with the updated help button.</p><span class="collab-tag" style="background:var(--red);">Product Management</span><p class="collab-text">To forecast the increase in direct merchant calls and adjust support capacity.</p></div>
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">UX designers are responsible for creating communication platforms and helping with interaction design.</p><span class="collab-tag">UX Research</span><p class="collab-text">AB testing to see which design users prefer.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">The front-end is responsible for the interaction with the updated help button.</p><span class="collab-tag">Product Management</span><p class="collab-text">To forecast the increase in direct merchant calls and adjust support capacity.</p></div>
         </div>
       </div>
     </div>
@@ -984,13 +976,13 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   </div>
 </div>
 
-<div class="act-section act-white act3">
+<div class="act-section act-white act-ia">
   <div class="container">
     <div class="act-header">
-      <div class="act-badge ab3">03</div>
+      <div class="act-badge ab-ia">03</div>
       <div class="act-title">Redesign Information Architecture</div>
     </div>
-    <div class="act-hmw hmw3">
+    <div class="act-hmw hmw-ia">
       <div class="act-hmw-bar"></div>
       <div class="act-hmw-body">How might we design an intuitive information architecture that minimises friction points for users during their interactions?</div>
     </div>
@@ -1002,17 +994,20 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     <p class="act-advice-text">Restructure the navigation so critical functions are visible at a glance. Move the search bar to the top, add a sidebar for menu categories, and redesign the help page hierarchy so users can find support in under 2 steps.</p>
     <div class="act-cards reveal">
       <div class="act-card ac-card4">
-        <div class="act-img"><img src="YOUR_ACTION2A.png" alt="Action screenshot"></div>
+        <div class="act-img"><img src="YOUR_ACTION3A.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">1</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text">Move the search bar from the bottom navigation bar to the <strong>top of the homepage</strong>. Add a vertical sidebar for restaurant menu categories, visible without scrolling.</div>
+          <div class="act-card-text">Product categories should be prominently displayed, with recommended items consolidated into a section below. Users without specific preferences can browse the content below. Any advertising sections must be clearly labeled, but should not be overly prominent.</div>
+          <div class="act-card-text"><strong>Search:</strong> change the search bar from the bottom to the top, in line with the user's habit.</div>
         </div>
       </div>
       <div class="act-card ac-card5">
-        <div class="act-img"><img src="YOUR_ACTION2B.png" alt="Action screenshot"></div>
+        <div class="act-img"><img src="YOUR_ACTION3B.png" alt="Action screenshot"></div>
         <div class="act-card-content">
           <div><span class="act-card-num">2</span><span class="act-card-label">Action</span></div>
-          <div class="act-card-text">Use <strong>card sorting</strong> to restructure the help page — separate "previous order issues" from "all topics". The help icon should be persistent on both home and order pages.</div>
+          <div class="act-card-text"><strong>Help Page:</strong></div>
+          <div class="act-card-text"><ul><li>Use card sorting to rearrange the information architecture, then test whether the proposed new structure is viable.</li>
+          <li>Previous orders should not be limited to displaying only the most recent one. While showing the last order directly allows users to find it quickly, it prevents them from accessing other orders. Therefore, create a module where users can click to view all pending orders requiring attention.</li></ul></div>
         </div>
       </div>
     </div>
@@ -1027,7 +1022,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="act-collab-card">
         <div class="act-collab-head">Collaborative</div>
         <div class="act-collab-body">
-          <div class="collab-col"><span class="collab-tag" style="background:var(--orange);">UI&UX Designer</span><p class="collab-text">Redesign the homepage layout, repositioning search and reducing promotional visual weight.</p><span class="collab-tag" style="background:var(--orange);">UX Research</span><p class="collab-text">Card sorting studies to validate new information architecture with real users.</p></div><div class="collab-col"><span class="collab-tag" style="background:var(--orange);">Engineering</span><p class="collab-text">Implement new navigation components and sidebar category menu.</p><span class="collab-tag" style="background:var(--orange);">Product Management</span><p class="collab-text">Define success metrics for new IA — task completion rate and time-to-first-action.</p></div>
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the homepage layout, repositioning search and reducing promotional visual weight.</p><span class="collab-tag">UX Research</span><p class="collab-text">Card sorting studies to validate new information architecture with real users.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement new navigation components and sidebar category menu.</p><span class="collab-tag">Product Management</span><p class="collab-text">Define success metrics for new IA — task completion rate and time-to-first-action.</p></div>
         </div>
       </div>
     </div>
@@ -1246,15 +1241,15 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 
 <footer>
   <div class="fblocks">
-    <div class="fb" style="background:var(--red)"></div>
+    <div class="fb" style="background:var(--theme-f1)"></div>
     <div class="fb" style="background:transparent"></div>
-    <div class="fb" style="background:var(--blue)"></div>
+    <div class="fb" style="background:var(--theme-f2)"></div>
     <div class="fb" style="background:transparent"></div>
-    <div class="fb" style="background:var(--green)"></div>
+    <div class="fb" style="background:var(--theme-f3)"></div>
     <div class="fb" style="background:transparent"></div>
-    <div class="fb" style="background:var(--orange)"></div>
+    <div class="fb" style="background:var(--theme-f1)"></div>
     <div class="fb" style="background:transparent"></div>
-    <div class="fb" style="background:var(--red)"></div>
+    <div class="fb" style="background:var(--theme-f2)"></div>
   </div>
   <div class="ftitle">Thank <span>You!</span></div>
   <div class="fsub">Carol Chen · UX604 Research Method 2 · Winter 2026<br>Professor Susie Simon · Wilfrid Laurier University</div>
@@ -1281,7 +1276,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     let cur = '';
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
     links.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--green)' : 'rgba(255,255,255,0.4)';
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--theme-f3)' : 'rgba(255,255,255,0.4)';
     });
   });
 </script>
