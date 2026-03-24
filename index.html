@@ -138,12 +138,12 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .tm-point { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #4b5563; font-family: 'DM Sans', sans-serif; }
 .tm-point svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.6; margin-top: 2px; }
 .tm-final { margin-top: auto; background: #f9fafb; padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
-.tm-final-title { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+.tm-final-title { font-size: 14px; font-weight: 800; text-transform: uppercase; color: #000000; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
 .tm-final-text { font-size: 14px; line-height: 1.5; color: var(--text); font-family: 'DM Sans', sans-serif; }
 
-.tag-strong { background: var(--theme-f1); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
-.tag-strong.yellow { background: var(--theme-f2); color: #000; }
-.tag-mod { background: var(--theme-f3); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
+.tag-strong { background: #F83C00; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
+.tag-strong.yellow { background: #F83C00; color: #fff; }
+.tag-mod { background: #F88000; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 9px; letter-spacing: 0.5px; }
 
 /* Eisenhower & Roadmap */
 .pm-wrapper { display: flex; flex-direction: column; gap: 2rem; align-items: center; justify-content: center; width: 100%; margin-bottom: 1rem; }
@@ -197,7 +197,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .ab-ia { background: var(--theme-f3); color: #fff; }
 .hmw-ia .act-hmw-bar { background: var(--theme-f3); }
 .hmw-ia .act-hmw-body { background: rgba(0, 207, 65, 0.06); }
-.act-ia .collab-tag { background: var(--theme-f3); color: #fff; }
+.act-ia .collab-tag { background: var(--theme-f3); color: #000; }
 
 .act-title { font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 700; color: #1e1e1e; line-height: 1.1; letter-spacing: -.03em; }
 .act-hmw { display: flex; align-items: stretch; border-radius: 0 5px 5px 0; overflow: hidden; margin-bottom: 1.8rem; }
@@ -236,10 +236,16 @@ section{padding:90px 2.5rem 70px;position:relative;}
 /* Collaborative 文本卡片设定 */
 .act-collab-card { border-radius: 13px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; }
 .act-collab-head { background: #000; padding: .7rem 1rem; font-family: 'Instrument Sans', 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: .95; text-align: center; }
-.act-collab-body { padding: 1rem 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #FFFFFF; flex: 1; }
-.collab-col { display: flex; flex-direction: column; gap: .5rem; }
-.collab-tag { display: inline-flex; align-items: center; justify-content: center; padding: 3px 10px; border-radius: 9px; font-size: 10px; font-weight: 500; color: #fff; width: fit-content; }
-.collab-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); font-family: 'DM Sans', sans-serif; }
+
+/* 加大了卡片的内边距，并将左右两列的 gap 从 1rem 增加到了 2rem */
+.act-collab-body { padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; background: #FFFFFF; flex: 1; }
+/* 取消原来的等距排列，改为区块排列 */
+.collab-col { display: block; }
+/* 标签下方留出一点点小空隙 */
+.collab-tag { display: inline-flex; align-items: center; justify-content: center; padding: 3px 10px; border-radius: 9px; font-size: 10px; font-weight: 500; color: #fff; width: fit-content; margin-bottom: 0.4rem; }
+/* 正文下方留出大空隙，和下一组内容彻底分开 */
+.collab-text { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.75); font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem; }
+.collab-text:last-child { margin-bottom: 0; } /* 最后一句话不需要下边距 */
 
 /* 告诉浏览器：如果在小屏幕/手机上，把右侧留白取消掉，不然文字就不居中了 */
 @media(max-width:860px){.act-cards{grid-template-columns:1fr;}.act-card{flex-direction:column;align-items:center;text-align:center;min-height:auto;padding:1.5rem;gap:1.5rem;}.act-card-content{padding-right:0;}.act-card-text ul{text-align:left;}.act-bottom{grid-template-columns:1fr;}}
@@ -363,6 +369,22 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 .fb{width:28px;height:28px;border-radius:4px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+
+/* Priority matrix — Eisenhower主题分级卡片的颜色尺寸设计 */
+/* 1. Price Transparency (红色严重) */
+.roadmap-list .rm-row:nth-child(1) .rm-num { background:#E73F09; color: #fff; }
+/* 如果你想让第一张卡片的背景也带点微透的黄色，删掉下面这行最前面的 /* 和最后面的 */ 
+/* .roadmap-list .rm-row:nth-child(1) { background: rgba(252, 190, 29, 0.05); border-color: rgba(252, 190, 29, 0.2); } */
+
+/* 2. Support Invisible (红色严重) */
+.roadmap-list .rm-row:nth-child(2) .rm-num { background:#E73F09; color: #fff; }
+/* 如果你想让第二张卡片的背景也带点微透的蓝色，删掉下面这行最前面的 /* 和最后面的 */
+/* .roadmap-list .rm-row:nth-child(2) { background: rgba(28, 64, 207, 0.05); border-color: rgba(28, 64, 207, 0.2); } */
+
+/* 3. Information Architecture (橙色次要) */
+.roadmap-list .rm-row:nth-child(3) .rm-num { background: #F88000; color: #fff; }
+/* 如果你想让第三张卡片的背景也带点微透的绿色，删掉下面这行最前面的 /* 和最后面的 */
+/* .roadmap-list .rm-row:nth-child(3) { background: rgba(0, 207, 65, 0.05); border-color: rgba(0, 207, 65, 0.2); } */
 </style>
 </head>
 <body>
@@ -922,7 +944,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="act-collab-card">
         <div class="act-collab-head">Collaborative</div>
         <div class="act-collab-body">
-          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the checkout screen to surface the all-in total price at every step.</p><span class="collab-tag">UX Research</span><p class="collab-text">Usability testing on new checkout flow to confirm reduced anxiety and hesitation.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement running total calculation, pinned to bottom bar during checkout.</p><span class="collab-tag">Product Management</span><p class="collab-text">Track order completion rate and refund rate as primary KPIs post-launch.</p></div>
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">To prototype the interactions and design visual for real-time price.</p><span class="collab-tag">UX Research</span><p class="collab-text">Usability testing on new checkout flow to confirm reduced anxiety and hesitation.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">The front-end is responsible for implement the real-time calculation logic and the smooth animation. and the back-end is responsible for making sure that the price calculated before the click is 100% accurate.</p><span class="collab-tag">Product Management</span><p class="collab-text">Track order completion rate and refund rate as primary KPIs post-launch.</p></div>
         </div>
       </div>
     </div>
@@ -1048,7 +1070,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <div class="act-collab-card">
         <div class="act-collab-head">Collaborative</div>
         <div class="act-collab-body">
-          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesign the homepage layout, repositioning search and reducing promotional visual weight.</p><span class="collab-tag">UX Research</span><p class="collab-text">Card sorting studies to validate new information architecture with real users.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement new navigation components and sidebar category menu.</p><span class="collab-tag">Product Management</span><p class="collab-text">Define success metrics for new IA — task completion rate and time-to-first-action.</p></div>
+          <div class="collab-col"><span class="collab-tag">UI&UX Designer</span><p class="collab-text">Redesigning the information architecture of the homepage, menus and help page through card sorting, and testing it.</p><span class="collab-tag">UX Research</span><p class="collab-text">Card sorting studies to validate new information architecture with real users.</p></div><div class="collab-col"><span class="collab-tag">Engineering</span><p class="collab-text">Implement new navigation components and sidebar category menu.</p><span class="collab-tag">Product Management</span><p class="collab-text">Define success metrics for new IA — task completion rate and time-to-first-action.</p></div>
         </div>
       </div>
     </div>
