@@ -61,7 +61,18 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .center-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,4.5rem);letter-spacing:2px;line-height:1;color:var(--text);margin-bottom:0.5rem;}
 .dark-sec .center-title{color:#fff;}
 .dark-sec .center-label,.dark-sec .center-label span{color:rgba(255,255,255,0.4);}
-#tldr{background:var(--bg);}
+#tldr { 
+  background: var(--dark); /* 改为深色背景基底 */
+  position: relative; 
+  overflow: hidden; 
+}
+/* 确保视频容器在动态背景之上 */
+.tldr-video-wrap {
+  position: relative;
+  z-index: 2;
+  margin: 2.5rem auto 0;
+  /* ...其余保持不变... */
+}
 .tldr-video-wrap{margin:2.5rem auto 0;max-width:920px;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 80px rgba(0,0,0,0.18);aspect-ratio:16/9;}
 .tldr-video{display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;}
 
@@ -103,8 +114,8 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .contents-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--theme-f3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
 .contents-eyebrow::after { content:''; width:40px; height:1px; background:var(--theme-f3); }
 .contents-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,6vw,5.5rem); color: #fff; letter-spacing: 2px; line-height: .9; margin-bottom: 3rem; }
-.contents-intro { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); max-width: 650px; margin-bottom: 3rem; font-weight: 300; }
-.intro-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #fff; letter-spacing: 1.5px; margin-bottom: 0.8rem; margin-top: 0.5rem; }
+.intro-title { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: #00CF41; letter-spacing: 1.5px; margin-bottom: 0.8rem; margin-top: 5rem; text-align: left; margin-left: 4.2rem; }
+.contents-intro { font-family: 'DM Sans', sans-serif; font-size: 18px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); max-width: 650px; font-weight: 300; text-align: left; margin-left: 4.2rem; margin-bottom: 3rem; }
 .contents-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
 .contents-list li { display: flex; align-items: center; gap: 2rem; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); cursor: pointer; transition: all .25s; text-decoration: none; }
 .contents-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
@@ -358,9 +369,67 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .reflection-card { max-width: 860px; margin: 0 auto; background: #FFFFFF; border-radius: 20px; border: 1px solid var(--border); padding: 3rem 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
 .ref-point { margin-bottom: 2rem; }
 .ref-point:last-child { margin-bottom: 0; }
-.ref-point h4 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
-.ref-point h4::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--theme-f3); }
-.ref-point p { font-size: 14px; line-height: 1.5; color: #4b5563; font-family: 'DM Sans', sans-serif; }
+.ref-point h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  
+  /* --- 关键修改开始 --- */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* 如果你的下方文字有缩进，这里加一个正向 margin */
+  /* 如果你想让方块凸出来，文字对齐，可以微调这个数值 */
+  margin-left: 0; 
+  padding-left: 0; 
+  /* --- 关键修改结束 --- */
+}
+
+/* 确保下方的文字没有多余的缩进，或者让它们统一 */
+.ref-point p, 
+.ref-point ul {
+  margin-left: 24px; /* 这个数值 = 方块宽度(12px) + 间距gap(12px) */
+  /* 这样标题的方块就会在最左边，而文字内容会整齐地对齐在方块后面 */
+}
+.ref-point h4::before {
+  content: '';
+  width: 12px;           /* 宽度变大 */
+  height: 12px;          /* 高度变大 */
+  background: var(--theme-f3); 
+  border-radius: 4px;    /* 设置为 4px 让它变成圆角方块，而不是正圆 */
+  display: inline-block; /* 确保它是一个块元素 */
+  flex-shrink: 0;        /* 防止被挤压 */
+  margin-top: 2px;       /* 微调对齐位置，让它和文字中心对齐 */
+}
+
+/* 确保标题容器使用了 flex 布局，这样小方块和文字才能对齐 */
+.ref-point h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  display: flex;         /* 必须有这一行 */
+  align-items: center;   /* 垂直居中对齐 */
+  gap: 12px;             /* 控制方块和文字之间的间距 */
+}
+/* 让段落 p 和 列表 li 使用一模一样的字体样式 */
+.ref-point p, 
+.ref-point li { 
+  font-size: 14px; 
+  line-height: 1.6; /* 稍微调大一点行高会让列表更易读 */
+  color: #4b5563; 
+  font-family: 'DM Sans', sans-serif; 
+  margin-bottom: 0.8rem; /* 给列表项之间加点间距 */
+}
+
+/* 修正列表的缩进，让它和上面的文字对齐 */
+.ref-point ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
 @media(max-width:860px){ .reflection-card { padding: 2rem; } }
 
 footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
@@ -479,21 +548,34 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   </div>
 </section>
 
-<section id="tldr">
-  <div class="container">
+<section id="tldr" class="dark-sec" style="background: #0F0F0F; position: relative; overflow: hidden; padding: 100px 2.5rem; min-height: 60vh; display: flex; align-items: center;">
+  
+  <div class="hero-grid" style="
+    position: absolute; 
+    inset: 0; 
+    display: block;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 55px 55px;
+    z-index: 1;
+    pointer-events: none;
+  "></div>
+
+  <div class="container" style="position: relative; z-index: 2; width: 100%;">
     <div class="center-header reveal">
       <div class="center-label">
-        <span>Executive Summary</span>
+        <span style="color: var(--theme-f3);">Executive Summary</span>
       </div>
-      <h2 class="center-title">Summary</h2>
-      <p class="sec-sub" style="text-align: center;">Watch the overview video below.</p>
+      <h2 class="center-title" style="color: #fff; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">Summary</h2>
+      <p class="sec-sub" style="text-align: center; color: rgba(255,255,255,0.4);">Watch the overview video below.</p>
     </div>
-    <div class="tldr-video-wrap reveal">
+
+    <div class="tldr-video-wrap reveal" style="border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 100px rgba(0,0,0,0.6); position: relative; z-index: 3;">
       <video class="tldr-video" controls preload="metadata">
         <source src="YOUR_VIDEO.mp4" type="video/mp4" />
         <p style="color:#fff;padding:2rem;text-align:center">
-          请将视频文件与此 HTML 放在同一文件夹，并将 <code>YOUR_VIDEO.mp4</code> 改为实际文件名。<br>
-          <a href="YOUR_VIDEO.mp4" style="color:#06C167">点击下载</a>
+          请将视频文件与此 HTML 放在同一文件夹。
         </p>
       </video>
     </div>
@@ -1278,16 +1360,17 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     
     <div class="reveal reflection-card">
       <div class="ref-point">
-        <h4>1. The Power of Triangulation</h4>
-        <p>Integrating Usability Testing, PURE, and AI Heuristic Analysis provided a much richer perspective than any single method could. While actual users showed us <em>where</em> they struggled and felt frustrated, expert evaluations (PURE) and AI heuristic checks helped systematically explain <em>why</em> the UI failed them. This multi-method approach made our final recommendations exceptionally robust.</p>
+        <h4>1. Identifying the Gap: Behavioral Data vs. Self-Reporting</h4>
+        <p>One of the most profound insights from this study was the "say-do" gap. I observed that users often assigned high satisfaction scores even when they encountered significant obstacles during tasks. This suggests that users may subconsciously overlook friction points once a task is completed, or they might feel a "social desirability bias" during testing. It taught me that relying solely on quantitative ratings can be misleading; we must cross-reference subjective feedback with objective behavioral observations to pinpoint where the experience truly breaks down.</p>
       </div>
       <div class="ref-point">
-        <h4>2. Balancing Business Goals with UX</h4>
-        <p>I learned that UX doesn't exist in a vacuum. Recommendations must consider business constraints like conversion rates, support center costs, and overall lifetime value (LTV). This is why using the Eisenhower matrix to prioritize actionable steps was so valuable—it allowed us to separate "quick UX wins" from "long-term structural overhauls."</p>
+        <h4>2. Mastering Data Synthesis & Evidence-Based Prioritization</h4>
+        <p>The biggest challenge was synthesizing vast amounts of qualitative and quantitative data. Transitioning from data collection to prioritizing findings requires more than just intuition—it requires a structured, <strong>evidence-based approach</strong>. Utilizing the <strong>Triangulation Matrix</strong> and the <strong>Eisenhower Priority Matrix</strong> was a turning point. These frameworks allowed me to align new findings with existing research, ensuring that our focus was directed toward the most critical issues rather than subjective preferences. This process was instrumental in building a robust, defensible evidence chain.</p>
       </div>
       <div class="ref-point">
         <h4>3. Future Improvements</h4>
-        <p>If I had more time, I would like to conduct A/B testing on our proposed redesigns to gather quantitative validation. Additionally, testing the interface with a broader demographic (beyond the 20-25 age range) would ensure that our "Support Visibility" and "Price Transparency" fixes work universally for all user types.</p>
+        <ul><li><strong>Agile Methodology Selection: </strong>In future projects, I aim to more rapidly identify the most effective research methods tailored to specific goals, ensuring a more streamlined data-gathering phase.</li>
+<li><strong>Strategic Stakeholder Communication:</strong> I plan to further refine my reporting style by focusing on actionable insights. By simplifying complex data into high-impact narratives, I want to ensure that stakeholders can quickly grasp the core findings to make informed, data-driven decisions.</li></ul>
       </div>
     </div>
   </div>
