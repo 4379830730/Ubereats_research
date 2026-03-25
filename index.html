@@ -328,6 +328,16 @@ section{padding:90px 2.5rem 70px;position:relative;}
 /* Methodology Link Button */
 .m-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 15px; margin-top: 1.5rem; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.25s ease; }
 .m-btn:hover { background: var(--theme-f3); color: #000; border-color: var(--theme-f3); }
+/* --- Methodology Tasks Section --- */
+.m-tasks-wrap { margin-top: 4rem; padding-top: 3rem; padding-left: 40px; padding-right: 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+.m-tasks-title { font-family: 'DM Sans', sans-serif; font-size: 24px; font-weight: 700; color: #00CF41; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px; }
+
+.m-tasks-sub { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 2rem; font-family: 'DM Sans', sans-serif; }
+
+.m-task-list { list-style: none; padding-left: 24px; margin: 0; }
+.m-task-list li { position: relative; color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem; font-family: 'DM Sans', sans-serif; }
+.m-task-list li::before { content: ""; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; background-color: var(--theme-f3); border-radius: 3px; }
+.m-task-list li strong { color: #fff; display: block; margin-bottom: 4px; font-size: 15px; }
 
 /* ── TIMELINE WIDGET ───────────────────────────── */
 .tl-scroll-wrapper { width: 100%; overflow-x: auto; margin-top: 3.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); }
@@ -338,8 +348,8 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .tl-root { min-width: 960px; width: 100%; background: var(--dark); font-family: 'DM Sans', sans-serif; color: #fff; position: relative; overflow: hidden; padding: 30px 40px 25px; border-radius: 16px; }
 .tl-glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
 .tl-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.tl-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #5B6AE8; margin-bottom: 5px; }
-.tl-main-title { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: #fff; line-height: 1.2; margin-top: 4px;}
+
+.tl-main-title { font-family: 'DM Sans', sans-serif; font-size: 24px; font-weight: 700; color: #00CF41; line-height: 1.2; margin-top: 4px;}
 .tl-header-right { text-align: right; font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.9; }
 .tl-header-right span { color: #fff; font-weight: 500; }
 .tl-date-row { display: flex; gap: 8px; margin-bottom: 8px; }
@@ -1210,6 +1220,28 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         </a>
       </div>
     </div>
+<div class="m-tasks-wrap reveal">
+      <h4 class="m-tasks-title">Usability Testing Tasks</h4>
+      <p class="m-tasks-sub">To evaluate the core user flow and identify potential friction points, participants were asked to complete the following three key tasks:</p>
+      
+      <ul class="m-task-list">
+        <li>
+          <strong>Task 1: Item Selection & Pop-up Handling</strong>
+          Search for a "Sandwich" within the app, select a specific package, and successfully navigate through any promotional pop-ups that appear.
+        </li>
+        <li>
+          <strong>Task 2: Payment & Checkout Customization</strong>
+          Navigate to the payment page to modify the default payment method and adjust the tip amount before finalizing the order.
+        </li>
+        <li>
+          <strong>Task 3: Support & Issue Resolution</strong>
+          Locate customer service to inquire about the most recent order and attempt to find a direct customer service phone number.
+        </li>
+      </ul>
+    </div>
+    ```
+
+这样修改后，你的测试任务不仅能和原有的黑色背景完美融合，而且还保留了那个带有一点科技感的“绿色圆角方块”设计。它正好插在你的三种研究方法和下方的 Timeline 之间，阅读逻辑非常顺畅！
 
     <div class="tl-scroll-wrapper reveal">
       <div class="tl-root">
@@ -1218,8 +1250,8 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         
         <div class="tl-header">
           <div>
-            <div class="tl-eyebrow">UX Research Timeline</div>
-            <div class="tl-main-title">Uber Eats — Comparative Evaluation Study</div>
+         
+            <div class="tl-main-title">UX Research Timeline</div>
           </div>
           <div class="tl-header-right">
             Jan 5 – Mar 23, 2026 &nbsp;·&nbsp; <span>11 Weeks</span> &nbsp;·&nbsp; Methods: <span>Usability · PURE · AI</span>
