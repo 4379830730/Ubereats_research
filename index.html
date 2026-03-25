@@ -300,10 +300,38 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .head-f2 { background: var(--theme-f2); color: #000000; }
 .head-f3 { background: var(--theme-f3); color: #000000; }
 
-/* 图片背景变成浅灰 */
-.fd-card-body { padding: 0.8rem; background: #ffffff; display: flex; flex: 1; align-items: flex-start; justify-content: center; }
-.fd-card-body img { width: 100%; height: auto; max-height: 240px; object-fit: contain; display: block; }
-
+/* --- Updated Card Body and Text Styles --- */
+.fd-card-body {
+    padding: 1.5rem;
+    background: #ffffff;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.fd-card-body img {
+    width: 100%;
+    height: auto;
+    max-height: 240px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+.card-sub-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+.card-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 0;
+    text-align: left;
+}
 @media(max-width:860px){ .fd-top { grid-template-columns: 1fr; } .fd-cards { grid-template-columns: 1fr; } .tm-grid{grid-template-columns:1fr;} }
 
 /* METHODOLOGY */
@@ -685,20 +713,37 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       </div>
     </div>
     
-    <div class="fd-cards reveal">
+<div class="fd-cards reveal">
+      
       <div class="fd-card">
         <div class="fd-card-head head-f1">Usability Testing</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING1_USABILITY.png" alt="Usability Testing Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING1_USABILITY.png" alt="Usability Testing Data">
+          <div class="card-sub-title">Task 3 Data</div>
+          <p class="card-text">The success rate for Task 3 is 0%, and the SEQ score is only 2.8. This process involves significant friction, making it completely impossible for users to achieve their goals.</p>
+        </div>
       </div>
+
       <div class="fd-card">
         <div class="fd-card-head head-f1">PURE</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING1_PURE.png" alt="PURE Evaluation Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING1_PURE.png" alt="PURE Evaluation Data">
+          <div class="card-sub-title">Task 3 Data</div>
+          <p class="card-text">Task 3: The PURE score indicates that multiple friction metrics exceed the threshold, constituting a critical path obstacle; immediate corrective action is required.</p>
+        </div>
       </div>
+
       <div class="fd-card">
         <div class="fd-card-head head-f1">AI</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING1_AI.png" alt="AI Heuristic Analysis Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING1_AI.png" alt="AI Heuristic Analysis Data">
+          <div class="card-sub-title">Task 3 - Step 5</div>
+          <p class="card-text">By the end of Task 3, the cognitive load reached 5 (the peak), and the interaction logic was highly counterintuitive, causing the task to be completely abandoned.</p>
+        </div>
       </div>
+
     </div>
+
   </div>
 </div>
 
@@ -748,20 +793,37 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       </div>
     </div>
     
-    <div class="fd-cards reveal">
+   <div class="fd-cards reveal">
+      
       <div class="fd-card">
         <div class="fd-card-head head-f2">Usability Testing</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING2_USABILITY.png" alt="Usability Testing Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING2_USABILITY.png" alt="Usability Testing Data">
+          <div class="card-sub-title">Task 2 Data</div>
+          <p class="card-text">Task 2: High operational ease (SEQ 5.4/7) but partial success (1.2) due to price-opacity induced anxiety.</p>
+        </div>
       </div>
+
       <div class="fd-card">
         <div class="fd-card-head head-f2">PURE</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING2_PURE.png" alt="PURE Evaluation Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING2_PURE.png" alt="PURE Evaluation Data">
+          <div class="card-sub-title">Task 2 - Step 7</div>
+          <p class="card-text">In the final step of Task 2, the pure score is 2, indicating that there is a friction point in this step.</p>
+        </div>
       </div>
+
       <div class="fd-card">
         <div class="fd-card-head head-f2">AI</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING2_AI.png" alt="AI Heuristic Analysis Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING2_AI.png" alt="AI Heuristic Analysis Data">
+          <div class="card-sub-title">Task 2 Data</div>
+          <p class="card-text">Task 2 AI data indicates a high cognitive load, with an overall PURE score of 3 (serious issue).</p>
+        </div>
       </div>
+
     </div>
+
   </div>
 </div>
 
@@ -811,20 +873,37 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       </div>
     </div>
     
-    <div class="fd-cards reveal">
+<div class="fd-cards reveal">
+      
       <div class="fd-card">
         <div class="fd-card-head head-f3">Usability Testing</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING3_USABILITY.png" alt="Usability Testing Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING3_USABILITY.png" alt="Usability Testing Data">
+          <div class="card-sub-title">Overall UMUX</div>
+          <p class="card-text">With a 68% UMUX Lite score and 80% neutral ease-of-use ratings, the app’s usability is only average due to persistent navigation barriers.</p>
+        </div>
       </div>
+
       <div class="fd-card">
         <div class="fd-card-head head-f3">PURE</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING3_PURE.png" alt="PURE Evaluation Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING3_PURE.png" alt="PURE Evaluation Data">
+          <div class="card-sub-title">Overall PURE Score</div>
+          <p class="card-text">High friction (red/yellow) reveals severe IA flaws.</p>
+        </div>
       </div>
+
       <div class="fd-card">
         <div class="fd-card-head head-f3">AI</div>
-        <div class="fd-card-body"><img src="YOUR_FINDING3_AI.png" alt="AI Heuristic Analysis Data"></div>
+        <div class="fd-card-body">
+          <img src="YOUR_FINDING3_AI.png" alt="AI Heuristic Analysis Data">
+          <div class="card-sub-title">Overall PURE Score</div>
+          <p class="card-text">Overall data reveals widespread severe friction, confirming critical IA.</p>
+        </div>
       </div>
+
     </div>
+
   </div>
 </div>
 
