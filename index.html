@@ -6,7 +6,7 @@
 <title>Uber Eats UX Final Research Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
-:root{--green:#06C167; --dark:#0F0F0F; --dark2:#141414; --dark3:#1A1A1A; --card:#FFFFFF; --bg:#F5F5F5; --text:#0F0F0F; --muted:#6B6B80; --border:#E0E0E0;
+:root{--green:#06C167; --dark:#050505; --dark2:#050505; --dark3:#050505; --card:#FFFFFF; --bg:#F5F5F5; --text:#0F0F0F; --muted:#6B6B80; --border:#E0E0E0;
   /* 全局新主题色 */
   --theme-f1: #1C40CF; /* Blue */
   --theme-f2: #FCBE1D; /* Yellow */
@@ -14,7 +14,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,26,0.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,5,0.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
 .nav-pill{background:var(--theme-f3);color:#000;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;}
 .nav-title{color:rgba(255,255,255,0.5);font-size:13px;}
@@ -344,10 +344,20 @@ section{padding:90px 2.5rem 70px;position:relative;}
 .mc2::before{background:var(--theme-f2);}
 .mc3::before{background:var(--theme-f3);}
 .mnum{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;opacity:.07;position:absolute;top:1rem;right:1.2rem;color:#fff;}
-.micon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem;}
-.mc1 .micon{background:rgba(28, 64, 207,.15);}
-.mc2 .micon{background:rgba(252, 190, 29,.2);}
-.mc3 .micon{background:rgba(0, 207, 65,.15);}
+/* 优化通用图标容器 */
+.micon {
+  width: auto; height: 42px; /* 保持高度，宽度自动 */
+  display: flex; align-items: center; justify-content: flex-start; /* 靠左对齐 */
+  margin-bottom: 1rem;
+}
+
+/* 自定义图片图标的限制样式 */
+.custom-micon img {
+  height: 100%;    /* 图片高度撑满父容器(42px) */
+  width: auto;     /* 宽度按比例自动 */
+  object-fit: contain; /* 保证图片不变形 */
+  display: block;
+}
 .mname{font-size:17px;font-weight:700;color:#fff;margin-bottom:.5rem;}
 .mdesc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.5;font-weight:300;margin-bottom:1rem; flex: 1; font-family: 'DM Sans', sans-serif;}
 .mtags{display:flex;flex-wrap:wrap;gap:5px;}
@@ -494,6 +504,105 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 .roadmap-list .rm-row:nth-child(3) .rm-num { background: #F88000; color: #fff; }
 /* 如果你想让第三张卡片的背景也带点微透的绿色，删掉下面这行最前面的 /* 和最后面的 */
 /* .roadmap-list .rm-row:nth-child(3) { background: rgba(0, 207, 65, 0.05); border-color: rgba(0, 207, 65, 0.2); } */
+/* ── LOGO LOOP MARQUEE (Tools & Software) ── */
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 3rem 0;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--dark);
+}
+
+/* 渐变遮罩：让左右两边有慢慢消失的虚化效果 */
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--dark), transparent);
+}
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--dark), transparent);
+}
+
+/* 标签文字 */
+.marquee-label {
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--theme-f3);
+  margin-bottom: 2.5rem;
+}
+
+/* 滚动轨道：包含两组一样的元素，无限循环 */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  /* 20s 是滚动一圈的时间，可以自己改快慢 */
+  animation: marqueeScroll 20s linear infinite; 
+}
+
+/* 鼠标放上去时暂停滚动 */
+.marquee-track:hover {
+  animation-play-state: paused; 
+}
+
+/* 每一个“Logo”的样式 */
+.marquee-item {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3); /* 默认半透明 */
+  margin: 0 3rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+/* 鼠标悬停变白变大 */
+.marquee-item:hover {
+  color: #fff;
+  transform: scale(0.8);
+}
+
+/* 旁边的装饰小点 */
+.marquee-dot {
+  font-size: 10px;
+  color: var(--theme-f1);
+}
+
+/* 核心动画：向左平移 50%（因为里面放了两组一样的数据） */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* --- 控制滚动 Logo 图片的统一大小 --- */
+.marquee-item img {
+  height: 70px; /* 👈 关键在这里！你可以把 45px 改成 30px(更小) 或 60px(更大) */
+  width: auto;
+  object-fit: contain; /* 保证图片不变形 */
+  display: block;
+  transition: transform 0.3s ease; /* 为了下面的鼠标悬停动画做准备 */
+}
+
+/* 鼠标放上去时，Logo 会稍微放大一点点，增加交互感 */
+.marquee-item:hover img {
+  transform: scale(1.15);
+}
 </style>
 </head>
 <body>
@@ -510,13 +619,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   </ul>
 </nav>
 
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-blocks">
-    <div class="hb"></div><div class="hb"></div><div class="hb"></div><div class="hb"></div>
-    <div class="hb"></div><div class="hb"></div><div class="hb"></div><div class="hb"></div>
-    <div class="hb"></div><div class="hb"></div><div class="hb"></div><div class="hb"></div>
-  </div>
+<section id="hero" style="position: relative; background: #050505;">
+  <canvas id="terminal-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>
+  <div class="crt-scanlines" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%); background-size: 100% 4px;"></div>
+  
   <div class="container">
     <div class="hero-content">
       <div class="hero-eyebrow">
@@ -586,7 +692,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
   </div>
 </section>
 
-<section id="tldr" class="dark-sec" style="background: #0F0F0F; position: relative; overflow: hidden; padding: 100px 2.5rem; min-height: 60vh; display: flex; align-items: center;">
+<section id="tldr" class="dark-sec" style="background: var(--dark); position: relative; overflow: hidden; padding: 100px 2.5rem; min-height: 60vh; display: flex; align-items: center;">
   
   <div class="hero-grid" style="
     position: absolute; 
@@ -1265,9 +1371,11 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       <p class="sec-sub" style="text-align: center;">Three progressive methods, designed to cross-validate each other.</p>
     </div>
     <div class="mth-grid reveal">
-      <div class="mcard mc1">
-        <div class="mnum">01</div>
-        <div class="micon">🧪</div>
+     <div class="mcard mc1">
+  <div class="mnum">01</div>
+  <div class="micon custom-micon">
+    <img src="icon-usability.png" alt="Usability Icon">
+  </div>
         <div class="mname">Usability Study</div>
         <div class="mdesc">Remote moderated testing via Zoom with 5 real Uber Eats users (ages 20–25). Three tasks with SEQ, UMUX-Lite, task success rate, error rate, and time-on-task.</div>
         <div class="mtags"><span class="mtag">N=5 Users</span><span class="mtag">Remote/Zoom</span><span class="mtag">SEQ + UMUX-Lite</span><span class="mtag">Affinity Map</span></div>
@@ -1277,8 +1385,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         </a>
       </div>
       <div class="mcard mc2">
-        <div class="mnum">02</div>
-        <div class="micon">🔬</div>
+  <div class="mnum">02</div>
+  <div class="micon custom-micon">
+    <img src="icon-pure.png" alt="PURE Icon">
+  </div>
         <div class="mname">PURE Study</div>
         <div class="mdesc">In-person expert evaluation by 3 UX Master's students (WLU). Each step rated on PURE 1–3 friction scale. Qualitative data analyzed via Affinity Mapping in Figma.</div>
         <div class="mtags"><span class="mtag">N=3 Experts</span><span class="mtag">In-Person</span><span class="mtag">PURE 1–3 Scale</span><span class="mtag">17 Steps</span></div>
@@ -1288,8 +1398,10 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         </a>
       </div>
       <div class="mcard mc3">
-        <div class="mnum">03</div>
-        <div class="micon">🤖</div>
+  <div class="mnum">03</div>
+  <div class="micon custom-micon">
+    <img src="icon-ai.png" alt="AI Icon">
+  </div>
         <div class="mname">AI Heuristic Eval</div>
         <div class="mdesc">Gemini (Thinking) used as AI participant proxy with simulated think-aloud. Same 3 tasks evaluated against Nielsen's 10 Heuristics with SEQ scores recorded.</div>
         <div class="mtags"><span class="mtag">Gemini Thinking</span><span class="mtag">Nielsen's 10H</span><span class="mtag">SEQ Scores</span><span class="mtag">Think-Aloud</span></div>
@@ -1457,6 +1569,28 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
       </div>
     </div>
   </div>
+<div class="marquee-container reveal">
+    <div class="marquee-label">Software & Tools Used</div>
+    <div class="marquee-track">
+      
+      <div class="marquee-item"><img src="logos/tool-zoom.svg" alt="Zoom"></div>
+      <div class="marquee-item"><img src="logos/tool-gemini.svg" alt="Gemini"></div>
+      <div class="marquee-item"><img src="logos/tool-figma.svg" alt="Figma"></div>
+      <div class="marquee-item"><img src="logos/tool-google-docs.svg" alt="Google Docs"></div>
+      <div class="marquee-item"><img src="logos/tool-canva.svg" alt="Canva"></div>
+      <div class="marquee-item"><img src="logos/tool-capcut.svg" alt="CapCut"></div>
+      <div class="marquee-item"><img src="logos/tool-github.svg" alt="GitHub"></div>
+      
+      <div class="marquee-item"><img src="logos/tool-zoom.svg" alt="Zoom"></div>
+      <div class="marquee-item"><img src="logos/tool-gemini.svg" alt="Gemini"></div>
+      <div class="marquee-item"><img src="logos/tool-figma.svg" alt="Figma"></div>
+      <div class="marquee-item"><img src="logos/tool-google-docs.svg" alt="Google Docs"></div>
+      <div class="marquee-item"><img src="logos/tool-canva.svg" alt="Canva"></div>
+      <div class="marquee-item"><img src="logos/tool-capcut.svg" alt="CapCut"></div>
+      <div class="marquee-item"><img src="logos/tool-github.svg" alt="GitHub"></div>
+
+    </div>
+  </div>
 </section>
 
 <section id="reflection" style="background: #FFFFFF;">
@@ -1528,6 +1662,143 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
     links.forEach(a => {
       a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--theme-f3)' : 'rgba(255,255,255,0.4)';
     });
+  });
+// === 优雅版 ASCII 拓扑波浪特效 (Elegant ASCII Wave) ===
+  const terminalCanvas = document.getElementById('terminal-canvas');
+  const tCtx = terminalCanvas.getContext('2d');
+  const heroSection = document.getElementById('hero');
+
+  let tWidth, tHeight;
+  let tMouse = { x: -1000, y: -1000 };
+
+  function resizeTerminal() {
+    tWidth = terminalCanvas.width = heroSection.offsetWidth;
+    tHeight = terminalCanvas.height = heroSection.offsetHeight;
+  }
+  window.addEventListener('resize', resizeTerminal);
+  resizeTerminal();
+
+  // 监听鼠标移动
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = terminalCanvas.getBoundingClientRect();
+    tMouse.x = e.clientX - rect.left;
+    tMouse.y = e.clientY - rect.top;
+  });
+  heroSection.addEventListener('mouseleave', () => {
+    tMouse.x = -1000;
+    tMouse.y = -1000;
+  });
+
+  const tint = '#0F3D1A';      // 经典终端绿
+  const tCellSize = 16;        // 严格的网格大小 (数字越大，方块越大)
+  // 按照“密度”排列的字符，模拟3D的高度和明暗 (完美还原你的截图)
+  const tChars = [' ', ' ', '.', '+', '▤', '■', '█']; 
+  let tTime = 0;
+
+  function drawTerminal() {
+    // 纯黑背景，不带拖影，保持画面干净
+    tCtx.fillStyle = '#050505';
+    tCtx.fillRect(0, 0, tWidth, tHeight);
+
+    tCtx.fillStyle = tint;
+    tCtx.font = '12px monospace';
+    tCtx.textAlign = 'center';
+    tCtx.textBaseline = 'middle';
+
+    tTime += 0.015; // 波浪流动的速度，调得很慢，显得高级
+
+    // 锁定网格，绝不随机乱跑
+    for (let y = 0; y < tHeight; y += tCellSize) {
+      for (let x = 0; x < tWidth; x += tCellSize) {
+        let dx = x - tMouse.x;
+        let dy = y - tMouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        // 核心数学：用正弦波生成平滑的地形高低起伏
+        let wave1 = Math.sin(x * 0.004 + tTime) * Math.cos(y * 0.004 + tTime);
+        let wave2 = Math.sin(x * 0.008 - tTime * 0.8) * Math.cos(y * 0.008 + tTime * 0.5);
+        let noiseValue = (wave1 + wave2) / 2; 
+
+        // 鼠标交互：鼠标经过的地方会像“放大镜”或“光源”一样，让数值凸起
+        let mouseInfluence = 0;
+        if (dist < 250) {
+          mouseInfluence = Math.cos(dist * Math.PI / 500) * 0.8; 
+        }
+        
+        let finalValue = noiseValue + mouseInfluence;
+        
+        // 将波浪高低映射到具体的字符上 (-1.5 到 1.5 映射为 0 到 1)
+        let normalizedValue = (finalValue + 1.2) / 2.4; 
+        normalizedValue = Math.max(0, Math.min(1, normalizedValue));
+        
+        let charIndex = Math.floor(normalizedValue * tChars.length);
+        if (charIndex >= tChars.length) charIndex = tChars.length - 1;
+        
+        let char = tChars[charIndex];
+
+        // 只有当字符不是空格时才绘制，画面更通透
+        if (char !== ' ') {
+            // 越密集的方块（波峰），透明度越高，越亮
+            tCtx.globalAlpha = 0.2 + normalizedValue * 0.8;
+            tCtx.fillText(char, x, y);
+        }
+      }
+    }
+    requestAnimationFrame(drawTerminal);
+  }
+  drawTerminal();
+// === 鼠标点击火花特效 (Click Spark) ===
+  document.addEventListener('click', function(e) {
+    // 这里的参数完全还原了你截图里的设置
+    const sparkCount = 8;        // 火花数量
+    const sparkSize = 10;        // 火花大小 (px)
+    const sparkRadius = 15;      // 爆炸扩散半径基数
+    const sparkColor = '#ffffff';// 火花颜色 (白色)
+    const duration = 400;        // 动画持续时间 (毫秒)
+
+    for (let i = 0; i < sparkCount; i++) {
+      createSpark(e.clientX, e.clientY, i, sparkCount);
+    }
+
+    function createSpark(x, y, index, total) {
+      const spark = document.createElement('div');
+      
+      // 设置火花的基础样式
+      spark.style.position = 'fixed';
+      spark.style.left = x + 'px';
+      spark.style.top = y + 'px';
+      spark.style.width = sparkSize + 'px';
+      spark.style.height = sparkSize + 'px';
+      spark.style.backgroundColor = sparkColor;
+      spark.style.borderRadius = '50%'; // 变成圆形
+      spark.style.pointerEvents = 'none'; // 防止遮挡后续点击
+      spark.style.zIndex = '9999'; // 保证在最顶层显示
+      
+      // 初始状态：居中且大小正常
+      spark.style.transform = 'translate(-50%, -50%) scale(1)';
+      // 动画过渡设置 (ease-out)
+      spark.style.transition = `transform ${duration}ms cubic-bezier(0, 0, 0.2, 1), opacity ${duration}ms ease-out`;
+
+      document.body.appendChild(spark);
+
+      // 计算每个火花飞出去的角度和距离
+      const angle = (index / total) * Math.PI * 2;
+      const distance = sparkRadius * 4; // 乘数用于放大扩散距离，让效果更明显
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance;
+
+      // 强制浏览器渲染下一帧时执行动画
+      requestAnimationFrame(() => {
+        // 动画结束状态：飞出去、变小到0、完全透明
+        spark.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`;
+        spark.style.opacity = '0';
+      });
+
+      // 动画结束后，把这个火花元素从页面里清理掉，防止网页卡顿
+      setTimeout(() => {
+        spark.remove();
+      }, duration);
+    }
   });
 </script>
 </body>
