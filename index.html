@@ -603,6 +603,31 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 .marquee-item:hover img {
   transform: scale(1.15);
 }
+/* --- Action 卡片高亮调整 --- */
+
+/* 1. Price Transparency 区域 (黄色系) */
+.act-price .act-card {
+  background: rgba(252, 190, 29, 0.06) !important; /* 与 HMW 背景色一致 */
+  border: 1px solid rgba(252, 190, 29, 0.2);      /* 边框也同步变黄，增加整体感 */
+}
+
+/* 2. Customer Support 区域 (蓝色系) */
+.act-support .act-card {
+  background: rgba(28, 64, 207, 0.06) !important;  /* 与 HMW 背景色一致 */
+  border: 1px solid rgba(28, 64, 207, 0.2);       /* 边框同步变蓝 */
+}
+
+/* 3. Information Architecture 区域 (绿色系) */
+.act-ia .act-card {
+  background: rgba(0, 207, 65, 0.06) !important;   /* 与 HMW 背景色一致 */
+  border: 1px solid rgba(0, 207, 65, 0.2);        /* 边框同步变绿 */
+}
+
+/* 优化：当鼠标悬停在卡片上时，让边框稍微亮一点点，增加交互感 */
+.act-card:hover {
+  border-color: #FFFFFF;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
 </style>
 </head>
 <body>
@@ -835,7 +860,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div class="fd-card-body">
           <img src="YOUR_FINDING1_PURE.png" alt="PURE Evaluation Data">
           <div class="card-sub-title">Task 3 Data</div>
-          <p class="card-text">Task 3: The PURE score indicates that multiple friction metrics exceed the threshold, constituting a critical path obstacle; immediate corrective action is required.</p>
+          <p class="card-text">The PURE score indicates that multiple friction metrics exceed the threshold, constituting a critical path obstacle; immediate corrective action is required.</p>
         </div>
       </div>
 
@@ -906,7 +931,7 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
         <div class="fd-card-body">
           <img src="YOUR_FINDING2_USABILITY.png" alt="Usability Testing Data">
           <div class="card-sub-title">Task 2 Data</div>
-          <p class="card-text">Task 2: High operational ease (SEQ 5.4/7) but partial success (1.2) due to price-opacity induced anxiety.</p>
+          <p class="card-text">High operational ease (SEQ 5.4/7) but partial success (1.2) due to price-opacity induced anxiety.</p>
         </div>
       </div>
 
