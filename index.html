@@ -72,7 +72,7 @@ section{padding:90px 2.5rem 70px;position:relative;}
   z-index: 2;
   margin: 2.5rem auto 0;
 }
-.tldr-video-wrap{margin:2.5rem auto 0;max-width:920px;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 80px rgba(0,0,0,0.18);aspect-ratio:16/9;}
+.tldr-video-wrap{margin:1.5rem auto 0;max-width:920px;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 80px rgba(0,0,0,0.18);aspect-ratio:16/9;}
 .tldr-video{display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;}
 
 /* FINDINGS - Cards */
@@ -432,7 +432,26 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 .strategic-roadmap li:nth-child(2) strong { color: var(--theme-f2) !important; }
 .strategic-roadmap li:nth-child(3) strong { color: var(--theme-f1) !important; }
 @media(max-width:860px){ .strategic-roadmap { padding: 1.5rem; } .strategic-roadmap li { padding: 1rem; } }
-
+/* ── TLDR TEXT SUMMARY ── */
+.tldr-text-summary {
+  max-width: 860px;
+  margin: 1.5rem auto 2.5rem; /* 居中，底部留出与视频的间距 */
+  background: rgba(255, 255, 255, 0.03); /* 极具质感的微透背景 */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* 微弱的边框线 */
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  text-align: left;
+}
+.tldr-text-summary p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 0;
+}
+.tldr-text-summary strong {
+  color: #fff; /* 重点词汇高亮为纯白 */
+}
 </style>
 </head>
 <body>
@@ -523,11 +542,17 @@ footer{background:var(--dark);padding:3.5rem 2.5rem;text-align:center;border-top
 <section id="tldr" class="dark-sec" style="background: var(--dark); position: relative; overflow: hidden; padding: 100px 2.5rem; min-height: 60vh; display: flex; align-items: center;">
   <div class="hero-grid" style="position: absolute; inset: 0; display: block; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 55px 55px; z-index: 1; pointer-events: none;"></div>
   <div class="container" style="position: relative; z-index: 2; width: 100%;">
-    <div class="center-header reveal">
+   <div class="center-header reveal" style="margin-bottom: 1rem;">
       <div class="center-label"><span style="color: var(--theme-f3);">Executive Summary</span></div>
       <h2 class="center-title" style="color: #fff; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">Summary</h2>
-      <p class="sec-sub" style="text-align: center; color: rgba(255,255,255,0.4);">Watch the overview video below.</p>
+
+<div class="tldr-text-summary reveal">
+      <p>This comprehensive UX research report evaluates the Uber Eats application to identify cognitive friction points and areas where user trust is compromised. By triangulating data from <strong>Usability Testing</strong>, <strong>PURE Expert Evaluation</strong>, and <strong>AI Heuristic Analysis</strong>, we uncovered three critical issues: invisible customer support, opaque pricing at checkout, and complex information architecture. The following video and report detail our findings and actionable design recommendations to enhance the overall user experience.</p>
     </div>
+
+<p style="text-align: center; color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 0;">Get a quick overview of our research journey and top findings in the video below.</p>
+    </div>
+
     <div class="tldr-video-wrap reveal" style="border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 100px rgba(0,0,0,0.6); position: relative; z-index: 3;">
       <video class="tldr-video" controls preload="metadata">
         <source src="YOUR_VIDEO.mp4" type="video/mp4" />
